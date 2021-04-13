@@ -59,6 +59,7 @@ body{
     padding: 2%;
     background: deepskyblue;
     color: #fff;
+    text-align: center;
     font-weight: 600;
     width: 50%;
     cursor: pointer;
@@ -119,4 +120,28 @@ body{
 
 .f{
     color: deepskyblue;
+}
+
+.b-signin{
+border: 2px solid black;
+width: 50%;
+margin-left: 26%;
+margin-bottom: 10%;
+height: auto;
+border: none;
+border-radius: 1.5rem;
+padding: 2%;
+background: white;
+color: #fff;
+cursor: pointer;
+outline: none;
+}
+btn{
+    font-weight: bold;
+}
+
+.btn:hover{
+    color: deepskyblue;
+    cursor: pointer;
+
 }
