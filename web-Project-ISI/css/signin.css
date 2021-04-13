@@ -37,3 +37,15 @@ a{
 .logo{
     color: white;
 }
+
+.pic{
+    width: 325px;
+    height: auto;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
