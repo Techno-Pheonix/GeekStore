@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/bootstrap.js"></script>
+    <title>Sign in</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-image: radial-gradient(circle, #00e9ff, #00d4ff, #00bcff, #00a3ff, #0085ff); }
+        .container{
+        }
+        #img1{
+            background-color: rgba(255, 255, 255, 0);
+            border: none;
+        }
+    
+        .row{
+            background:rgba(148, 148, 148, 0.486);
+            border-radius: 3px;
+        }
+        .btn1{
+            border: none;
+            outline: none;
+            height: 50px;
+            width: 100%;
+            background-color: deepskyblue;
+            color: white;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .btn1:hover{
+            background-color: white;
+            color: deepskyblue;
+            border: solid 2px deepskyblue;
+        }
+        a{
+            color:rgb(255, 255, 255);
+        }
+        .right-row{
+            border: 2px solid black;
+        }
+
+        .logo{
+            color: white;
+        }
+        .form{
+            border: 2px solid black;
+
+        }
+
+    
+    </style>
+</head>
+
+<body>
+
+
+    <div class="text-center mb-5">
+        <h1 class="logo display-1">Phoenix</h1>
+    </div>
+
+    <div class="text-center mb-5">
+        <h2 class="logo display-3">Sign in</h2>
+    </div>
+
+    <section class="form " class="Form my-4 mx-5">
+        
+        <div class="jumbotron-fluid">
+            <div class="row no-gutters">
+                <div class="col-lg-5">
+                    <img src="pictures/undraw_authentication_fsn5.svg" id="img1" class="img-fluid img-thumbnail" 
+                    alt="Sign in picture">
+                </div>
+
+                <div class="col-lg-7 align-self-center">
+                    <form class="container-fluid" action="">
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                <input type="email" placeholder="Email Adress" class="form-control form-control-lg mt-3 bm-5">
+                            
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                <input type="password" placeholder="Password" class="form-control form-control-lg mt-3 bm-5">
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                <button type="button" class="btn1 mt-3 bm-5">Sign in</button>
+                            </div>
+                        </div>
+                        <a href="#">Forget password ?</a>
+                        <p>Don't have an account? <a href="#">Register</a></p>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+ 
+    </section>
+</body>
+</html>
+
