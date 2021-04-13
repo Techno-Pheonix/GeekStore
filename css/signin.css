@@ -5,8 +5,7 @@
 }
 body {
     background-image: radial-gradient(circle, #00e9ff, #00d4ff, #00bcff, #00a3ff, #0085ff); }
-.container{
-}
+
 #img1{
     background-color: rgba(255, 255, 255, 0);
     border: none;
@@ -34,14 +33,7 @@ body {
 a{
     color:rgb(255, 255, 255);
 }
-.right-row{
-    border: 2px solid black;
-}
 
 .logo{
     color: white;
-}
-.form{
-    border: 2px solid black;
-
 }
