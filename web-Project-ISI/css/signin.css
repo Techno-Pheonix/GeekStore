@@ -12,7 +12,7 @@ body {
 }
 
 .row{
-    background:rgba(148, 148, 148, 0.486);
+    background:rgba(255, 255, 255, 0.705);
     border-radius: 3px;
 }
 .btn1{
@@ -31,7 +31,7 @@ body {
     border: solid 2px deepskyblue;
 }
 a{
-    color:rgb(255, 255, 255);
+    color:rgb(0, 163, 218);
 }
 
 .logo{
