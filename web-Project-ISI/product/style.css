@@ -1,0 +1,116 @@
+body {
+  color: black;
+  background-color: white;
+  font-family: Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+nav ul li {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.bg-dark {
+  background-color: black !important;
+}
+
+.prod-name {
+  color: #14213d;
+}
+
+.prod-form {
+  width: 70%;
+}
+@media only screen and (max-device-width: 480px) {
+  .prod-form {
+    width: 100%;
+  }
+}
+
+.product {
+  padding: 00px 0;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+}
+
+.checked {
+  color: orange;
+}
+
+.review {
+  padding: 20px 0;
+}
+
+.prod-desc {
+  padding: 30px 0;
+  line-height: 2em;
+  font-size: 1.2em;
+}
+
+.price-add {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 0;
+}
+
+.price-add button {
+  background-color: #fca311;
+  width: 144px;
+  height: 42px;
+  color: black;
+  border: 0;
+  transition: 0.3s all;
+}
+
+.price-add button:hover {
+  background-color: #14213d;
+  color: wheat;
+}
+
+.price-add h2 {
+  color: #14213d;
+}
+
+.quantity {
+  display: flex;
+  justify-content: space-between;
+}
+
+.other-items {
+  display: flex;
+  justify-content: space-around;
+  padding: 0px;
+}
+
+.other-title {
+  color: #14213d;
+  padding: 20px 0;
+}
+
+nav {
+  padding: 0 48px !important;
+}
+
+nav ul li {
+  padding: 8px;
+}
+
+nav ul .nav-link {
+  color: white !important;
+}
+
+.nav-item:hover {
+  background-color: #fca311;
+  transition: 0.3s all;
+}
+
+.desc h1 {
+  margin: 20px 0px;
+}
