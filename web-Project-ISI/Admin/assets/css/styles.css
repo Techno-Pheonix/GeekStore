@@ -12,8 +12,13 @@
 
 @media (max-width: 900px) {
   .login-clean {
-    background-image: linear-gradient(to left top, #004092, #0070c0, #00a1de, #00d0ef, #00fff4);
     padding: 140px 20px;
+  }
+}
+
+@media (max-width:1400px) {
+  .login-clean {
+    padding: 97px 20px;
   }
 }
 
