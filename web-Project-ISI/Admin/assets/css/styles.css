@@ -1,5 +1,26 @@
-body {
-  /*background-color: blue;*/
-  /*background-image: linear-gradient(to left top, #004092, #0070c0, #00a1de, #00d0ef, #00fff4);*/
+@media (max-width: 500px) {
+  .login-clean {
+    padding: 218px 20px;
+  }
 }
+
+@media (max-width: 300px) {
+  .login-clean {
+    padding: 178px 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .login-clean {
+    padding: 140px 20px;
+  }
+}
+
+@media (max-width:1400px) {
+  .login-clean {
+    padding: 93.5px 20px;
+  }
+}
+
+
 

@@ -22,7 +22,7 @@
   text-align: center;
   padding: 0 0 20px;
   font-size: 100px;
-  color: deepskyblue;
+  color: rgb(241,79,113);
 }
 
 .login-clean form .form-control {
@@ -37,7 +37,6 @@
   height: 42px;
 }
 
-
 .login-clean form .btn-primary {
   background: deepskyblue;
   border: none;
@@ -50,7 +49,7 @@
 }
 
 .login-clean form .btn-primary:hover, .login-clean form .btn-primary:active {
-  background: rgb(0, 117, 212);
+  background: rgb(5, 125, 165);
 }
 
 .login-clean form .btn-primary:active {
@@ -69,5 +68,5 @@
 .login-clean form .forgot:hover, .login-clean form .forgot:active {
   opacity: 1;
   text-decoration: none;
-  color: deepskyblue;
 }
+
