@@ -8,26 +8,25 @@
     <link rel="stylesheet" href="style.css">
     <title>Admin - Login</title>
 </head>
-<body>
-    <div class="section-1-container section-container">
-        <div class="container">
-            <div class="row">
-                <div class="col section-1 section-description">
-                    <h1>Bootstrap 4: Align Center</h1>
-                    <div class="divider-1"><span></span></div>
-                    <p>A tutorial on how to align a "div" element vertically and horizontally in Bootstrap 4.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-10 offset-1 col-lg-8 offset-lg-2 div-wrapper d-flex justify-content-center align-items-center">
-     
-                    <div class="div-to-align">
-                        <p>This is our center aligned "div".</p>
-                    </div>
-     
-                </div>
-            </div>
+<body class="">
+        <div class="container-fluid">
+          <div class="row vertical-center">
+              <form class="col-xs-8 col-xs-offset-2  col-sm-6 col-sm-offset-3 col-md-4 col-sm-offset-4 col-lg-2 col-lg-offset-5">
+                <h1>Sign In</h1>
+                <p>
+                  <label class="sr-only" for="">Email Address</label>
+                  <input class="form-control" type="email" placeholder="Email Address" required autofocus>
+                </p>
+                <p>
+                  <label class="sr-only" for="">Password</label>
+                  <input class="form-control" type="email" placeholder="Password" required>
+                </p>
+                <p class="checkbox">
+                  <label><input type="checkbox">Remember Me</label>
+                </p>
+                <button class="btn btn-primary btn-block" type="sumbit">Sign In</button>
+              </form>
+          </div>
         </div>
-    </div>
 </body>
 </html>
