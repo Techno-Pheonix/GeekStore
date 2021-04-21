@@ -3,6 +3,13 @@
   background-image: linear-gradient(to left top, #004092, #0070c0, #00a1de, #00d0ef, #00fff4);
   padding: 96.75px;
 }
+@media  screen and(max-width:400px) {
+  .login-clean{
+    padding-top:40px;
+    padding-bottom:174px;
+  }
+  
+}
 
 .login-clean form {
   max-width: 320px;
