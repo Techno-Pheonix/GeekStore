@@ -16,11 +16,9 @@
 .tech-container{
     width: 100%;
     height: auto;
-    border: 2px solid blue;
 }
 
 .tech-prod{
-    border: 2px solid red;
     width: 60%;
     height: auto;
 }
@@ -31,14 +29,12 @@
 }
 
 .title{
-    border: 2px solid green;
     width: 100%;
     height: fit-content;
 
 }
 
 .all{
-    border: 2px solid brown;
     width: 100%;
 }
 
