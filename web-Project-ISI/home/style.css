@@ -1,0 +1,63 @@
+#sbtn {
+    background-color: white;
+    color: rgb(0, 140, 255);
+    border-color: black;
+}
+
+.slider{
+    width: 50%;
+    height: auto;
+}
+
+.slcontainer{
+    background-color: rgba(156, 155, 155, 0.26);
+}
+
+.tech-container{
+    width: 100%;
+    height: auto;
+    border: 2px solid blue;
+}
+
+.tech-prod{
+    border: 2px solid red;
+    width: 60%;
+    height: auto;
+}
+
+.c{
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.title{
+    border: 2px solid green;
+    width: 100%;
+    height: fit-content;
+
+}
+
+.all{
+    border: 2px solid brown;
+    width: 100%;
+}
+
+.mbt{
+    width: 100%;
+    height: auto;
+}
+
+
+@media screen and (max-width:1050px) {
+.slider{
+    width:100%;
+    height: auto;
+}
+
+.tech-prod{
+    width: 100%;
+    height: auto;
+}
+.c{
+}
+}
