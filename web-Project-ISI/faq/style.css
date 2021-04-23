@@ -1,16 +1,16 @@
-.faq-container{
+.faq-container {
     width: 100%;
     height: auto;
 }
 
-.faq{
+.faq {
     width: 60%;
     height: auto;
 }
 
 
 
-#footer-faq{
+#footer-faq {
     width: 50%;
     height: auto;
 }
@@ -18,7 +18,5 @@
 
 
 @media screen and (max-width:900px) {
-    #footer-faq{
-
-    }
+    #footer-faq {}
 }
