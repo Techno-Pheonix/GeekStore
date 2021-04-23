@@ -8,6 +8,15 @@
     height: auto;
 }
 
+.f{
+    background-image: linear-gradient(to right bottom, #004eff, #0087ff, #00b1ff, #00d5ff, #00f4ff);
+    color: white;
+   
+}
+
+.text-muted{
+    color: white;
+}
 
 
 #footer-faq{
