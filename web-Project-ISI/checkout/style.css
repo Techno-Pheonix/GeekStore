@@ -43,18 +43,20 @@ nav ul .nav-link {
 
 .panier-contenu,
 .total-price {
-  background-color: #eaf0f9;
+  background-color: #f3f3f3;
+  box-shadow: 0 0 2px;
 }
 
 .prod img {
   max-width: 500px;
   margin: auto;
-  box-shadow: 0px 0px 5px;
+  box-shadow: 0px 0px 2px;
 }
 
 .prod hr,
 .total-price hr {
   border: 1px solid black;
+  opacity: 0.9;
   border-radius: 5px;
   padding: 0;
 }
@@ -64,16 +66,24 @@ nav ul .nav-link {
   padding: 10px;
 }
 
+.total-price > * {
+  padding: 5px;
+}
+
 .center {
   display: grid;
   place-items: center;
 }
 
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-device-width: 992px) {
   .total-price {
-    margin: 30px 0;
+    margin: 30px;
   }
   .col-md-8 {
-    margin: 20px 0;
+    margin: 20px;
+  }
+
+  hr {
+    margin: 0 0 30px 0;
   }
 }
