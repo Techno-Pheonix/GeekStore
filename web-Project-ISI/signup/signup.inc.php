@@ -14,6 +14,7 @@ if (isset($_POST["submit"])) {
     $answer=$_POST["answer"];
 
     require_once 'functions.inc.php';
+    require_once 'dbh.inc.php';
 
     //check if inputs are empty
     if (emptyInputSignup($firstname, $lastname, $adress, $password, $confirm, $gender, $email, $phone, $secquestion, $answer)!==false) {
