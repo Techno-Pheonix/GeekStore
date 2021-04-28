@@ -84,6 +84,8 @@
                                 </div>
                                 <button type="submit" class="btnRegister" name=submit>Register</button>
                             </div>
+
+                            <div class="error-msg mt-4">
                             <?php
                             if (isset($_GET["error"])){
                                 if ($_GET["error"] == "emptyinput"){
@@ -116,6 +118,7 @@
 
                             }
                         ?>
+                        </div>
                         </form>
 
                     </div>
