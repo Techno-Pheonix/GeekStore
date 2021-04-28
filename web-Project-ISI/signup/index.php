@@ -88,7 +88,13 @@
                             if (isset($_GET["error"])){
                                 if ($_GET["error"] == "emptyinput"){
                                     echo '
-                                    <div class="alert alert-danger" role="alert">There is empty Fields</div>
+                                    <div class="alert alert-danger" role="alert">There is empty Fields !</div>
+                                    ';
+                                }
+
+                                else if ($_GET["error"] == "invalidfn"){
+                                    '
+                                    <div class="alert alert-danger" role="alert">Invalid first name !</div>
                                     ';
                                 }
 
