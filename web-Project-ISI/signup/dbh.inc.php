@@ -7,7 +7,7 @@ $dbName= "dbweb";
 
 $conn = mysqli_connect($serverName,$dbName,$dbPassword,$dbName);
 
-if (!$con){
+if (!$conn){
 die("Connection failed : ".mysqli_connect_error());
 }
 

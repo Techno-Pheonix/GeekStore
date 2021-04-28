@@ -22,31 +22,35 @@ if (isset($_POST["submit"])) {
     }
 
 
-    //check the first pattern
-    if (invalidfn($firstname)!==false) {
+    //check the first pattern (incompativle with host php version)
+    /*if (invalidfn($firstname)!==false) {
         header("location:../index.php?error=invliadfn");
         exit(); //stop the script from running
-    }
+    }*/ 
 
-    /*
+    
     //check email 
     if (email($email)!==false) {
-        header("location:../index.php?error=invalidemail");
+        header("location:index.php?error=invalidemail");
         exit(); //stop the script from running
     }
+
+
 
     //check if the password fields are identic 
-    if (pwdmatch($password, $confirm)!==false) {
-        header("location:../index.php?error=pwdmatch");
+    if (pwdmatch($password, $confirm)!==true) {
+        header("location:index.php?error=pwdmatch");
         exit(); //stop the script from running
     }
 
+    
     //check if the email already exists 
     if (existmail($conn, $email)!==false) {
         header("location:../index.php?error=emailtaken");
         exit(); //stop the script from running
     }
     
+    /*
     //sign up the user 
     createuser($conn, $firstname, $lastname, $adress, $password, $confirm, $gender, $email, $phone, $secquestion, $answer )
 */
