@@ -47,7 +47,7 @@ if (isset($_POST["submit"])) {
     
     //check if the email already exists 
     if (existmail($conn, $email)!==false) {
-        header("location:../index.php?error=emailtaken");
+        header("location:/index.php?error=emailtaken");
         exit(); //stop the script from running
     }
     

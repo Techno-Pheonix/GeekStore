@@ -1,12 +1,11 @@
 <?php 
 
-$serverName= "197.12.0.100";
-$dbUsername= "user14210_admin";
-$dbPassword= "rN8kC2oW4qxX3y";
-$dbName= "dbweb";
+$serverName= "localhost";
+$dbUsername= "user14210_adminf";
+$dbPassword= "fK7pO2qF4gdV1o";
+$dbName= "user14210_project";
 
-$conn = mysqli_connect($serverName,$dbName,$dbPassword,$dbName);
-
+$conn = mysqli_connect($serverName,$dbUsername,$dbPassword);
 if (!$conn){
 die("Connection failed : ".mysqli_connect_error());
 }
