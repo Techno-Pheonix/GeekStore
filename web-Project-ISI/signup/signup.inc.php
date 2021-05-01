@@ -46,10 +46,14 @@ if (isset($_POST["submit"])) {
 
     
     //check if the email already exists 
-    if (existmail($conn, $email)!==false) {
-        header("location:/index.php?error=emailtaken");
-        exit(); //stop the script from running
+    if (existmail($conn, $email)==true) {
+        header("location:index.php?error=emailtaken");
+         //stop the script from running
+         exit();
     }
+
+
+
     
     /*
     //sign up the user 
@@ -58,8 +62,8 @@ if (isset($_POST["submit"])) {
 
 }
 
-else {
+/*else {
     header("location:../signup/index.php");
-}
+}/*
 
 ?>

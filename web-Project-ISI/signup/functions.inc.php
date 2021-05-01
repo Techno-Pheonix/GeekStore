@@ -37,16 +37,31 @@ function pwdmatch($password, $confirm){
 
 function existmail($conn, $email){
     $result;
+    $i = 0;
+    $query = "SELECT * from user where email='$email'";
+    $result = mysql_query($conn, $query);
+   if (mysqli_num_rows($result)>0) {
+    $result = true;
+   }
 
-    $query = "SELECT * FROM user WHERE email = '$email'";
-    $query_run = mysqli_query($conn,$query);
-    if (!$query_run){
-        die ("query error".mysqli_error($conn));
-        die($email);
+   else {
+       $result = false;
+   }
+   
+
+    
+   /* $sql = "SELECT * FROM user WHERE email =?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepate($stmt, $sql)) {
+        header("location:index.php?error=stmtfailed");
         exit();
     }
-    else if (mysqli_num_row($query_run)>0)
-    {
+
+    mysqli_stmt_bind_param($stmt, "ss", $email);
+    mysqli_stmt_execute($stmt);
+
+    $resultdata = mysqli_stmt_get_result();
+    if ($row = mysqli_fetch_assoc($resultdata)){
         $result = true;
     }
 
@@ -54,7 +69,9 @@ function existmail($conn, $email){
         $result = false;
     }
 
-    return $result;
+    mysqli_stmt_close($stmt);
+    return $result;*/
+
 }
 
 //this function is not compatible with the host php version
