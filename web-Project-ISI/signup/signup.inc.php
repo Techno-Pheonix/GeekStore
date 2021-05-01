@@ -33,7 +33,7 @@ if (isset($_POST["submit"])) {
     //check email 
     if (email($email)!==false) {
         header("location:index.php?error=invalidemail");
-        exit(); //stop the script from running
+        exit();
     }
 
 
@@ -41,14 +41,18 @@ if (isset($_POST["submit"])) {
     //check if the password fields are identic 
     if (pwdmatch($password, $confirm)!==true) {
         header("location:index.php?error=pwdmatch");
-        exit(); //stop the script from running
+        exit(); 
     }
 
     
     //check if the email already exists 
     if (existmail($conn, $email)==true) {
         header("location:index.php?error=emailtaken");
-         //stop the script from running
+         exit();
+    }
+
+    if (existmail($conn, $email)==false) {
+        header("location:index.php?error=emailfree");
          exit();
     }
 

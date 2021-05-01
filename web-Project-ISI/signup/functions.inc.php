@@ -35,22 +35,27 @@ function pwdmatch($password, $confirm){
     return $result;
 }
 
+
+
 function existmail($conn, $email){
     $result;
-    $i = 0;
-    $query = "SELECT * from user where email='$email'";
-    $result = mysql_query($conn, $query);
-   if (mysqli_num_rows($result)>0) {
-    $result = true;
-   }
 
-   else {
-       $result = false;
-   }
-   
+    $sql = "SELECT * FROM user where email='$email'";
+    $result = mysqli_query($conn, $sql);
+    $resultcheck = mysqli_num_rows($result);
+
+    if ($resultcheck>0){
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+
+    return $result;
+   /*
 
     
-   /* $sql = "SELECT * FROM user WHERE email =?";
+    $sql = "SELECT * FROM user WHERE email =?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepate($stmt, $sql)) {
         header("location:index.php?error=stmtfailed");
