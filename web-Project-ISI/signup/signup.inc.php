@@ -8,9 +8,16 @@ if (isset($_POST["submit"])) {
     $password=$_POST["password"];
     $confirm=$_POST["confirmpassword"];
     $gender=$_POST["gender"];
+    if ($gender =="male"){
+        $gender = "M";
+    }
+    else {
+        $gender = "F";
+    }
     $email=$_POST["email"];
     $phone=$_POST["phone"];
     $secquestion=$_POST["secquestion"];
+
     $answer=$_POST["answer"];
 
     require_once 'functions.inc.php';
@@ -21,6 +28,8 @@ if (isset($_POST["submit"])) {
         header("location:index.php?error=emptyinput");
         exit(); //stop the script from running
     }
+
+  
 
 
     //check the first pattern (incompativle with host php version)
@@ -51,18 +60,18 @@ if (isset($_POST["submit"])) {
          exit();
     }
 
-    if (existmail($conn, $email)==false) {
-        header("location:index.php?error=emailfree");
-         exit();
+    //check the password length
+    if (passlen($password)==false){
+        header("location:index.php?error=pwdlen");
+        exit();
     }
 
-
-
     
-    /*
-    //sign up the user 
-    createuser($conn, $firstname, $lastname, $adress, $password, $confirm, $gender, $email, $phone, $secquestion, $answer )
-*/
+
+    die("$firstname, $lastname, $adress, $password, $confirm, $gender, $email, $phone, $secquestion, $answer");
+
+    //createuser($conn, $firstname, $lastname, $adress, $password, $confirm, $gender, $email, $phone, $secquestion, $answer);
+
 
 }
 

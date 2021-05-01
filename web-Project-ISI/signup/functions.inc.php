@@ -52,32 +52,38 @@ function existmail($conn, $email){
     }
 
     return $result;
-   /*
 
-    
-    $sql = "SELECT * FROM user WHERE email =?";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepate($stmt, $sql)) {
-        header("location:index.php?error=stmtfailed");
-        exit();
+}
+
+function passlen($password){
+    $result;
+
+    if (strlen($password)<8){
+        $result = false;
     }
-
-    mysqli_stmt_bind_param($stmt, "ss", $email);
-    mysqli_stmt_execute($stmt);
-
-    $resultdata = mysqli_stmt_get_result();
-    if ($row = mysqli_fetch_assoc($resultdata)){
+    else {
         $result = true;
     }
 
-    else {
+    return $result;
+}
+
+function quest($secquestion){
+    $result;
+
+    if ($secquestion!=1 || $secquestion!=2 || $secquestion!=3){
         $result = false;
     }
-
-    mysqli_stmt_close($stmt);
-    return $result;*/
-
+    else{
+        $result = true;
+    }
+    return $result; 
 }
+
+
+/*function createuser($conn, $firstname, $lastname, $adress, $password, $confirm, $gender, $email, $phone, $secquestion, $answer){
+    $sql = "INSERT INTRO user (id_user,first_name,last_name,adress,phone,email,password,admin,gender,registered_at,lastlogin,sec_quest,sec_answer) VALUES($firstname, $lastname, $adress, $password, $confirm, $gender, $email, $phone, $secquestion, $answer)";
+}*/
 
 //this function is not compatible with the host php version
 /*

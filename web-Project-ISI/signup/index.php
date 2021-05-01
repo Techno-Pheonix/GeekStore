@@ -73,10 +73,10 @@
                                 </div>
                                 <div class="form-group">
                                     <select name="secquestion" class="form-control">
-                                        <option class="hidden"  selected disabled>Please select your Security Question</option>
-                                        <option>What is your Birthdate?</option>
-                                        <option>What is Your old Phone Number</option>
-                                        <option>What is your Pet Name?</option>
+                                        <option class="hidden" value="0" selected disabled>Please select your Security Question</option>
+                                        <option value = "1">What is your Birthdate?</option>
+                                        <option value = "2">What is Your old Phone Number</option>
+                                        <option value = "3">What is your Pet Name?</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -86,7 +86,7 @@
                             </div>
 
                             <div class="error-msg mt-4">
-                            <?php
+                           <?php
                             if (isset($_GET["error"])){
                                 if ($_GET["error"] == "emptyinput"){
                                     echo '
@@ -116,8 +116,23 @@
                                     ';
                                 }
 
+                                else if ($_GET["error"] == "pwdlen"){
+                                    echo
+                                    '
+                                    <div class="alert alert-danger" role="alert">Password minimum characters 8 !</div>
+                                    ';
+                                }
+
+                                else if ($_GET["error"] == "invalidquest"){
+                                    echo
+                                    '
+                                    <div class="alert alert-danger" role="alert">Invalid Security Question</div>
+                                    ';
+                                }
+
                             }
-                        ?>
+                            ?>
+
                         </div>
                         </form>
 
