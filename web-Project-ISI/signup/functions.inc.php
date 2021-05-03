@@ -86,22 +86,19 @@ function createuser($conn, $firstname, $lastname, $adress, $password, $confirm, 
     $admin = 0;
     $registered = date("Y-m-d H:i:s");
     $lastlog = date("Y-m-d H:i:s");
-
-    $sql = "INSERT INTRO user(first_name, last_name, adress, phone, email, password, admin, gender, registered_at, lastlogin, sec_quest, sec_answer) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        die(mysqli_stmt_error($stmt));
-        exit();   
-    }
-    //hashing the password 
     $hashed = password_hash($password, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "sssssssssssss",$firstname, $lastname, $adress, $phone ,$email, $hashed, $admin, $gender, $registered, $lastlog, $secquestion, $answer);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
-    header("location:index.php?error=none");
+    $sql = "INSERT INTO user(`first_name`, `last_name`, `adress`, `phone`, `email`, `password`, `admin`, `gender`, `registered_at`, `lastlogin`, `sec_quest`, `sec_answer`) VALUES ('$firstname', '$lastname', '$adress', '$phone' ,'$email', '$hashed', '$admin', '$gender', '$registered', '$lastlog', '$secquestion', '$answer')";
+    if (mysqli_query($conn,$sql)){
+        die("insert c bon ");
+    }
+    else {
+        die("erreur dinsertion".mysqli_error($conn));
+    }
+    mysqli_close($conn);
     $_SESSION['username'] = $firstname;
-  	$_SESSION['success'] = "You are now logged in";
+    $_SESSION['success'] = "You are now logged in";
+    header("location:index.php?error=none");
     exit();
 }
 
