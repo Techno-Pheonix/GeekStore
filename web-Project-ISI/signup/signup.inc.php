@@ -1,4 +1,5 @@
 <?php 
+session_start();
 
 if (isset($_POST["submit"])) {
 
@@ -66,17 +67,15 @@ if (isset($_POST["submit"])) {
         exit();
     }
 
-    
+    //die("$firstname, $lastname, $adress, $password, $confirm, $gender, $email, $phone, $secquestion, $answer,$admin,$registered,$lastlog");
 
-    die("$firstname, $lastname, $adress, $password, $confirm, $gender, $email, $phone, $secquestion, $answer");
-
-    //createuser($conn, $firstname, $lastname, $adress, $password, $confirm, $gender, $email, $phone, $secquestion, $answer);
+    createuser($conn, $firstname, $lastname, $adress, $password, $confirm, $gender, $email, $phone, $secquestion, $answer);
 
 
 }
 
-/*else {
+else {
     header("location:../signup/index.php");
-}/*
+}
 
 ?>

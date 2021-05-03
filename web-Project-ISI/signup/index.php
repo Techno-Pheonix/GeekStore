@@ -73,8 +73,8 @@
                                 </div>
                                 <div class="form-group">
                                     <select name="secquestion" class="form-control">
-                                        <option class="hidden" value="0" selected disabled>Please select your Security Question</option>
-                                        <option value = "1">What is your Birthdate?</option>
+                                        <option class="hidden" value="0" disabled>Please select your Security Question</option>
+                                        <option value = "1" selected>What is your favourite childhood game?</option>
                                         <option value = "2">What is Your old Phone Number</option>
                                         <option value = "3">What is your Pet Name?</option>
                                     </select>
