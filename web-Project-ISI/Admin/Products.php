@@ -45,7 +45,7 @@
                             id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
                         <form
                             class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group"><input class="bg-light form-control border-0 small" onkeyup="FilteredSearch()" type="text"
+                            <div class="input-group"><input class="bg-light form-control border-0 small"  type="text"
                                     placeholder="Search for ...">
                                 <div class="input-group-append"><button
                                         class="btn btn-primary bg-gradient-deepbluesky py-0" type="button"><i
@@ -218,7 +218,7 @@
                                 <div class="col-md-6">
                                     <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input
                                                 type="search" class="form-control form-control-sm"
-                                                aria-controls="dataTable" placeholder="Search"></label></div>
+                                                aria-controls="dataTable" id="myInput" onkeyup="FilteredSearch()" placeholder="Search"></label></div>
                                 </div>
                             </div>
                             <div class="table-responsive table mt-2" id="dataTable" role="grid"
@@ -315,15 +315,15 @@ function FilteredSearch() {
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("myInput");
   filter = input.value;
-  table = document.getElementById("myTable");
+  table = document.getElementById("dataTable");
   tr = table.getElementsByTagName("tr");
 
   // Loop through all table rows, and hide those who don't match the search query
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
+    td = tr[i].getElementsByTagName("td")[1];
     if (td) {
       txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      if (txtValue.indexOf(filter) > -1) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
