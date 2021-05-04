@@ -71,6 +71,12 @@
                                     <div class="alert alert-danger" role="alert">There are empty Fields !</div>
                                     ';
                                 }
+
+                                if ($_GET["error"] == "incorrectpwd"){
+                                    echo '
+                                    <div class="alert alert-danger" role="alert">Incorrect Password !</div>
+                                    ';
+                                }
                             }
 
                             ?>

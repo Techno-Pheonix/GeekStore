@@ -54,10 +54,12 @@ function loginuser($conn, $email, $password){
             $_SESSION['user'] = $row['first_name'];
             $_SESSION['user_id'] = $row['id_user'];
             $_SESSION['loggedin'] = true;
-            die("You are connected !");
+            header("location:../");
+            exit();
         }
         else {
-            die("Incorrect Password");
+            header("location:index.php?error=incorrectpwd");
+            exit();
         }
     }
     
