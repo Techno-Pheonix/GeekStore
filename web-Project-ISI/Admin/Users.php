@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Products - Geek Store</title>
+    <title>Users - Geek Store</title>
     <link rel="icon" href="../pictures/fav.ico" />
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap2.min.css">
     <link rel="stylesheet"
@@ -29,9 +29,9 @@
                                 class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="profile.html"><i
                                 class="fas fa-user"></i><span>Profile</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="Users.html"><i
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="Users.html"><i
                                 class="fas fa-users"></i><span>Users</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="Products.html"><i
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="Products.html"><i
                                 class="fas fa-table"></i><span>Products</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
@@ -45,7 +45,7 @@
                             id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
                         <form
                             class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group"><input class="bg-light form-control border-0 small"  type="text"
+                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text"
                                     placeholder="Search for ...">
                                 <div class="input-group-append"><button
                                         class="btn btn-primary bg-gradient-deepbluesky py-0" type="button"><i
@@ -196,12 +196,12 @@
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4">Products</h3>
+                    <h3 class="text-dark mb-4">Userbase</h3>
                     <div class="card shadow">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 font-weight-bold">Product Info</p><button
-                                class="btn btn-primary bg-gradient-deepbluesky" type="button"
-                                style="width: 111px;height: 32px;padding-top: 3px;font-size: 15px;" onclick="creatnew()">Create New</button>
+                            <p class="text-primary m-0 font-weight-bold">User Info</p>
+                            <button class="btn btn-primary bg-gradient-deepbluesky" type="button"
+                                style="width: 111px;height: 32px;padding-top: 3px;font-size: 15px;">Create New</button>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -218,7 +218,7 @@
                                 <div class="col-md-6">
                                     <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input
                                                 type="search" class="form-control form-control-sm"
-                                                aria-controls="dataTable" id="myInput" onkeyup="FilteredSearch()" placeholder="Search by category"></label></div>
+                                                aria-controls="dataTable" placeholder="Search by city" id="catInput" onkeyup="FilteredSearch()"></label></div>
                                 </div>
                             </div>
                             <div class="table-responsive table mt-2" id="dataTable" role="grid"
@@ -226,14 +226,16 @@
                                 <table class="table dataTable my-0" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Category</th>
-                                            <th>Quantity</th>
-                                            <th>Price</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Address</th>
+                                            <th>E-mail</th>
+                                            <th>Account creation date</th>
+                                            <th>Last Online</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-<?php 
+                                        <?php 
 $serverName= "197.12.0.100";
 $dbUsername= "user14210_adminf";
 $dbPassword= "fK7pO2qF4gdV1o";
@@ -243,27 +245,31 @@ $conn = mysqli_connect($serverName,$dbUsername,$dbPassword,$dbName);
 if (!$conn){
 die("Connection failed : ".mysqli_connect_error()); 
 }
-$sql = "SELECT p.title as ProdName,p.quantity as Qty, p.price as Price,c.title as cat from product p,category c where p.id_cat = c.id_cat;";
+$sql = "SELECT * from user";
 $query = mysqli_query($conn,$sql);
 
 ?>
-<?php
+                                        <?php
 while ($row = mysqli_fetch_array($query)) {
     echo "<tr>";
-    echo "<td>" . $row['ProdName'] . "</td>";
-    echo "<td>" . $row['cat'] . "</td>";
-    echo "<td>" . $row['Qty'] . "</td>";
-    echo "<td>" . $row['Price'] . "</td>";
+    echo "<td>" . $row['first_name'] . "</td>";
+    echo "<td>" . $row['last_name'] . "</td>";
+    echo "<td>" . $row['adress'] . "</td>";
+    echo "<td>" . $row['email'] . "</td>";
+    echo "<td>" . $row['registered_at'] . "</td>";
+    echo "<td>" . $row['lastlogin'] . "</td>";
     echo "</tr>";
 }
 ?>
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Category</th>
-                                            <th>Quantity</th>
-                                            <th>Price</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Address</th>
+                                            <th>E-mail</th>
+                                            <th>Account creation date</th>
+                                            <th>Last Online</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -299,28 +305,24 @@ while ($row = mysqli_fetch_array($query)) {
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
-    
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/chart.min.js"></script>
     <script src="assets/js/bs-charts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
     <script src="assets/js/theme.js"></script>
-    <script>function createnew() {
-      window.location.href = "/AddProduct/index.php"; }
-    </script>
     <script>
 function FilteredSearch() {
   // Declare variables
   var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
+  input = document.getElementById("catInput");
   filter = input.value;
   table = document.getElementById("dataTable");
   tr = table.getElementsByTagName("tr");
 
   // Loop through all table rows, and hide those who don't match the search query
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
+    td = tr[i].getElementsByTagName("td")[2];
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.indexOf(filter) > -1) {
