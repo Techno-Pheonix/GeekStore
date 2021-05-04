@@ -201,7 +201,7 @@
                         <div class="card-header py-3">
                             <p class="text-primary m-0 font-weight-bold">Product Info</p><button
                                 class="btn btn-primary bg-gradient-deepbluesky" type="button"
-                                style="width: 111px;height: 32px;padding-top: 3px;font-size: 15px;">Create New</button>
+                                style="width: 111px;height: 32px;padding-top: 3px;font-size: 15px;" onclick="creatnew()">Create New</button>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -234,7 +234,7 @@
                                     </thead>
                                     <tbody>
 <?php 
-$serverName= "localhost";
+$serverName= "197.12.0.100";
 $dbUsername= "user14210_adminf";
 $dbPassword= "fK7pO2qF4gdV1o";
 $dbName= "user14210_project";
@@ -243,17 +243,17 @@ $conn = mysqli_connect($serverName,$dbUsername,$dbPassword,$dbName);
 if (!$conn){
 die("Connection failed : ".mysqli_connect_error()); 
 }
-$sql = "SELECT p.*,c.title from product p,category c where p.id_cat = c.id_cat;";
+$sql = "SELECT p.title as ProdName,p.quantity as Qty, p.price as Price,c.title as cat from product p,category c where p.id_cat = c.id_cat;";
 $query = mysqli_query($conn,$sql);
 
 ?>
 <?php
 while ($row = mysqli_fetch_array($query)) {
     echo "<tr>";
-    echo "<td>" . $row['p.title'] . "</td>";
-    echo "<td>" . $row['c.title'] . "</td>";
-    echo "<td>" . $row['p.quantity'] . "</td>";
-    echo "<td>" . $row['p.price'] . "</td>";
+    echo "<td>" . $row['ProdName'] . "</td>";
+    echo "<td>" . $row['cat'] . "</td>";
+    echo "<td>" . $row['Qty'] . "</td>";
+    echo "<td>" . $row['Price'] . "</td>";
     echo "</tr>";
 }
 ?>
@@ -299,12 +299,16 @@ while ($row = mysqli_fetch_array($query)) {
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
+    
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/chart.min.js"></script>
     <script src="assets/js/bs-charts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
     <script src="assets/js/theme.js"></script>
+    <script>function createnew() {
+      window.location.href = "/AddProduct/index.php"; }
+    </script>
 </body>
 
 </html>
