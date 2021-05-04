@@ -75,7 +75,7 @@ if (isset($_POST["submit"])) {
 }
 
 else {
-    header("location:../signup/index.php");
+    header("location:index.php");
 }
 
 ?>

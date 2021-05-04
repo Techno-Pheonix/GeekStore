@@ -41,8 +41,8 @@ function existmail($conn, $email){
     $result;
 
     $sql = "SELECT * FROM user where email='$email'";
-    $result = mysqli_query($conn, $sql);
-    $resultcheck = mysqli_num_rows($result);
+    $result_db = mysqli_query($conn, $sql);
+    $resultcheck = mysqli_num_rows($result_db);
 
     if ($resultcheck>0){
         $result = true;
@@ -82,7 +82,6 @@ function quest($secquestion){
 
 
 function createuser($conn, $firstname, $lastname, $adress, $password, $confirm, $gender, $email, $phone, $secquestion, $answer){
-    $id;
     $admin = 0;
     $registered = date("Y-m-d H:i:s");
     $lastlog = date("Y-m-d H:i:s");
@@ -90,17 +89,28 @@ function createuser($conn, $firstname, $lastname, $adress, $password, $confirm, 
 
     $sql = "INSERT INTO user(`first_name`, `last_name`, `adress`, `phone`, `email`, `password`, `admin`, `gender`, `registered_at`, `lastlogin`, `sec_quest`, `sec_answer`) VALUES ('$firstname', '$lastname', '$adress', '$phone' ,'$email', '$hashed', '$admin', '$gender', '$registered', '$lastlog', '$secquestion', '$answer')";
     if (mysqli_query($conn,$sql)){
-        die("insert c bon ");
+        header("location:index.php?error=none");
+        $_SESSION['username'] = $firstname;
+        $_SESSION['success'] = "You are now logged in";
+        exit();
     }
     else {
-        die("erreur dinsertion".mysqli_error($conn));
+        header("location:index.php?error=inserterror");
+        exit();
     }
     mysqli_close($conn);
-    $_SESSION['username'] = $firstname;
-    $_SESSION['success'] = "You are now logged in";
-    header("location:index.php?error=none");
-    exit();
 }
+/*
+function emptyInputlogin($email, $password) {
+    $result;
+    if (empty($email) || empty($password)){
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+}*/
 
 //this function is not compatible with the host php version
 /*
