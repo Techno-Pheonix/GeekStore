@@ -1,3 +1,4 @@
+<?php require_once "dbh.inc.php"; ?> 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a  href="/">
       <img class="nav-logo" src="pictures/logof2.png" width="80" height="auto" alt="">
@@ -8,42 +9,28 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown">
+        <?php 
+        $sql = "SELECT * FROM category;";
+        $result = mysqli_query($conn, $sql);
+        ?>
+        <?php while ($row = mysqli_fetch_assoc($result)): ?>
+          <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Tech
+            <?php echo $row['title'] ?>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Keyboard</a>
-            <a class="dropdown-item" href="#">Mouse</a>
-            <a class="dropdown-item" href="#">Headset</a>
+            <?php 
+            $sql_cat = "SELECT sub.* FROM sub_category sub,category where category.id_cat = sub.id_cat and category.id_cat = ".$row['id_cat'].";";
+            $result_cat = mysqli_query($conn, $sql_cat);
+            ?>
+            <?php while ($row_cat = mysqli_fetch_assoc($result_cat)): ?>
+              <a class="dropdown-item" href="#"><?php echo $row_cat["title"] ?></a>
+            <?php endwhile ?>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Trending</a>
           </div>
-        </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Gaming
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Console</a>
-          <a class="dropdown-item" href="#">Games</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Trending</a>
-        </div>
-      </li>
-
-      <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Anime
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Figures</a>
-            <a class="dropdown-item" href="#">Manga</a>
-            <a class="dropdown-item" href="#">Posters</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Trending</a>
-          </div>
-        </li>
+          </li>
+          <?php endwhile ?>    
       </ul>
 
       
