@@ -1,3 +1,7 @@
+<?php 
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +12,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="icon" href="pictures/fav.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Home</title>
 </head>
 
@@ -16,7 +21,7 @@
     <header>
         
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a  href="http://store.hafhouf.com">
+            <a  href="/">
                 <img class="nav-logo" src="pictures/logof2.png" width="80" height="auto" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,12 +66,33 @@
                       <a class="dropdown-item" href="#">Trending</a>
                     </div>
                   </li>
-        
-              </ul>
+                </ul>
+
+               
+
+              <div class="login mr-4">
+          
+              </div>
               <form class="form-inline my-2 my-lg-0">
+             
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button id="sbtn" class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
+                <button id="sbtn" class="btn btn-light my-2 my-sm-0" type="submit"><i class="fas fa-search bs"></i></button>
               </form>
+              <?php 
+                  if (isset($_SESSION["user_id"])){
+                    $username = $_SESSION['user'];
+                    echo('
+                    <button type="button" class="btn btn-dark btn-sm mr-2 ml-2" onclick="profilered()"><i class="fas fa-user"></i></button>
+                    <button type="button" class="btn btn-dark btn-sm" onclick="logoutred()"><i class="fas fa-sign-out-alt"></i></button>
+                    ');
+                  }
+                  else {
+                    echo('
+                    <button type="button" class="btn btn-dark btn-sm mr-2 ml-2" onclick="signupred()"><i class="fas fa-user-plus"></i></button>
+                    <button type="button" class="btn btn-dark btn-sm" onclick="signinred()"><i class="fas fa-sign-in-alt"></i></button>
+                    ');
+                  }
+                ?>
             </div>
           </nav>
 
@@ -310,6 +336,26 @@
       </footer>
     </div>
 </body>
+
+<script>
+    function signupred() {
+      window.location.href = "signup/";
+    } 
+
+    function signinred() {
+      window.location.href = "signin/";
+    }
+
+    function profilered() {
+      window.location.href = "profile/";
+    }  
+
+    function logoutred() {
+      window.location.href = "includes/logout.inc.php";
+    }  
+
+</script> 
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
