@@ -49,7 +49,7 @@ function loginuser($conn, $email, $password){
     else if ($rowcount!=0){
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $row = mysqli_fetch_array($result);
-        if ($row['password']==password_verify($password, $hash)){
+        if (password_verify($row['password'], $hash)){
             session_start();
             $_SESSION['user'] = $row['first_name'];
             $_SESSION['user_id'] = $row['id_user'];
@@ -62,5 +62,6 @@ function loginuser($conn, $email, $password){
     }
     
     }
+    //
 
 ?>
