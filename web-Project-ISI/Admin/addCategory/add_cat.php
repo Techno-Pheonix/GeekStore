@@ -1,14 +1,5 @@
 <?php 
     require_once "../../includes/dbh.inc.php";
-    $sql = "SELECT * FROM product";
-    $result = mysqli_query($conn, $sql);
-    $resultcheck = mysqli_num_rows($result);
-
-    if ($resultcheck>0){
-        while ($row = mysqli_fetch_assoc($result)){
-            echo $row['title'];
-        }
-    }
     if (isset($_POST["submit"])){
         //Synatize input
         $Category_name = mysqli_real_escape_string($conn,$_POST["Category_name"]);
