@@ -8,7 +8,6 @@
     <script src="../js/bootstrap.js"></script>
     <link rel="icon" href="../pictures/fav.ico" />
     <link rel="stylesheet" href="signup.css">
-
     <title>Sign up</title>
 
 </head>

@@ -22,7 +22,6 @@ include_once 'dbh.inc.php';
             echo $row['first_name'];
         }
     }
-
 ?>
 
 </body>

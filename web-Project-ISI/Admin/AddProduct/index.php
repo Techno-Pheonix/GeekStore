@@ -1,13 +1,15 @@
-<?php   require_once "..\..\includes\header.php";
+<?php   
+
+        require_once "..\..\includes\header.php";
         require_once "..\..\includes\\navbar.php";
 ?>
 <div class="container my-5">
     <h2 class="my-3">Add Product:</h2>
-    <?php 
-    
-    if (isset($_GET["error"]) and $_GET["error"] == "file_ext"){
-        echo '<div class="alert alert-danger" role="alert">File type must be jpeg!</div>';
-    }?>
+    <?php if (isset($_GET["error"]) and $_GET["error"] == "file_ext"):?>
+        <div class="alert alert-danger" role="alert">File type must be jpeg!</div>
+    <?php elseif (isset($_GET["slug"]) and $_GET["error"] == "exits"): ?>
+      <div class="alert alert-danger" role="alert">Slug Already used!</div>
+    <?php endif ?>
     <form action="add_prod.php" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <label for="Name">Product Name</label>
@@ -26,11 +28,17 @@
         <input type="text" required  class="form-control" id="Summary" name="prod-summary" aria-describedby="emailHelp" placeholder="Please Enter summary...">
       </div>
       <div class="form-group">
-        <label for="Category">Example select</label>
+        <label for="Category">Category</label>
         <select class="form-control" id="Category" name="prod-category">
-            <option value="Tech">Tech</option>
-            <option value="Gaming">Gaming</option>
-            <option value="Anime">Anime</option>
+          <?php 
+            $sql = "SELECT * FROM product where slug='$prod_slug'";
+            $result = mysqli_query($conn, $sql);
+            $resultcheck = mysqli_num_rows($result);
+            if ($resultcheck>0):?>
+              <?php while ($row = mysqli_fetch_assoc($result)):?>
+                <option value="<?php $row["id_cat"] ?>"><?php $row["title"] ?></option>        
+              <?php endwhile ?>
+          <?php endif ?>   
         </select>
       </div>
       <div class="form-group">
