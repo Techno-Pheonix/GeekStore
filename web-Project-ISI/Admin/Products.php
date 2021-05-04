@@ -45,7 +45,7 @@
                             id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
                         <form
                             class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text"
+                            <div class="input-group"><input class="bg-light form-control border-0 small" onkeyup="FilteredSearch()" type="text"
                                     placeholder="Search for ...">
                                 <div class="input-group-append"><button
                                         class="btn btn-primary bg-gradient-deepbluesky py-0" type="button"><i
@@ -309,6 +309,29 @@ while ($row = mysqli_fetch_array($query)) {
     <script>function createnew() {
       window.location.href = "/AddProduct/index.php"; }
     </script>
+    <script>
+function FilteredSearch() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value;
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
 </body>
 
 </html>
