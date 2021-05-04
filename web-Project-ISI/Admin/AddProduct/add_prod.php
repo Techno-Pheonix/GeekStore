@@ -37,7 +37,8 @@
             exit();
         }
         
-        //Image Upload
+        //Image Up
+        
         $fileNewName = uniqid("",true).".".$name;
         $fileDestination="../../pictures/".$fileNewName;
         
