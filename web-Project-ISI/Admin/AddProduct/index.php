@@ -1,5 +1,5 @@
 <?php   
-
+        require_once "dbh.inc.php";
         require_once "..\..\includes\header.php";
         require_once "..\..\includes\\navbar.php";
 ?>
