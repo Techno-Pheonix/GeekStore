@@ -23,7 +23,7 @@ session_start();
     <?php require_once "includes/navbar.php"; ?>
 
     </header>
-    <div class="slcontainer d-flex justify-content-center mt-4">
+    <div class="slcontainer d-flex justify-content-center py-2">
     <div class="slider">
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">

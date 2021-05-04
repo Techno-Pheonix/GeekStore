@@ -26,11 +26,11 @@
             <?php while ($row_cat = mysqli_fetch_assoc($result_cat)): ?>
               <a class="dropdown-item" href="#"><?php echo $row_cat["title"] ?></a>
             <?php endwhile ?>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Trending</a>
           </div>
           </li>
-          <?php endwhile ?>
-          
-                
+          <?php endwhile ?>    
       </ul>
 
       

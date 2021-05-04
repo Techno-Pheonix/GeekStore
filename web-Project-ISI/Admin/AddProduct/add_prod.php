@@ -44,7 +44,7 @@
         
         //Insert into database
         $sql = "INSERT into product
-        (`title`,`meta_title`,`slug`,`summary`,`id_cat`,`picture`,`price`,`quantity`,`created_at`,`updated_at`,`published_at`) 
+        (`title`,`meta_title`,`slug`,`summary`,`sub_category`,`picture`,`price`,`quantity`,`created_at`,`updated_at`,`published_at`) 
         VALUES('$prod_name','$prod_meta','$prod_slug','$prod_summary','$prod_catg','$fileNewName','$price','$quantity','$prod_date','$prod_date','$prod_date')"; //? its a placeholder 
         move_uploaded_file($tmp_name,$fileDestination);
 
