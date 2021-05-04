@@ -130,6 +130,10 @@
                                     ';
                                 }
 
+                                else if ($_GET["error"] == "none"){
+                                    echo("you are registered jawek behi");
+                                }
+
                             }
                             ?>
 
