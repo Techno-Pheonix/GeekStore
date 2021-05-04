@@ -30,6 +30,12 @@
         $quantity = mysqli_real_escape_string($conn,$_POST["Quantity"]);
         $price = mysqli_real_escape_string($conn,$_POST["Price"]);
         $prod_date = date("Y-m-d h:i:sa");
+
+        //Check slug
+        if ($prod_catg == "none"){
+            header("location:index.php?category=nothing");
+            exit();
+        }
         
         // Check if slug exists
         $sql = "SELECT * FROM product where slug='$prod_slug'";
@@ -55,8 +61,6 @@
         } else {
             header("location:index.php?error=stmtfailed");
             exit();
-        }
-        
-        
+        } 
 }
 ?>
