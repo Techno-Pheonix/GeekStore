@@ -88,10 +88,16 @@ function createuser($conn, $firstname, $lastname, $adress, $password, $confirm, 
     $hashed = password_hash($password, PASSWORD_DEFAULT);
 
     $sql = "INSERT INTO user(`first_name`, `last_name`, `adress`, `phone`, `email`, `password`, `admin`, `gender`, `registered_at`, `lastlogin`, `sec_quest`, `sec_answer`) VALUES ('$firstname', '$lastname', '$adress', '$phone' ,'$email', '$hashed', '$admin', '$gender', '$registered', '$lastlog', '$secquestion', '$answer')";
+    $sqlf = "SELECT * from user";
+    $row = mysqli_query($conn,$sqlf);
+    $resultcheck = mysqli_num_rows($result);
+
     if (mysqli_query($conn,$sql)){
-        header("location:index.php?error=none");
-        $_SESSION['username'] = $firstname;
-        $_SESSION['success'] = "You are now logged in";
+        session_start();
+        $_SESSION['user'] = $firstname;
+        $_Session['user_id'] = $resultcheck+1;
+         $_SESSION['loggedin'] = true;
+        header("location:../");
         exit();
     }
     else {
