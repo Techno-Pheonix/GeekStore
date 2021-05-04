@@ -199,10 +199,13 @@
                     <h3 class="text-dark mb-4">Products</h3>
                     <div class="card shadow">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 font-weight-bold">Product Info</p><button
+                            <p class="text-primary m-0 font-weight-bold">Product Info</p>
+                            <a href="./AddProduct">
+                            <button
                                 class="btn btn-primary bg-gradient-deepbluesky" type="button"
                                 style="width: 111px;height: 32px;padding-top: 3px;font-size: 15px;" onclick="creatnew()">Create New</button>
-                        </div>
+                                </a>
+                            </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6 text-nowrap">
