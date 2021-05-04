@@ -25,13 +25,13 @@
         </a>
         <hr class="sidebar-divider my-0">
         <ul class="nav navbar-nav text-light" id="accordionSidebar">
-          <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html"><i
+          <li class="nav-item" role="presentation"><a class="nav-link active" href="../index.html"><i
                 class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-          <li class="nav-item" role="presentation"><a class="nav-link" href="profile.html"><i
+          <li class="nav-item" role="presentation"><a class="nav-link" href="../profile.html"><i
                 class="fas fa-user"></i><span>Profile</span></a></li>
-          <li class="nav-item" role="presentation"><a class="nav-link" href="Users.html"><i
+          <li class="nav-item" role="presentation"><a class="nav-link" href="../Users.html"><i
                 class="fas fa-users"></i><span>Users</span></a></li>
-          <li class="nav-item" role="presentation"><a class="nav-link" href="Products.html"><i
+          <li class="nav-item" role="presentation"><a class="nav-link" href="../Products.html"><i
                 class="fas fa-table"></i><span>Products</span></a></li>
 
         </ul>
