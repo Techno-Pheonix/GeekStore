@@ -1,5 +1,13 @@
 <?php 
-    include_once 'dbh.inc.php';
+    $sql = "SELECT * FROM product";
+    $result = mysqli_query($conn, $sql);
+    $resultcheck = mysqli_num_rows($result);
+
+    if ($resultcheck>0){
+        while ($row = mysqli_fetch_assoc($result)){
+            echo $row['title'];
+        }
+    }
 
     if (isset($_POST["submit"])){
         //Check for file extension
@@ -22,6 +30,12 @@
         $quantity = mysqli_real_escape_string($conn,$_POST["Quantity"]);
         $price = mysqli_real_escape_string($conn,$_POST["Price"]);
         $prod_date = date("Y-m-d h:i:sa");
+
+        //Check slug
+        if ($prod_catg == "none"){
+            header("location:index.php?category=nothing");
+            exit();
+        }
         
         // Check if slug exists
         $sql = "SELECT * FROM product where slug='$prod_slug'";
@@ -47,8 +61,6 @@
         } else {
             header("location:index.php?error=stmtfailed");
             exit();
-        }
-        
-        
+        } 
 }
 ?>
