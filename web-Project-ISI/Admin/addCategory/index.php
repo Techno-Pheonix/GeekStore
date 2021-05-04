@@ -31,7 +31,7 @@
         <input type="text" required class="form-control" id="Slug" name="Category_slug" aria-describedby="emailHelp"
           placeholder="Please Enter Slug...">
       </div>
-      <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+      <button type="submit" class="btn btn-primary bg-gradient-deepbluesky" name="submit">Submit</button>
       <button type="reset" class="btn btn-secondary" name="reset">Reset</button>
     </form>
   </div>

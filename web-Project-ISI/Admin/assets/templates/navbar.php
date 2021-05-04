@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>Dashboard - Geek Store</title>
   <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap2.min.css">
-  <link rel="icon" href="../../../pictures/fav.ico" />
+  <link rel="icon" href="../../pictures/fav.ico" />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
   <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
@@ -19,7 +19,7 @@
     <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-deepbluesky p-0">
       <div class="container-fluid d-flex flex-column p-0">
         <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
-          <div class="sidebar-brand-icon rotate-n-15"><img src="../../../pictures/logof2.png" width="50px"
+          <div class="sidebar-brand-icon rotate-n-15"><img src="../../pictures/logof2.png" width="50px"
               class="pulse animated infinite"></div>
           <div class="sidebar-brand-text mx-3"><span>Geek Store</span></div>
         </a>
@@ -29,9 +29,9 @@
                 class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
           <li class="nav-item" role="presentation"><a class="nav-link" href="../profile.html"><i
                 class="fas fa-user"></i><span>Profile</span></a></li>
-          <li class="nav-item" role="presentation"><a class="nav-link" href="../Users.html"><i
+          <li class="nav-item" role="presentation"><a class="nav-link" href="../Users.php"><i
                 class="fas fa-users"></i><span>Users</span></a></li>
-          <li class="nav-item" role="presentation"><a class="nav-link" href="../Products.html"><i
+          <li class="nav-item" role="presentation"><a class="nav-link" href="../Products.php"><i
                 class="fas fa-table"></i><span>Products</span></a></li>
 
         </ul>
@@ -111,7 +111,7 @@
                     role="menu">
                     <h6 class="dropdown-header">alerts center</h6>
                     <a class="d-flex align-items-center dropdown-item" href="#">
-                      <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="../pictures/avatar4.jpeg">
+                      <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="../../pictures/avatar4.jpeg">
                         <div class="bg-success status-indicator"></div>
                       </div>
                       <div class="font-weight-bold">
@@ -121,7 +121,7 @@
                       </div>
                     </a>
                     <a class="d-flex align-items-center dropdown-item" href="#">
-                      <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="../pictures/avatar2.jpeg">
+                      <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="../../pictures/avatar2.jpeg">
                         <div class="status-indicator"></div>
                       </div>
                       <div class="font-weight-bold">
@@ -131,7 +131,7 @@
                       </div>
                     </a>
                     <a class="d-flex align-items-center dropdown-item" href="#">
-                      <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="../pictures/avatar3.jpeg">
+                      <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="../../pictures/avatar3.jpeg">
                         <div class="bg-warning status-indicator"></div>
                       </div>
                       <div class="font-weight-bold">
@@ -142,7 +142,7 @@
                       </div>
                     </a>
                     <a class="d-flex align-items-center dropdown-item" href="#">
-                      <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="../pictures/avatar5.jpeg">
+                      <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="../../pictures/avatar5.jpeg">
                         <div class="bg-success status-indicator"></div>
                       </div>
                       <div class="font-weight-bold">
@@ -164,7 +164,7 @@
                     class="btn btn-primary bg-gradient-deepbluesky dropdown-toggle" data-toggle="dropdown"
                     aria-expanded="false" type="button"><span
                       class="d-none d-lg-inline mr-2 text-white-600 small">Valerie Luna</span><img
-                      class="border rounded-circle img-profile" src="../pictures/avatar1.jpeg"></button>
+                      class="border rounded-circle img-profile" src="../../pictures/avatar1.jpeg"></button>
                   <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
                     <a class="dropdown-item" role="presentation" href="#"><i
                         class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item"
