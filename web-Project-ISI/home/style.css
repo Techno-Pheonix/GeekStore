@@ -15,6 +15,10 @@ cursor: pointer;
     border-radius: 2px;
 }
 
+.usern{
+    color : white;
+}
+
 
 @keyframes bounceIn {
     0% {

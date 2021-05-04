@@ -11,7 +11,7 @@
     <div class="alert alert-danger" role="alert">Slug Already used!</div>
     <?php elseif (isset($_GET["error"]) and $_GET["error"] == "stmtfailed"): ?>
     <div class="alert alert-danger" role="alert">Error occured while inserting!</div>
-    <?php elseif (isset($_GET["sucess"]) and $_GET["sucess"] == "true"): ?>
+    <?php elseif (isset($_GET["error"]) and $_GET["error"] == "None"): ?>
     <div class="alert alert-success" role="alert">Inserted successfully!</div>
     <?php endif ?>
     <!--Form-->
@@ -31,7 +31,7 @@
         <input type="text" required class="form-control" id="Slug" name="Category_slug" aria-describedby="emailHelp"
           placeholder="Please Enter Slug...">
       </div>
-      <button type="submit" class="btn btn-primary bg-gradient-deepbluesky" name="submit">Submit</button>
+      <button type="submit" class="btn btn-primary" name="submit">Submit</button>
       <button type="reset" class="btn btn-secondary" name="reset">Reset</button>
     </form>
   </div>

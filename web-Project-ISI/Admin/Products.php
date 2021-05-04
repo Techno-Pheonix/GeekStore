@@ -244,8 +244,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php 
-$serverName= "197.12.0.100";
+<?php 
+$serverName= "localhost";
 $dbUsername= "user14210_adminf";
 $dbPassword= "fK7pO2qF4gdV1o";
 $dbName= "user14210_project";
@@ -254,17 +254,17 @@ $conn = mysqli_connect($serverName,$dbUsername,$dbPassword,$dbName);
 if (!$conn){
 die("Connection failed : ".mysqli_connect_error()); 
 }
-$sql = "SELECT p.title as ProdName,p.quantity as Qty, p.price as Price,c.title as cat from product p,category c where p.id_cat = c.id_cat;";
+$sql = "SELECT p.*,c.title from product p,category c where p.id_cat = c.id_cat;";
 $query = mysqli_query($conn,$sql);
 
 ?>
                                         <?php
 while ($row = mysqli_fetch_array($query)) {
     echo "<tr>";
-    echo "<td>" . $row['ProdName'] . "</td>";
-    echo "<td>" . $row['cat'] . "</td>";
-    echo "<td>" . $row['Qty'] . "</td>";
-    echo "<td>" . $row['Price'] . "</td>";
+    echo "<td>" . $row['p.title'] . "</td>";
+    echo "<td>" . $row['c.title'] . "</td>";
+    echo "<td>" . $row['p.quantity'] . "</td>";
+    echo "<td>" . $row['p.price'] . "</td>";
     echo "</tr>";
 }
 ?>
@@ -310,7 +310,6 @@ while ($row = mysqli_fetch_array($query)) {
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
-
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/chart.min.js"></script>

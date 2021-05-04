@@ -23,7 +23,7 @@ session_start();
 <!-- Modal -->
 <!-- Button trigger modal -->
 <button id="a" type="button" class="btn btn-primary" style="background-color:transparent;border-color:transparent;box-shadow: 10px 10px 10px rgba(0, 0, 0, 0);" data-toggle="modal" data-target="#exampleModalLong">
-
+  Launch demo modal
 </button>
 
 <!-- Modal -->
