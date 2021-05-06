@@ -8,6 +8,7 @@
     <script src="../js/bootstrap.js"></script>
     <link rel="icon" href="../pictures/fav.ico" />
     <link rel="stylesheet" href="signup.css">
+
     <title>Sign up</title>
 
 </head>
@@ -85,56 +86,7 @@
                             </div>
 
                             <div class="error-msg mt-4">
-                           <?php
-                            if (isset($_GET["error"])){
-                                if ($_GET["error"] == "emptyinput"){
-                                    echo '
-                                    <div class="alert alert-danger" role="alert">There are empty Fields !</div>
-                                    ';
-                                }
-
-                                else if ($_GET["error"] == "invalidemail"){
-                                    echo
-                                    '
-                                    <div class="alert alert-danger" role="alert">Invalid email !</div>
-                                    ';
-                                }
-
-                                
-                                else if ($_GET["error"] == "pwdmatch"){
-                                    echo
-                                    '
-                                    <div class="alert alert-danger" role="alert">Password dont match !</div>
-                                    ';
-                                }
-
-                                else if ($_GET["error"] == "emailtaken"){
-                                    echo
-                                    '
-                                    <div class="alert alert-danger" role="alert">Email already exists !</div>
-                                    ';
-                                }
-
-                                else if ($_GET["error"] == "pwdlen"){
-                                    echo
-                                    '
-                                    <div class="alert alert-danger" role="alert">Password minimum characters 8 !</div>
-                                    ';
-                                }
-
-                                else if ($_GET["error"] == "invalidquest"){
-                                    echo
-                                    '
-                                    <div class="alert alert-danger" role="alert">Invalid Security Question</div>
-                                    ';
-                                }
-
-                                else if ($_GET["error"] == "none"){
-                                    echo("you are registered jawek behi");
-                                }
-
-                            }
-                            ?>
+                        
 
                         </div>
                         </form>
@@ -150,5 +102,67 @@
         </div>
 
     </div>
+    <button id="a" type="button" class="btn btn-primary" style="background-color:transparent;border-color:transparent;box-shadow: 10px 10px 10px rgba(0, 0, 0, 0);" data-toggle="modal" data-target="#exampleModalLong">
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLongTitle">Error</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <?php
+                            $mtotal="";
+                            if (isset($_GET["error"])){
+                                if ($_GET["error"] == "emptyinput"){
+                                    $mtotal = "There are empty fields";
+                                }
+
+                                else if ($_GET["error"] == "invalidemail"){
+                                    $mtotal = "invalid email : try foulen@exemple.com";
+                                   
+                                }
+                                
+                                else if ($_GET["error"] == "pwdmatch"){
+                                    $mtotal = "Password doesn't match !";
+                                }
+
+                                else if ($_GET["error"] == "emailtaken"){
+                                    $mtotal = "Email is already taken !";
+                                }
+
+                                else if ($_GET["error"] == "pwdlen"){
+                                    $mtotal = "Password minimum length is 8 characters !";
+                                }
+
+                                else if ($_GET["error"] == "invalidquest"){
+                                    $mtotal = "Invalid securtiy question !";
+                                }
+
+                            }
+                            echo('<h4>'.$mtotal.'</h4>');
+                            ?>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<?php if (isset($_GET["error"])): ?>
+<script>
+    window.onload = function(){
+    document.getElementById('a').click();
+}
+</script>
+<?php endif ?>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </body>
 </html>

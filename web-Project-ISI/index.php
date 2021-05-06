@@ -20,10 +20,11 @@ session_start();
     
     <header>
         
-    <?php require_once "includes/navbar.php"; ?>
-
+       <?php
+        require_once 'includes/navbar.php';
+       ?>
     </header>
-    <div class="slcontainer d-flex justify-content-center py-2">
+    <div class="slcontainer d-flex justify-content-center mt-4">
     <div class="slider">
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -229,38 +230,9 @@ session_start();
     <div class="all">
         
     </div>
-    
-    <div >
-      <footer class="pt-4 my-md-5 pt-md-5 border-top d-flex justify-content-center mt-4">
-        <div class="footer row">
-          
-          <div class="col-6 col-md">
-            <h5>Products</h5>
-            <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">Trending</a></li>
-              <li><a class="text-muted" href="#">Best Seller</a></li>
-              <li><a class="text-muted" href="#">Discounts</a></li>
-            </ul>
-          </div>
-          <div class="col-6 col-md">
-            <h5>User</h5>
-            <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">My Account</a></li>
-              <li><a class="text-muted" href="/faq">FAQ</a></li>
-              <li><a class="text-muted" href="#">Terms and conditions</a></li>
-            </ul>
-          </div>
-          <div class="col-6 col-md">
-            <h5>About Us</h5>
-            <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">Contact</a></li>
-              <li><a class="text-muted" href="#">Location</a></li>
-              <li><a class="text-muted" href="#">Delivery</a></li>
-            </ul>
-          </div>
-        </div>
-      </footer>
-    </div>
+      <?php require_once 'includes/footer.php'; ?>
+
+   
 </body>
 
 <script>

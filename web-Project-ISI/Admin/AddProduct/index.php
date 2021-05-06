@@ -8,15 +8,11 @@
   <div class="container my-5">
     <!--The alerts-->
     <?php if (isset($_GET["error"]) and $_GET["error"] == "file_ext"):?>
-    <div class="alert alert-danger" role="alert">File type must be jpeg!</div>
+        <div class="alert alert-danger" role="alert">File type must be jpeg!</div>
     <?php elseif (isset($_GET["slug"]) and $_GET["slug"] == "exits"): ?>
-    <div class="alert alert-danger" role="alert">Slug Already used!</div>
-    <?php elseif (isset($_GET["category"]) and $_GET["category"] == "nothing"): ?>
-    <div class="alert alert-danger" role="alert">Category empty!</div>
-    <?php elseif (isset($_GET["error"]) and $_GET["error"] == "stmtfailed"): ?>
-    <div class="alert alert-danger" role="alert">Error occured while inserting!</div>
-    <?php elseif (isset($_GET["sucess"]) and $_GET["sucess"] == "true"): ?>
-    <div class="alert alert-success" role="alert">Inserted successfully!</div>
+      <div class="alert alert-danger" role="alert">Slug Already used!</div>
+      <?php elseif (isset($_GET["category"]) and $_GET["category"] == "nothing"): ?>
+      <div class="alert alert-danger" role="alert">Category empty!</div>
     <?php endif ?>
     <!--Form-->
     <form action="add_prod.php" method="post" enctype="multipart/form-data">
@@ -45,12 +41,12 @@
         <select class="form-control" id="Category" name="prod-category">
           <option value="none"> Select category 
           <?php 
-          $sql = "SELECT * FROM sub_category";
-          $result = mysqli_query($conn, $sql);
-          ?>
+          $sql = "SELECT * FROM category";
+          $result = mysqli_query($conn, $sql);?>
           <?php while ($row = mysqli_fetch_assoc($result)): ?>
-            <option value="<?php echo $row['id_cat'] ?>"><?php echo $row['title'] ?></option>
+            <option value="<?php $row["id_cat"] ?>"><?php $row["title"] ?></option>
           <?php endwhile ?>
+
         </select>
       </div>
       <div class="form-group">
