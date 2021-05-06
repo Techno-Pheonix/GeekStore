@@ -245,15 +245,7 @@
                                     </thead>
                                     <tbody>
 <?php 
-$serverName= "localhost";
-$dbUsername= "user14210_adminf";
-$dbPassword= "fK7pO2qF4gdV1o";
-$dbName= "user14210_project";
-
-$conn = mysqli_connect($serverName,$dbUsername,$dbPassword,$dbName);
-if (!$conn){
-die("Connection failed : ".mysqli_connect_error()); 
-}
+require_once 'includes/dbh.inc.php';
 $sql = "SELECT p.*,c.title from product p,category c where p.id_cat = c.id_cat;";
 $query = mysqli_query($conn,$sql);
 
