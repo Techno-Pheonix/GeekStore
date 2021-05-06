@@ -1,5 +1,31 @@
-</body>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-
-</html>
+<div >
+      <footer class="pt-4 my-md-5 pt-md-5 border-top d-flex justify-content-center mt-4">
+        <div class="footer row">
+          
+          <div class="col-6 col-md">
+            <h5>Products</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">Trending</a></li>
+              <li><a class="text-muted" href="#">Best Seller</a></li>
+              <li><a class="text-muted" href="#">Discounts</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>User</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">My Account</a></li>
+              <li><a class="text-muted" href="/faq">FAQ</a></li>
+              <li><a class="text-muted" href="#">Terms and conditions</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>About Us</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">Contact</a></li>
+              <li><a class="text-muted" href="#">Location</a></li>
+              <li><a class="text-muted" href="#">Delivery</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </div>
