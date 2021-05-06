@@ -15,7 +15,7 @@
         ?>
         <?php while ($row = mysqli_fetch_assoc($result)): ?>
           <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="./browse?catg=<?php echo $row["slug"] ?>" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <?php echo $row['title'] ?>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -24,7 +24,7 @@
             $result_cat = mysqli_query($conn, $sql_cat);
             ?>
             <?php while ($row_cat = mysqli_fetch_assoc($result_cat)): ?>
-              <a class="dropdown-item" href="#"><?php echo $row_cat["title"] ?></a>
+              <a class="dropdown-item" href="./browse?catg=<?php echo $row["slug"] ?>&sub_catg=<?php echo $row_cat["title"] ?>"><?php echo $row_cat["title"] ?></a>
             <?php endwhile ?>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Trending</a>

@@ -53,11 +53,7 @@ ul {
   background-color: #e8e8e8;
 }
 
-.card-item {
-  font-size: 1.1em;
-  margin: 10px;
-}
-
+/*List first char upper case*/
 .ul li::first-letter {
   text-transform: uppercase;
 }
