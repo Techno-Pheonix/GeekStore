@@ -1,4 +1,5 @@
-<?php include "dbh.inc.php"; ?>
+<?php include "dbh.inc.php";
+session_start(); ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a  href="/">
       <img class="nav-logo" src="pictures/logof2.png" width="80" height="auto" alt="">
@@ -30,14 +31,18 @@
     </ul>
 
     <div class="login mr-4"></div>
-    <form class="form-inline my-2 my-lg-0">
+    <form class="f form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button id="sbtn" class="btn btn-light my-2 my-sm-0" type="submit"><i class="fas fa-search bs"></i></button>
     </form>
-    <?php 
-        if (isset($_SESSION["user_id"])){
+   <?php 
+        if (isset($_SESSION["user"])){
           $username = $_SESSION['user'];
+          if ($_SESSION['admin'] == true){
+            $username = $_SESSION['user']." (admin)";
+          }
           echo('
+          <h5 class="mr-2 ml-2 id="usern">'.$username.'</h5>
           <button type="button" class="btn btn-dark btn-sm mr-2 ml-2" onclick="profilered()"><i class="fas fa-user"></i></button>
           <button type="button" class="btn btn-dark btn-sm" onclick="logoutred()"><i class="fas fa-sign-out-alt"></i></button>
           ');

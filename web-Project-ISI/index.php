@@ -227,17 +227,15 @@ session_start();
         
     </div>
       <?php require_once 'includes/footer.php'; ?>
-
-   
 </body>
 
 <script>
     function signupred() {
-      window.location.href = "signup/";
+      window.location.href = "/signup/";
     } 
 
     function signinred() {
-      window.location.href = "signin/";
+      window.location.href = "/signin/";
     }
 
     function profilered() {
