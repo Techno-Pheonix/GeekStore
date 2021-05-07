@@ -46,7 +46,7 @@ function adminmail($conn, $email, $password){
              exit();
          }
 
-         else if (password_verify($row['password'], $hash)){
+         else if (password_verify($password, $row['password'])){
              session_start();
              $_SESSION['user'] = $row['first_name'];
              $_SESSION['user_id'] = $row['id_user'];
