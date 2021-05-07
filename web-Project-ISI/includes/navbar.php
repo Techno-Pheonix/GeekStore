@@ -31,7 +31,7 @@ session_start(); ?>
     </ul>
 
     <div class="login mr-4"></div>
-    <form class="f form-inline my-2 my-lg-0">
+    <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button id="sbtn" class="btn btn-light my-2 my-sm-0" type="submit"><i class="fas fa-search bs"></i></button>
     </form>
