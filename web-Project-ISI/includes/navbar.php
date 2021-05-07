@@ -9,7 +9,8 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-        <?php 
+
+    <?php /* Weird change that ruins the index.php
         $sql = "SELECT * FROM category;";
         $result = mysqli_query($conn, $sql);
         ?>
@@ -25,7 +26,16 @@
             ?>
             <?php while ($row_cat = mysqli_fetch_assoc($result_cat)): ?>
               <a class="dropdown-item" href="./browse?catg=<?php echo $row["slug"] ?>&sub_catg=<?php echo $row_cat["title"] ?>"><?php echo $row_cat["title"] ?></a>
-            <?php endwhile ?>
+            <?php endwhile */?>
+
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Tech
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Keyboard</a>
+            <a class="dropdown-item" href="#">Mouse</a>
+            <a class="dropdown-item" href="#">Headset</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Trending</a>
           </div>
