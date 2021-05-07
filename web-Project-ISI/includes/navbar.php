@@ -25,10 +25,9 @@
             <?php while ($row_cat = mysqli_fetch_assoc($result_cat)): ?>
               <a class="dropdown-item" href="./browse?catg=<?php echo $row["slug"] ?>&sub_catg=<?php echo $row_cat["title"] ?>"><?php echo $row_cat["title"] ?></a>
             <?php endwhile ?>
+
             <?php endwhile ?>
     </ul>
-
-     
 
     <div class="login mr-4"></div>
     <form class="form-inline my-2 my-lg-0">
