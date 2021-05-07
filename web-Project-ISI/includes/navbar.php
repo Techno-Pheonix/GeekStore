@@ -1,4 +1,4 @@
-<?php session_start() ?>
+<?php include "dbh.inc.php"; ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a  href="/">
       <img class="nav-logo" src="pictures/logof2.png" width="80" height="auto" alt="">
@@ -9,7 +9,10 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-    <?php while ($row = mysqli_fetch_assoc($result)): ?>
+        <?php 
+        $sql = "SELECT * FROM category";
+        $result = mysqli_query($conn, $sql);?>
+        <?php while ($row = mysqli_fetch_assoc($result)): ?>
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="./browse?catg=<?php echo $row["slug"] ?>" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <?php echo $row['title'] ?>
@@ -22,15 +25,13 @@
             <?php while ($row_cat = mysqli_fetch_assoc($result_cat)): ?>
               <a class="dropdown-item" href="./browse?catg=<?php echo $row["slug"] ?>&sub_catg=<?php echo $row_cat["title"] ?>"><?php echo $row_cat["title"] ?></a>
             <?php endwhile ?>
-      </ul>
+            <?php endwhile ?>
+    </ul>
 
      
 
-    <div class="login mr-4">
-
-    </div>
+    <div class="login mr-4"></div>
     <form class="form-inline my-2 my-lg-0">
-   
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button id="sbtn" class="btn btn-light my-2 my-sm-0" type="submit"><i class="fas fa-search bs"></i></button>
     </form>
