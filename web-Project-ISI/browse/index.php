@@ -33,7 +33,7 @@
               <div class="col-md-12 col-xl-3 bg-light">
                 <section>
                   <?php 
-                  $sql = "SELECT * FROM category;";
+                  $sql = "SELECT * FROM category;";git p
                   $result = mysqli_query($conn, $sql);
                   ?>
                   <?php while ($row = mysqli_fetch_assoc($result)): ?>
