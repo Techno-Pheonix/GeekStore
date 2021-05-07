@@ -49,7 +49,7 @@ function loginuser($conn, $email, $password){
     else if ($rowcount!=0){
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $row = mysqli_fetch_array($result);
-        if (password_verify($row['password'], $hash)){
+        if (password_verify($password, $row['password'])){
             session_start();
             $_SESSION['user'] = $row['first_name'];
             $_SESSION['user_id'] = $row['id_user'];
@@ -61,6 +61,7 @@ function loginuser($conn, $email, $password){
             header("location:index.php?error=incorrectpwd");
             exit();
         }
+        //die($row['email']." ".$row['password']." | password input : ".$password." | ".$hash);
     }
     
     }
