@@ -16,6 +16,8 @@ session_start();
     <title>Home</title>
 </head>
 
+
+
 <body>
        <?php
         require_once 'includes/navbar.php';
