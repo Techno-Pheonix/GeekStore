@@ -246,17 +246,17 @@
                                     <tbody>
 <?php 
 require_once 'includes/dbh.inc.php';
-$sql = "SELECT p.*,c.title from product p,category c where p.id_cat = c.id_cat;";
+$sql = "SELECT p.title as ProdName, p.quantity as Qty, p.price as Price ,c.title as cat from product p,category c where p.id_cat = c.id_cat;";
 $query = mysqli_query($conn,$sql);
 
 ?>
                                         <?php
 while ($row = mysqli_fetch_array($query)) {
     echo "<tr>";
-    echo "<td>" . $row['p.title'] . "</td>";
-    echo "<td>" . $row['c.title'] . "</td>";
-    echo "<td>" . $row['p.quantity'] . "</td>";
-    echo "<td>" . $row['p.price'] . "</td>";
+    echo "<td>" . $row['ProdName'] . "</td>";
+    echo "<td>" . $row['cat'] . "</td>";
+    echo "<td>" . $row['Qty'] . "</td>";
+    echo "<td>" . $row['Price'] . "</td>";
     echo "</tr>";
 }
 ?>
