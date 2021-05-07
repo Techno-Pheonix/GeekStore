@@ -76,3 +76,9 @@ body {
 .desc h1 {
   margin: 20px 0px;
 }
+
+@media screen and (max-width: 576px) {
+  .container {
+    margin: 200px;
+  }
+}

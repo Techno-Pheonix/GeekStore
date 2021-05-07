@@ -28,13 +28,13 @@
           <form action="">  
             <h1 class="prod-name my-5"><?php echo $row["title"] ?></h1>
             <div class=" price-add row">
-              <h4 class="col-4 " style="color :#14213d">Quantity : </h4>
-              <div class="col-4 d-flex" style="height:40px">
-                <button class="btn" >-</button>
+              <h4 class="col-4 " style="color :#14213d">Quantity: </h4>
+              <div class="col-4 d-flex mr-3" style="height:40px">
+                <div class="btn btn-dark" onclick="sous()">-</div>
                 <div class="form-group">
-                  <input type="text" class="form-control" value="1" width=20>
+                  <input type="text" class="form-control" style="width:40px" value=1 width=20 id="quantity" name="quantity">
                 </div>
-                <button class="btn">+</button>
+                <div class="btn btn-dark" onclick="add()">+</div>
               </div>
             </div>
             <div class="price-add">
@@ -58,35 +58,38 @@
       </h1>
       <div class="other-items my-4 row gx-3">
                 <?php 
-                $sql = "SELECT * FROM sub_category INNER JOIN sub_category ON product.sub_category = sub_category.id_sub where p.id_p <> ".$_GET["id"].";";
+                $sql = "SELECT * FROM sub_category, product as p where p.id_cat = sub_category.id_sub and  p.id_p <> ".$_GET["id"].";";                
                 $result = mysqli_query($conn, $sql);
                 ?>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                  <?php echo $row["title"];?>
-                  <div class="card col-md-4 col-12 pt-1">
-                    <img class="card-img-top" src="img.jpg" alt="Card image cap" height = "300px">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                  <div class="col-md-6 col-xl-4 col-sm-12 mb-2" >
+                    <div class="card">
+                      <img class="card-img-top img-fluid" src="../pictures/<?php echo $row["picture"]?>" alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title"><?php echo $row["title"] ?></h5>
+                        <h5 class="card-title"><?php echo $row["price"] ?></h5>
+                        <p class="card-text"><?php echo substr($row["summary"],0,30)  ?></p>
+                        <a href="./?id=<?php echo $row["id_p"];?>" class="btn btn-primary">Check The product</a>
+                      </div>
                     </div>
                   </div>
                 <?php endwhile ?>   
-        
-        
-        <div class="card col-md-4 col-12 pt-1">
-          <img class="card-img-top" src="img.jpg" alt="Card image cap" height = "300px">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
       </div>
     </div>
+
+    <script>
+      const el = document.getElementById("quantity")
+
+      console.log(el.value)
+      const add = ()=>{
+        
+        el.value= parseInt(el.value)+1
+      }
+      const sous = ()=>{
+        if (parseInt(el.value)>1)el.value = parseInt(el.value)-1
+      }
+    </script>
     
-
-
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

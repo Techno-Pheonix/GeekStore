@@ -1,13 +1,5 @@
 <?php 
-    $sql = "SELECT * FROM product";
-    $result = mysqli_query($conn, $sql);
-    $resultcheck = mysqli_num_rows($result);
-
-    if ($resultcheck>0){
-        while ($row = mysqli_fetch_assoc($result)){
-            echo $row['title'];
-        }
-    }
+    require_once "../../includes/dbh.inc.php";
 
     if (isset($_POST["submit"])){
         //Check for file extension
@@ -52,12 +44,13 @@
         move_uploaded_file($tmp_name,$fileDestination);
         
         //Insert into database
-        $sql = "INSERT into Products
-        ('title','meta_title','slug','summary','id_cat','picture','price','quantity','created_at','updated_at','published_at') 
-        VALUES('$prdo_title','$prdo_meta','$product_slug','$product_summary','$prod_catg','$fileNewName','$price','$quantity','$prod_date','$prod_date','$prod_date')"; //? its a placeholder 
+        $sql = "INSERT into product
+        (`title`,`meta_title`,`slug`,`summary`,`id_cat`,`picture`,`price`,`quantity`,`created_at`,`updated_at`,`published_at`) 
+        VALUES('$prod_name','$prod_meta','$prod_slug','$prod_summary','$prod_catg','$fileNewName','$price','$quantity','$prod_date','$prod_date','$prod_date')"; //? its a placeholder 
+        move_uploaded_file($tmp_name,$fileDestination);
         
         if (mysqli_query($conn, $sql)) {
-            echo "New record created successfully";
+            header("location:index.php?sucess=true");
         } else {
             header("location:index.php?error=stmtfailed");
             exit();
