@@ -15,7 +15,6 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    
   <?php require_once "../includes/navbar.php"; ?>
     <div class="container">
       <nav aria-label="breadcrumb" class="mt-3">
@@ -33,7 +32,7 @@
               <div class="col-md-12 col-xl-3 bg-light">
                 <section>
                   <?php 
-                  $sql = "SELECT * FROM category;";git p
+                  $sql = "SELECT * FROM category;";
                   $result = mysqli_query($conn, $sql);
                   ?>
                   <?php while ($row = mysqli_fetch_assoc($result)): ?>
