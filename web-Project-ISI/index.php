@@ -13,12 +13,14 @@
     <title>Home</title>
 </head>
 
+
+
 <body>
        <?php
         require_once 'includes/navbar.php';
        ?>
     <div class="slcontainer d-flex justify-content-center py-1">
-    <div class="slider">
+    <div class="slider container">
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
               <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -224,6 +226,7 @@
         
     </div>
       <?php require_once 'includes/footer.php'; ?>
+      <script src="//code.tidio.co/efjlrepe7bd17y58klof8khgda5tjwzw.js" async></script>
 </body>
 
 <script>
