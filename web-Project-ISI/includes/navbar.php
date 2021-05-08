@@ -1,5 +1,9 @@
 <?php include "dbh.inc.php";
-session_start(); ?>
+  session_start(); 
+  if (!isset($_SESSION["shopping_cart"])){
+    $_SESSION["shopping_cart"] = array();
+  }
+?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a  href="/">
       <img class="nav-logo" src="pictures/logof2.png" width="80" height="auto" alt="">

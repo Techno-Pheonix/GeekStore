@@ -8,37 +8,6 @@ body {
   box-sizing: border-box;
 }
 
-nav ul li {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-}
-
-/*Navbar style*/
-
-.bg-dark {
-  background-color: black !important;
-}
-
-nav {
-  padding: 0 48px !important;
-}
-
-nav ul li {
-  padding: 8px;
-}
-
-nav ul .nav-link {
-  color: white !important;
-}
-
-.nav-item:hover {
-  background-color: #fca311;
-  transition: 0.3s all;
-}
-
 /*prod style */
 
 .panier-contenu,

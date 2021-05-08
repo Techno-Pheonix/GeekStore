@@ -16,7 +16,26 @@
   <body>
     
   <?php require_once "../includes/navbar.php"; ?>
-    <?php 
+  <?php
+  if (isset($_POST["add_to_cart"])){
+    $item_array = array(
+      "item_id" => $_GET["id"],
+      "item_name" => $_POST["title"],
+      "item_price"=> $_POST["price"],
+      "item_quantity"=> $_POST["quantity"]  
+    );
+    $count = count($_SESSION["shopping_cart"]);
+    
+    foreach ($_SESSION["shopping_cart"] as $item){
+      if ($item == $item_array){
+        $item["item_quantity"] =$_POST["quantity"];
+      }else{
+        $_SESSION["shopping_cart"][$count] = $item_array;
+      }
+    }
+  }
+  ?>
+  <?php 
     $sql = "SELECT * FROM product where id_p = ".$_GET["id"].";";
     $result = mysqli_query($conn, $sql);
     ?>
@@ -25,21 +44,24 @@
       <div class="product row mt-4">
         <img class="col-md-6 col-sm-12" src="../pictures/<?php echo $row["picture"]?>" alt="" height="500px" width="30%">
         <div class="col-md-5 col-sm-12 prod-form pt-5">
-          <form action="">  
+          <form action="index.php?id=<?php echo $_GET["id"];?>" method="post">  
             <h1 class="prod-name my-5"><?php echo $row["title"] ?></h1>
             <div class=" price-add row">
               <h4 class="col-4 " style="color :#14213d">Quantity: </h4>
               <div class="col-4 d-flex mr-3" style="height:40px">
                 <div class="btn btn-dark" onclick="sous()">-</div>
                 <div class="form-group">
-                  <input type="text" class="form-control" style="width:40px" value=1 width=20 id="quantity" name="quantity">
+                  <input type="text" name="quantity" class="form-control" style="width:40px" value=1 width=20 id="quantity" name="quantity">
                 </div>
+                <input type="text" class="d-none" name="id" value="<?php echo $_GET["id"]?>">
+                <input type="text" class="d-none" name="price" value="<?php echo $row["price"]?>">
+                <input type="text" class="d-none" name="title" value="<?php echo $row["title"]?>">
                 <div class="btn btn-dark" onclick="add()">+</div>
               </div>
             </div>
             <div class="price-add">
               <h2><?php echo number_format($row["price"],2) ?> &nbsp $</h2>
-              <button type="submit" id="to_cart">Add To Cart</button>
+              <button type="submit" id="to_cart" name="add_to_cart">Add To Cart</button>
             </div>
           </form>
         </div>
