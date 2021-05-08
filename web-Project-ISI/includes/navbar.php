@@ -22,12 +22,15 @@ session_start(); ?>
             <?php 
             $sql_cat = "SELECT sub.* FROM sub_category sub,category where category.id_cat = sub.id_cat and category.id_cat = ".$row['id_cat'].";";
             $result_cat = mysqli_query($conn, $sql_cat);
-            ?>
+            $resultcheck = mysqli_num_rows($result_cat);
+            if ($resultcheck>0):?>
             <?php while ($row_cat = mysqli_fetch_assoc($result_cat)): ?>
               <a class="dropdown-item" href="./browse?catg=<?php echo $row["slug"] ?>&sub_catg=<?php echo $row_cat["title"] ?>"><?php echo $row_cat["title"] ?></a>
             <?php endwhile ?>
-
-            <?php endwhile ?>
+            <?php else: ?>
+              <a class="dropdown-item" href="#">No Sub Categories</a>
+            <?php endif; ?>
+          <?php endwhile ?>
     </ul>
 
     <div class="login mr-4"></div>

@@ -39,7 +39,7 @@
         }
         
         //Image Upload
-        $fileNewName = uniqid("",true).".".$name;
+        $fileNewName = time().".".$name;
         $fileDestination="../../pictures/".$fileNewName;
         move_uploaded_file($tmp_name,$fileDestination);
         
