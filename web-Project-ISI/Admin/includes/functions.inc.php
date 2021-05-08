@@ -52,6 +52,7 @@ function adminmail($conn, $email, $password){
              $_SESSION['user_id'] = $row['id_user'];
              $_SESSION['loggedin'] = true;
              $_SESSION['admin'] = true;
+             $_SESSION['isadmin'] = true;
              header("location:../");
              exit();
          }

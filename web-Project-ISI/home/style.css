@@ -51,7 +51,7 @@ color: deepskyblue;
 }
 
 .slider{
-    width: 50%;
+    width: 45%;
     height: auto;
 }
 
@@ -96,6 +96,26 @@ color: deepskyblue;
 }
 
 
+@media screen and (max-width:1500px) {
+
+    .slider{
+            width:60%;
+            height: auto;
+    }
+    
+    .c{
+        margin-left: 1%;
+        margin-right: 1%;
+    
+    }
+    
+    .tech-prod{
+        width: 80%;
+        height: auto;
+    
+    }
+    
+    }
 
 @media screen and (max-width:900px) {
 .slider{
@@ -113,24 +133,4 @@ color: deepskyblue;
 
 }
 
-@media screen and (max-width:1500px) {
-
-.slider{
-        width:60%;
-        height: auto;
-}
-
-.c{
-    margin-left: 1%;
-    margin-right: 1%;
-
-}
-
-.tech-prod{
-    width: 80%;
-    height: auto;
-
-}
-
-}
 
