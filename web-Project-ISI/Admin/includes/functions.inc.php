@@ -48,7 +48,7 @@ function adminmail($conn, $email, $password){
 
          else if (password_verify($password, $row['password'])){
              session_start();
-             $_SESSION['user'] = $row['first_name'];
+             $_SESSION['user'] = $row['first_name']." ".$row['last_name'];
              $_SESSION['user_id'] = $row['id_user'];
              $_SESSION['loggedin'] = true;
              $_SESSION['admin'] = true;

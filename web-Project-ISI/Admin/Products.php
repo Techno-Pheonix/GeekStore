@@ -34,11 +34,11 @@ if ($_SESSION['admin'] == false){
                 <ul class="nav navbar-nav text-light" id="accordionSidebar">
                 <li class="nav-item" role="presentation"><a class="nav-link" href="index.php"><i
                                 class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="profile.html"><i
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="profile.php"><i
                                 class="fas fa-user"></i><span>Profile</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="Users.php"><i
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="Users.php"><i
                                 class="fas fa-users"></i><span>Users</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="Products.php"><i
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="Products.php"><i
                                 class="fas fa-table"></i><span>Products</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
