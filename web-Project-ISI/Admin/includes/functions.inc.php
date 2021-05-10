@@ -24,6 +24,17 @@ function emptyInputlogin($email, $password) {
     return $result;
 }
 
+function emptyInputUpdate($email, $name, $password) {
+    $result;
+    if (empty($email) || empty($password) || empty($name)){
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+}
+
 
 function adminmail($conn, $email, $password){
      $sql = "SElECT * FROM user WHERE email='$email'";

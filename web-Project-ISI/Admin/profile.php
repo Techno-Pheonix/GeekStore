@@ -195,7 +195,8 @@ if ($_SESSION['admin'] == false){
                                             log</a>
                                         <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation"
                                             href="includes/logout.php"><i
-                                            class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"onclick="logoutred()"></i>&nbsp;Logout</a>
+                                                class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"
+                                                onclick="logoutred()"></i>&nbsp;Logout</a>
                                     </div>
                                 </div>
                             </li>
@@ -296,13 +297,14 @@ if ($_SESSION['admin'] == false){
                                             <p class="text-primary m-0 font-weight-bold">User Settings</p>
                                         </div>
                                         <div class="card-body">
-                                        <?php 
+                                            <?php 
+
 require_once 'includes/dbh.inc.php';
 $sql = "SELECT * from user where id_user =".$_SESSION['user_id'];
 $query = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($query); 
-?>    
-                                            <form>
+?>
+                                            <form action="Update_profile.php" method="post">
                                                 <div class="form-row">
                                                     <?php
                                                     echo    "<div class=\"col\">"."
@@ -318,7 +320,7 @@ $row = mysqli_fetch_array($query);
                                                                 type=\"text\" placeholder=\"".$row['last_name']."\" name=\"last_name\"></div>
                                                     </div>";
                                                     ?>
-                                                    
+
                                                 </div>
                                                 <?php 
                                                 echo "<div class=\"form-group\">";
@@ -328,10 +330,10 @@ $row = mysqli_fetch_array($query);
                                                         "\"name=\"password\">
                                                 </div>";
                                                 ?>
-                                                
+
                                                 <div class="form-group"><button
                                                         class="btn btn-primary bg-gradient-deepbluesky btn-sm"
-                                                        type="submit">Save Settings</button></div>
+                                                        type="submit" name="user">Save Settings</button></div>
                                             </form>
                                         </div>
                                     </div>
@@ -340,13 +342,13 @@ $row = mysqli_fetch_array($query);
                                             <p class="text-primary m-0 font-weight-bold">Contact Settings</p>
                                         </div>
                                         <div class="card-body">
-                                            <form>
+                                            <form action="Update_profile.php" method="post">
                                                 <?php 
                                                 echo "<div class=\"form-group\">";
                                                 echo "<label
                                                         for=\"email\"><strong>E-mail Address</strong></label><input
                                                         class=\"form-control\" type=\"text\"placeholder=\"".$row['email'].
-                                                        "\"name=\"address\">
+                                                        "\"name=\"email\">
                                                 </div>";
                                                 ?>
                                                 <div class="form-row">
@@ -368,7 +370,7 @@ $row = mysqli_fetch_array($query);
                                                 </div>
                                                 <div class="form-group"><button
                                                         class="btn btn-primary bg-gradient-deepbluesky btn-sm"
-                                                        type="submit">Save&nbsp;Settings</button></div>
+                                                        type="submit" name="contact">Save&nbsp;Settings</button></div>
                                             </form>
                                         </div>
                                     </div>
@@ -385,6 +387,73 @@ $row = mysqli_fetch_array($query);
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <?php
+                    if (isset($_GET["error"])){
+                        echo "<h3 class=\"modal-title\" id=\"exampleModalLongTitle\">Error</h3>";
+                    } 
+                    if (isset($_GET["res"])){
+                        echo "<h3 class=\"modal-title\" id=\"exampleModalLongTitle\">Update</h3>";
+                    } 
+                    ?>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <?php
+                            $mtotal="";
+                            if (isset($_GET["error"])){
+                                if ($_GET["error"] == "emptyinput"){
+                                    $mtotal = "There are empty fields !";
+                                }
+
+                                else if ($_GET["error"] == "invalidemail"){
+                                    $mtotal = "invalid email : try foulen@exemple.com";
+                                }
+                                
+                            }
+                            if (isset($_GET["res"])){
+                                if ($_GET["res"] == "success"){
+                                    $mtotal = "Profile updated successfully !";
+                                }
+
+                                else if ($_GET["res"] == "failure"){
+                                    $mtotal = "Profile failed to update !";
+                                }
+                                
+                            }
+                            
+                            echo('<h4>'.$mtotal.'</h4>');
+                            ?>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button id="a" type="button" class="btn btn-primary" style="background-color:transparent;border-color:transparent;box-shadow: 10px 10px 10px rgba(0, 0, 0, 0);" data-toggle="modal" data-target="#exampleModalLong">
+</button>
+    <?php if (isset($_GET["error"])): ?>
+    <script>
+        window.onload = function () {
+            document.getElementById('a').click();
+        }
+    </script>
+    <?php endif ?>
+    <?php if (isset($_GET["res"])): ?>
+    <script>
+        window.onload = function () {
+            document.getElementById('a').click();
+        }
+    </script>
+    <?php endif ?>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/chart.min.js"></script>
