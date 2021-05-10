@@ -34,7 +34,7 @@ if ($_SESSION['admin'] == false){
         <ul class="nav navbar-nav text-light" id="accordionSidebar">
         <li class="nav-item" role="presentation"><a class="nav-link" href="index.php"><i
                                 class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="profile.html"><i
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="profile.php"><i
                                 class="fas fa-user"></i><span>Profile</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="Users.php"><i
                                 class="fas fa-users"></i><span>Users</span></a></li>

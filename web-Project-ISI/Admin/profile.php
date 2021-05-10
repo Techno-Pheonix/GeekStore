@@ -11,7 +11,7 @@ if ($_SESSION['admin'] == false){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Users - Geek Store</title>
+    <title>Profile - Geek Store</title>
     <link rel="icon" href="../pictures/fav.ico" />
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap2.min.css">
     <link rel="stylesheet"
@@ -32,11 +32,11 @@ if ($_SESSION['admin'] == false){
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                <li class="nav-item" role="presentation"><a class="nav-link" href="index.php"><i
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="index.php"><i
                                 class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="profile.php"><i
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="profile.php"><i
                                 class="fas fa-user"></i><span>Profile</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="Users.php"><i
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="Users.php"><i
                                 class="fas fa-users"></i><span>Users</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="Products.php"><i
                                 class="fas fa-table"></i><span>Products</span></a></li>
@@ -203,94 +203,200 @@ if ($_SESSION['admin'] == false){
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4">Userbase</h3>
-                    <div class="card shadow">
+                    <h3 class="text-dark mb-4">Profile</h3>
+                    <div class="row mb-3">
+                        <div class="col-lg-4">
+                            <div class="card mb-3">
+                                <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4"
+                                        src="assets/img/dogs/image2.jpeg" width="160" height="160">
+                                    <div class="mb-3"><button class="btn btn-primary bg-gradient-deepbluesky btn-sm"
+                                            type="button">Change Photo</button></div>
+                                </div>
+                            </div>
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="text-primary font-weight-bold m-0">Projects</h6>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="small font-weight-bold">Server migration<span
+                                            class="float-right">20%</span></h4>
+                                    <div class="progress progress-sm mb-3">
+                                        <div class="progress-bar bg-danger" aria-valuenow="20" aria-valuemin="0"
+                                            aria-valuemax="100" style="width: 20%;"><span class="sr-only">20%</span>
+                                        </div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">Sales tracking<span
+                                            class="float-right">40%</span></h4>
+                                    <div class="progress progress-sm mb-3">
+                                        <div class="progress-bar bg-warning" aria-valuenow="40" aria-valuemin="0"
+                                            aria-valuemax="100" style="width: 40%;"><span class="sr-only">40%</span>
+                                        </div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">Customer Database<span
+                                            class="float-right">60%</span></h4>
+                                    <div class="progress progress-sm mb-3">
+                                        <div class="progress-bar bg-primary" aria-valuenow="60" aria-valuemin="0"
+                                            aria-valuemax="100" style="width: 60%;"><span class="sr-only">60%</span>
+                                        </div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">Payout Details<span
+                                            class="float-right">80%</span></h4>
+                                    <div class="progress progress-sm mb-3">
+                                        <div class="progress-bar bg-info" aria-valuenow="80" aria-valuemin="0"
+                                            aria-valuemax="100" style="width: 80%;"><span class="sr-only">80%</span>
+                                        </div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">Account setup<span
+                                            class="float-right">Complete!</span></h4>
+                                    <div class="progress progress-sm mb-3">
+                                        <div class="progress-bar bg-success" aria-valuenow="100" aria-valuemin="0"
+                                            aria-valuemax="100" style="width: 100%;"><span class="sr-only">100%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="row mb-3 d-none">
+                                <div class="col">
+                                    <div class="card text-white bg-primary shadow">
+                                        <div class="card-body">
+                                            <div class="row mb-2">
+                                                <div class="col">
+                                                    <p class="m-0">Peformance</p>
+                                                    <p class="m-0"><strong>65.2%</strong></p>
+                                                </div>
+                                                <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+                                            </div>
+                                            <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5%
+                                                since last month</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card text-white bg-success shadow">
+                                        <div class="card-body">
+                                            <div class="row mb-2">
+                                                <div class="col">
+                                                    <p class="m-0">Peformance</p>
+                                                    <p class="m-0"><strong>65.2%</strong></p>
+                                                </div>
+                                                <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+                                            </div>
+                                            <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5%
+                                                since last month</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card shadow mb-3">
+                                        <div class="card-header py-3">
+                                            <p class="text-primary m-0 font-weight-bold">User Settings</p>
+                                        </div>
+                                        <div class="card-body">
+                                        <?php 
+require_once 'includes/dbh.inc.php';
+$sql = "SELECT * from user where id_user =".$_SESSION['user_id'];
+$query = mysqli_query($conn,$sql);
+$row = mysqli_fetch_array($query); 
+?>    
+                                            <form>
+                                                <div class="form-row">
+                                                    <?php
+                                                    echo    "<div class=\"col\">"."
+                                                        <div class=\"form-group\"><label for=\"first_name\"><strong>First
+                                                                    Name</strong></label><input class=\"form-control\"
+                                                                type=\"text\" placeholder=\"".$row['first_name']."\" name=\"first_name\"></div>
+                                                    </div>";
+                                                    ?>
+                                                    <?php
+                                                    echo    "<div class=\"col\">"."
+                                                        <div class=\"form-group\"><label for=\"last_name\"><strong>Last
+                                                                    Name</strong></label><input class=\"form-control\"
+                                                                type=\"text\" placeholder=\"".$row['last_name']."\" name=\"last_name\"></div>
+                                                    </div>";
+                                                    ?>
+                                                    
+                                                </div>
+                                                <?php 
+                                                echo "<div class=\"form-group\">";
+                                                echo "<label
+                                                        for=\"email\"><strong>Password</strong></label><input
+                                                        class=\"form-control\" type=\"password\"placeholder=\"".$row['password'].
+                                                        "\"name=\"password\">
+                                                </div>";
+                                                ?>
+                                                
+                                                <div class="form-group"><button
+                                                        class="btn btn-primary bg-gradient-deepbluesky btn-sm"
+                                                        type="submit">Save Settings</button></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="card shadow">
+                                        <div class="card-header py-3">
+                                            <p class="text-primary m-0 font-weight-bold">Contact Settings</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <form>
+                                                <?php 
+                                                echo "<div class=\"form-group\">";
+                                                echo "<label
+                                                        for=\"email\"><strong>E-mail Address</strong></label><input
+                                                        class=\"form-control\" type=\"text\"placeholder=\"".$row['email'].
+                                                        "\"name=\"address\">
+                                                </div>";
+                                                ?>
+                                                <div class="form-row">
+                                                    <?php
+                                                    echo    "<div class=\"col\">"."
+                                                        <div class=\"form-group\"><label for=\"phone\"><strong>Phone
+                                                                    Number</strong></label><input class=\"form-control\"
+                                                                type=\"text\" placeholder=\"".$row['phone']."\" name=\"phone\"></div>
+                                                    </div>";
+                                                    ?>
+                                                    <?php 
+                                                    echo "<div class=\"col-8\">";
+                                                    echo "<label
+                                                        for=\"address\"><strong>Address</strong></label><input
+                                                        class=\"form-control\" type=\"text\"placeholder=\"".$row['adress'].
+                                                        "\"name=\"address\">
+                                                    </div>";
+                                                    ?>
+                                                </div>
+                                                <div class="form-group"><button
+                                                        class="btn btn-primary bg-gradient-deepbluesky btn-sm"
+                                                        type="submit">Save&nbsp;Settings</button></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow mb-5">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 font-weight-bold">User Info</p>
-                            <button class="btn btn-primary bg-gradient-deepbluesky" type="button"
-                                style="width: 111px;height: 32px;padding-top: 3px;font-size: 15px;">Create New</button>
+                            <p class="text-primary m-0 font-weight-bold">Forum Settings</p>
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-6 text-nowrap">
-                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-                                        <label>Show&nbsp;<select
-                                                class="form-control form-control-sm custom-select custom-select-sm">
-                                                <option value="10" selected="">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                            </select>&nbsp;</label></div>
-                                </div>
                                 <div class="col-md-6">
-                                    <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input
-                                                type="search" class="form-control form-control-sm"
-                                                aria-controls="dataTable" placeholder="Search by city" id="catInput" onkeyup="FilteredSearch()"></label></div>
-                                </div>
-                            </div>
-                            <div class="table-responsive table mt-2" id="dataTable" role="grid"
-                                aria-describedby="dataTable_info">
-                                <table class="table dataTable my-0" id="dataTable">
-                                    <thead>
-                                        <tr>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Address</th>
-                                            <th>E-mail</th>
-                                            <th>Account creation date</th>
-                                            <th>Last Online</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php 
-require_once 'includes/dbh.inc.php';
-$sql = "SELECT * from user";
-$query = mysqli_query($conn,$sql);
-
-?>
-                                        <?php
-while ($row = mysqli_fetch_array($query)) {
-    echo "<tr>";
-    echo "<td>" . $row['first_name'] . "</td>";
-    echo "<td>" . $row['last_name'] . "</td>";
-    echo "<td>" . $row['adress'] . "</td>";
-    echo "<td>" . $row['email'] . "</td>";
-    echo "<td>" . $row['registered_at'] . "</td>";
-    echo "<td>" . $row['lastlogin'] . "</td>";
-    echo "</tr>";
-}
-?>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Address</th>
-                                            <th>E-mail</th>
-                                            <th>Account creation date</th>
-                                            <th>Last Online</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 align-self-center">
-                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">
-                                        Showing 1 to 10 of 27</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <nav
-                                        class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                        <ul class="pagination">
-                                            <li class="page-item disabled"><a class="page-link" href="#"
-                                                    aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span
-                                                        aria-hidden="true">»</span></a></li>
-                                        </ul>
-                                    </nav>
+                                    <form>
+                                        <div class="form-group"><label
+                                                for="signature"><strong>Signature</strong><br></label><textarea
+                                                class="form-control" rows="4" name="signature"></textarea></div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-switch"><input
+                                                    class="custom-control-input" type="checkbox" id="formCheck-1"><label
+                                                    class="custom-control-label" for="formCheck-1"><strong>Notify me
+                                                        about new replies</strong></label></div>
+                                        </div>
+                                        <div class="form-group"><button
+                                                class="btn btn-primary bg-gradient-deepbluesky btn-sm"
+                                                type="submit">Save Settings</button></div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -310,29 +416,6 @@ while ($row = mysqli_fetch_array($query)) {
     <script src="assets/js/bs-charts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
     <script src="assets/js/theme.js"></script>
-    <script>
-function FilteredSearch() {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("catInput");
-  filter = input.value;
-  table = document.getElementById("dataTable");
-  tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[2];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
-</script>
 </body>
 
 </html>
