@@ -1,3 +1,5 @@
 Host : hafhouf.com
 Username : user14210_project
 password : jY5jW3pK8alQ5n
+
+server IP: 197.12.0.100
