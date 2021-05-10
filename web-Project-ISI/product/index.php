@@ -25,13 +25,16 @@
       "item_quantity"=> $_POST["quantity"]  
     );
     $count = count($_SESSION["shopping_cart"]);
-    
-    foreach ($_SESSION["shopping_cart"] as $item){
-      if ($item == $item_array){
-        $item["item_quantity"] =$_POST["quantity"];
-      }else{
-        $_SESSION["shopping_cart"][$count] = $item_array;
+    $exists = false;
+
+    for ($i = 0 ;$i<$count;$i++){
+      if ($_SESSION["shopping_cart"][$i]["item_id"] == $item_array["item_id"]){
+        $_SESSION["shopping_cart"][$i]["item_quantity"] =$item_array["item_quantity"];
+        $exists=true;
       }
+    }
+    if (!$exists){
+      $_SESSION["shopping_cart"][$count] = $item_array;
     }
   }
   ?>

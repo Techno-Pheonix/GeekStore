@@ -5,8 +5,8 @@
   }
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a  href="/">
-      <img class="nav-logo" src="pictures/logof2.png" width="80" height="auto" alt="">
+  <a  href="../">
+      <img class="nav-logo" src="../pictures/logof2.png" width="80" height="auto" alt="">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -19,7 +19,7 @@
         $result = mysqli_query($conn, $sql);?>
         <?php while ($row = mysqli_fetch_assoc($result)): ?>
           <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="./browse?catg=<?php echo $row["slug"] ?>" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="../browse?catg=<?php echo $row["slug"] ?>" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <?php echo $row['title'] ?>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -29,7 +29,7 @@
             $resultcheck = mysqli_num_rows($result_cat);
             if ($resultcheck>0):?>
             <?php while ($row_cat = mysqli_fetch_assoc($result_cat)): ?>
-              <a class="dropdown-item" href="./browse?catg=<?php echo $row["slug"] ?>&sub_catg=<?php echo $row_cat["title"] ?>"><?php echo $row_cat["title"] ?></a>
+              <a class="dropdown-item" href="../browse?catg=<?php echo $row["slug"] ?>&sub_catg=<?php echo $row_cat["title"] ?>"><?php echo $row_cat["title"] ?></a>
             <?php endwhile ?>
             <?php else: ?>
               <a class="dropdown-item" href="#">No Sub Categories</a>
