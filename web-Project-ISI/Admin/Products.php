@@ -1,3 +1,10 @@
+<?php
+session_start();
+if ($_SESSION['admin'] == false){
+    header("location:login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -175,7 +182,7 @@
                                 <div class="nav-item dropdown no-arrow"><button
                                         class="btn btn-primary bg-gradient-deepbluesky dropdown-toggle"
                                         data-toggle="dropdown" aria-expanded="false" type="button"><span
-                                            class="d-none d-lg-inline mr-2 text-white-600 small">Valerie Luna</span><img
+                                            class="d-none d-lg-inline mr-2 text-white-600 small"><?php echo($_SESSION['user']); ?></span><img
                                             class="border rounded-circle img-profile"
                                             src="../pictures/avatar1.jpeg"></button>
                                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
@@ -187,8 +194,8 @@
                                                 class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity
                                             log</a>
                                         <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation"
-                                            href="#"><i
-                                                class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>
+                                            href="includes/logout.php"><i
+                                            class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"onclick="logoutred()"></i>&nbsp;Logout</a>
                                     </div>
                                 </div>
                             </li>
