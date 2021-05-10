@@ -32,7 +32,6 @@
               <div class="col-md-12 col-xl-3 bg-light">
                 <section>
                   <?php 
-                  
                   $sql = "SELECT * FROM category ;";
                   $result = mysqli_query($conn, $sql);
                   ?>
@@ -47,7 +46,7 @@
                           $result_cat = mysqli_query($conn, $sql_cat);
                           ?>
                           <?php while ($row_cat = mysqli_fetch_assoc($result_cat)): ?>
-                          <a href="./index.php?catg=<?php echo $row["slug"] ?>&sub_catg=<?php echo $row_cat["title"] ?> " class="w-100">
+                          <a href="./index.php?catg=<?php echo $row["slug"] ?>&sub_catg=<?php echo $row_cat["title"] ?> " class="w-100" style="text-decoration:none;color:black;">
                             <li class="center card-item"><?php echo $row_cat["title"] ?></li>
                           </a>
                           <?php endwhile ?>
@@ -93,14 +92,11 @@
                 if (isset($_GET["sub_catg"])){
                   $sql_sub = "SELECT * FROM sub_category where  title = ".$_GET["sub_catg"]." ;";
                   $result = mysqli_query($conn, $sql);
-                  $row = mysqli_fetch_row($result);
-                  print_r($row);
-                  $sql = "SELECT * FROM product as p where  p.id_cat = ".$row["id_sub"]." ;";
-                  
-                }else{
-                  $sql = "SELECT * FROM product ;"; 
+                  $row = mysqli_fetch_assoc($result);
+                  $sql = "SELECT * FROM product as p where  p.id_cat = ".$row["id_cat"]." ;";
+                }else if (isset($_GET["catg"])){
+                  $sql = "SELECT p.* FROM product as p, sub_category as s where p.id_cat = s.id_cat and s.id_cat = ".$_GET["catg"]." ;"; 
                 }
-                $sql = "SELECT * FROM product ;"; 
                 $result = mysqli_query($conn, $sql);
                 ?>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
