@@ -24,7 +24,7 @@
             <li class="breadcrumb-item"><a href="./index.php?catg=<?php echo $_GET["catg"]; ?>"><?php echo $_GET["catg"]; ?></a></li>
             <?php endif; ?>
             <?php if (isset($_GET["sub_catg"])): ?>
-            <li class="breadcrumb-item"><a href="./index.php?sub_catg=<?php $_GET["sub_catg"]?>"><?php echo $_GET["sub_catg"]; ?></a></li>
+            <li class="breadcrumb-item"><a href="./index.php?catg=<?php echo $_GET["catg"]; ?>&sub_catg=<?php echo $_GET["sub_catg"]?>"><?php echo $_GET["sub_catg"]; ?></a></li>
             <?php endif; ?>
         </ol>
     </nav>
@@ -32,7 +32,8 @@
               <div class="col-md-12 col-xl-3 bg-light">
                 <section>
                   <?php 
-                  $sql = "SELECT * FROM category;";
+                  
+                  $sql = "SELECT * FROM category ;";
                   $result = mysqli_query($conn, $sql);
                   ?>
                   <?php while ($row = mysqli_fetch_assoc($result)): ?>
@@ -89,7 +90,17 @@
               </div>  
               <div class="row">
                 <?php 
-                $sql = "SELECT * FROM product;";
+                if (isset($_GET["sub_catg"])){
+                  $sql_sub = "SELECT * FROM sub_category where  title = ".$_GET["sub_catg"]." ;";
+                  $result = mysqli_query($conn, $sql);
+                  $row = mysqli_fetch_row($result);
+                  print_r($row);
+                  $sql = "SELECT * FROM product as p where  p.id_cat = ".$row["id_sub"]." ;";
+                  
+                }else{
+                  $sql = "SELECT * FROM product ;"; 
+                }
+                $sql = "SELECT * FROM product ;"; 
                 $result = mysqli_query($conn, $sql);
                 ?>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
