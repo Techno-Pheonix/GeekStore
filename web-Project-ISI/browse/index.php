@@ -35,10 +35,10 @@
                   ?>
                   <?php while ($row = mysqli_fetch_assoc($result)): ?>
                     <ul class="dropdown-ul">
-                      <a href="./index.php?catg=<?php echo $row["slug"] ?>" class="w-100">
+                      <a href="./index.php?catg=<?php echo $row["slug"] ?>" class="catg_target w-100">
                       <li class="cat-item"><span class="btn btn-primary center px-1 py-1 w-100"><?php echo $row['title'] ?></span>
                       </a>  
-                      <ul class="bg-liste-cat  w-100">
+                      <ul class="bg-liste-cat w-100">
                           <?php 
                           $sql_cat = "SELECT sub.* FROM sub_category sub,category where category.id_cat = sub.id_cat and category.id_cat = ".$row['id_cat'].";";
                           $result_cat = mysqli_query($conn, $sql_cat);
@@ -73,20 +73,24 @@
               </div>  
 
             <div class="col-md-12 col-xl-9 col-sm-12 bg-light">
-            <!--  
+<!--             
             <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
+
                 <label>Show&nbsp;
-                <form action="index.php" method="get"></form>  
-                <select class="form-control form-control-sm custom-select custom-select-sm" onchange="this.form.submit()" name="number-ppg">
+
+                <form action="index.php" method="get" name="nb_per_page_form"></form>  
+                  <select class="form-control form-control-sm custom-select custom-select-sm" onchange='nb_per_page_form.submit()' name="number-ppg">
                     <option value="10" selected="">12</option>
                     <option value="25">20</option>
                     <option value="50">40</option>
                   </select>
+                  <noscript><input type="submit" value="Submit"></noscript>
                 </form>
                   &nbsp;
                 </label>
               </div>
-                          -->  
+              -->
+                          
               <div class="row">
                 <?php 
                 $this_page=($page-1)*$number_per_page;
@@ -185,5 +189,15 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script>
+    window.onload = ()=>{
+      console.log(window.screen.width)
+      if (window.screen.width<500){
+        const el = document.querySelectorAll(".catg_target")
+        for (let i=0;i<el.length;i++){
+          el[i].href = "#"
+      }
+      }
+    }
   </script>
 </html>
