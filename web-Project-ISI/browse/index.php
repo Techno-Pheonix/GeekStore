@@ -1,17 +1,13 @@
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-
-
+  <?php
+  if (!isset($_GET["page"])){
+    $page=1;
+  }else{
+    $page = $_GET["page"];
+  }
+  $number_per_page = 21;
+  ?>
+  <?php require_once "../includes/header.php"; ?>
+  <link rel="stylesheet" href="style.css">
     <title>Hello, world!</title>
   </head>
   <body>
@@ -21,9 +17,11 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
             <?php if (isset($_GET["catg"])): ?>
+            <?php $url="catg=". $_GET["catg"]; ?>
             <li class="breadcrumb-item"><a href="./index.php?catg=<?php echo $_GET["catg"]; ?>"><?php echo $_GET["catg"]; ?></a></li>
             <?php endif; ?>
             <?php if (isset($_GET["sub_catg"])): ?>
+            <?php $url="catg=". $_GET["catg"] ."&sub_catg=".$_GET["sub_catg"]; ?>
             <li class="breadcrumb-item"><a href="./index.php?catg=<?php echo $_GET["catg"]; ?>&sub_catg=<?php echo $_GET["sub_catg"]?>"><?php echo $_GET["sub_catg"]; ?></a></li>
             <?php endif; ?>
         </ol>
@@ -32,7 +30,7 @@
               <div class="col-md-12 col-xl-3 bg-light">
                 <section>
                   <?php 
-                  $sql = "SELECT * FROM category ;";
+                  $sql = "SELECT * FROM category;";
                   $result = mysqli_query($conn, $sql);
                   ?>
                   <?php while ($row = mysqli_fetch_assoc($result)): ?>
@@ -74,30 +72,49 @@
                 </div>
               </div>  
 
-
-              
             <div class="col-md-12 col-xl-9 col-sm-12 bg-light">
-              <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
+            <!--  
+            <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
                 <label>Show&nbsp;
-                  <select class="form-control form-control-sm custom-select custom-select-sm">
+                <form action="index.php" method="get"></form>  
+                <select class="form-control form-control-sm custom-select custom-select-sm" onchange="this.form.submit()" name="number-ppg">
                     <option value="10" selected="">12</option>
                     <option value="25">20</option>
                     <option value="50">40</option>
                   </select>
+                </form>
                   &nbsp;
                 </label>
-              </div>  
+              </div>
+                          -->  
               <div class="row">
                 <?php 
+                $this_page=($page-1)*$number_per_page;
                 if (isset($_GET["sub_catg"])){
                   $sql_sub = "SELECT * FROM sub_category where  title = ".$_GET["sub_catg"]." ;";
                   $result = mysqli_query($conn, $sql);
                   $row = mysqli_fetch_assoc($result);
-                  $sql = "SELECT * FROM product as p where  p.id_cat = ".$row["id_cat"]." ;";
+                  //Get Items Count
+                  $sql1 = "SELECT * FROM product as p where  p.id_cat = ".$row["id_cat"]." ;";
+                  $result1 = mysqli_query($conn, $sql1);
+                  $row1 = mysqli_fetch_assoc($result);
+                  $resultcheck = mysqli_num_rows($result1);
+                  //the actual query
+                  $sql = "SELECT * FROM product as p where  p.id_cat = ".$row["id_cat"]." LIMIT ".$this_page." , ".$number_per_page." ;";
                 }else if (isset($_GET["catg"])){
-                  $sql = "SELECT p.* FROM product as p, sub_category as s where p.id_cat = s.id_cat and s.id_cat = ".$_GET["catg"]." ;"; 
+                  $sql_sub = "SELECT * FROM category where  title = ".$_GET["catg"]." ;";
+                  $result = mysqli_query($conn, $sql);
+                  $row = mysqli_fetch_assoc($result);
+                  //Get Items Count
+                  $sql1 = "SELECT p.* FROM product as p, sub_category as s where p.id_cat = s.id_cat and s.id_cat = ".$row["id_cat"]." ;";
+                  $result1 = mysqli_query($conn, $sql1);
+                  $row1 = mysqli_fetch_assoc($result);
+                  $resultcheck = mysqli_num_rows($result1);
+                  $sql = "SELECT p.* FROM product as p, sub_category as s where p.id_cat = s.id_cat and s.id_cat = ".$row["id_cat"]." LIMIT ".$this_page." , ".$number_per_page." ;"; 
                 }
                 $result = mysqli_query($conn, $sql);
+                
+                $number_of_pages = ceil($resultcheck/$number_per_page);
                 ?>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
                   <div class="col-md-6 col-xl-4 col-sm-12 mb-2" >
@@ -117,23 +134,28 @@
                 <div aria-label="Page navigation example" class="center">
                   <ul class="pagination">
                     <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Previous">
+                      <a class="page-link" href="index.php?<?php echo $url; ?>&page=<?php echo $_GET["page"]-1?>" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                         <span class="sr-only">Previous</span>
                       </a>
                     </li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <?php 
+                    for($i =0;$i<$number_of_pages;$i++):?>
+                      <li class="page-item<?php if ($i+1==$page) echo " active"?>"><a class="page-link" 
+                      href="index.php?<?php echo $url; ?>&page=<?php echo $i+1;?>"><?php echo $i+1;?></a></li>
+                    <?php endfor;?>                    
                     <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Next">
+                      <a class="page-link" href="index.php?<?php echo $url; ?>&page=<?php echo $_GET["page"]+1?>" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                         <span class="sr-only">Next</span>
                       </a>
                     </li>
                   </ul>
                 </div>
-
+                <div class="container ">
+                    <div id="pagination-wrapper"></div>
+                </div>
+    
     
             </div> 
               
@@ -141,13 +163,11 @@
     </div>
 
     
-          
-
-
   </body>
+  
     <script src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  
+  </script>
 </html>
