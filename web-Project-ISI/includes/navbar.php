@@ -4,7 +4,7 @@
     $_SESSION["shopping_cart"] = array();
   }
 ?>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(135deg, rgb(57, 79, 230) 0%, rgb(0, 204, 255) 100%);">
   <a href="/">
     <img class="nav-logo" src="pictures/logof2.png" width="80" height="auto" alt="">
   </a>
@@ -50,15 +50,10 @@
     height: 2.375rem;
     margin: auto 1rem;"></div>
     <div class="nav-item dropdown no-arrow" role="presentation">
-      <div class="nav-item dropdown no-arrow"><button class="btn btn-primary dropdown-toggle" style="background: #c6cfd4;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #6DD5FA, #2980B9);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to top,  #6DD5FA, #2980B9);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */"
+      <div class="nav-item dropdown no-arrow"><button class="btn btn-primary dropdown-toggle" style="background: linear-gradient(135deg, rgb(42, 39, 218), rgb(42, 170, 200));"
           data-toggle="dropdown" aria-expanded="false" type="button"><span
             class="d-none d-lg-inline mr-2 text-white-600 small"><?php echo($_SESSION['user']); ?></span><img
-            class="border rounded-circle img-profile" src="../pictures/avatar1.jpeg"></button>
+            class="border rounded-circle img-profile" src="pictures/avatar1.jpeg"></button>
         <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
           <a class="dropdown-item" role="presentation" href="#"><i
               class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item"
