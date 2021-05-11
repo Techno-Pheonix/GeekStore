@@ -380,19 +380,12 @@ $row = mysqli_fetch_array($query);
                     </div>
                 </div>
             </div>
-            <footer class="bg-white sticky-footer">
-                <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2019</span></div>
-                </div>
-            </footer>
-        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
-    </div>
-    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <?php
+            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <?php
                     if (isset($_GET["error"])){
                         echo "<h3 class=\"modal-title\" id=\"exampleModalLongTitle\">Error</h3>";
                     } 
@@ -400,12 +393,12 @@ $row = mysqli_fetch_array($query);
                         echo "<h3 class=\"modal-title\" id=\"exampleModalLongTitle\">Update</h3>";
                     } 
                     ?>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <?php
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <?php
                             $mtotal="";
                             if (isset($_GET["error"])){
                                 if ($_GET["error"] == "emptyinput"){
@@ -431,15 +424,24 @@ $row = mysqli_fetch_array($query);
                             echo('<h4>'.$mtotal.'</h4>');
                             ?>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+            <button id="a" type="button" class="btn btn-primary"
+                style="background-color:transparent;border-color:transparent;box-shadow: 10px 10px 10px rgba(0, 0, 0, 0);"
+                data-toggle="modal" data-target="#exampleModalLong">
+            </button>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2019</span></div>
+                </div>
+            </footer>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
-    <button id="a" type="button" class="btn btn-primary" style="background-color:transparent;border-color:transparent;box-shadow: 10px 10px 10px rgba(0, 0, 0, 0);" data-toggle="modal" data-target="#exampleModalLong">
-</button>
     <?php if (isset($_GET["error"])): ?>
     <script>
         window.onload = function () {
