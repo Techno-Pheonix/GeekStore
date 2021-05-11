@@ -4,7 +4,7 @@
   }else{
     $page = $_GET["page"];
   }
-  $number_per_page = 21;
+  $number_per_page = 12;
   ?>
   <?php require_once "../includes/header.php"; ?>
   <link rel="stylesheet" href="style.css">
@@ -133,19 +133,35 @@
 
                 <div aria-label="Page navigation example" class="center">
                   <ul class="pagination">
+                    <!--Previous button-->
                     <li class="page-item">
-                      <a class="page-link" href="index.php?<?php echo $url; ?>&page=<?php echo $_GET["page"]-1?>" aria-label="Previous">
+                      <a class="page-link" href="index.php?<?php echo $url; ?>&page=<?php 
+                      if ($page-1>0){
+                        echo $page-1;
+                      }else{
+                        echo $page;
+                      }
+                      ?>" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                         <span class="sr-only">Previous</span>
                       </a>
                     </li>
                     <?php 
-                    for($i =0;$i<$number_of_pages;$i++):?>
-                      <li class="page-item<?php if ($i+1==$page) echo " active"?>"><a class="page-link" 
-                      href="index.php?<?php echo $url; ?>&page=<?php echo $i+1;?>"><?php echo $i+1;?></a></li>
+                    for($i = $page-2;$i<=$page+2;$i++):?>
+                    <?php if ($i>=1 && $i<=$number_of_pages):?>
+                      <li class="page-item<?php if ($i==$page) echo " active"?>"><a class="page-link" 
+                      href="index.php?<?php echo $url; ?>&page=<?php echo $i;?>"><?php echo $i;?></a></li>
+                    <?php endif; ?>
                     <?php endfor;?>                    
+                    <!--Next button-->
                     <li class="page-item">
-                      <a class="page-link" href="index.php?<?php echo $url; ?>&page=<?php echo $_GET["page"]+1?>" aria-label="Next">
+                      <a class="page-link" href="index.php?<?php echo $url; ?>&page=<?php 
+                      if ($page+1<$number_of_pages){
+                        echo $page+1;
+                      }else{
+                        echo $page;
+                      }
+                      ?>" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                         <span class="sr-only">Next</span>
                       </a>
