@@ -1,4 +1,4 @@
-<?php session_start();
+<?php
 if ($_SESSION['isadmin']==true){
   $account = "Admin Panel";
   $link = "/admin";
