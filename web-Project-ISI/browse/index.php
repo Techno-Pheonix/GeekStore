@@ -6,12 +6,12 @@
   }
   $number_per_page = 12;
   ?>
-  <?php require_once "../includes/header.php"; ?>
+  <?php require_once '../includes/header.php'; ?>
   <link rel="stylesheet" href="style.css">
     <title>Hello, world!</title>
   </head>
   <body>
-  <?php require_once "../includes/navbar.php"; ?>
+  <?php require_once '../includes/navbar.php'; ?>
     <div class="container">
       <nav aria-label="breadcrumb" class="mt-3">
         <ol class="breadcrumb">

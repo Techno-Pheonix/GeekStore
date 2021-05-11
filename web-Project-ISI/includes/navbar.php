@@ -6,7 +6,7 @@
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a href="/">
-    <img class="nav-logo" src="pictures/logof2.png" width="80" height="auto" alt="">
+    <img class="nav-logo" src="../pictures/logof2.png" width="80" height="auto" alt="">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
