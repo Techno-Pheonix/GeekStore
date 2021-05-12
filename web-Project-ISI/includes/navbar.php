@@ -3,10 +3,14 @@
   if (!isset($_SESSION["shopping_cart"])){
     $_SESSION["shopping_cart"] = array();
   }
+  if(isset($_SESSION['loggedin'])){
+    $_SESSION['user'] = "guest";
+    $_SESSION['isadmin'] = false;
+  }
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(135deg, rgb(57, 79, 230) 0%, rgb(0, 204, 255) 100%);">
   <a href="/">
-    <img class="nav-logo" src="../pictures/logof2.png" width="80" height="auto" alt="">
+    <img class="nav-logo" src="pictures/logof2.png" width="80" height="auto" alt="">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,7 +57,7 @@
       <div class="nav-item dropdown no-arrow"><button class="btn btn-primary dropdown-toggle" style="background: linear-gradient(135deg, rgb(42, 39, 218), rgb(42, 170, 200));"
           data-toggle="dropdown" aria-expanded="false" type="button"><span
             class="d-none d-lg-inline mr-2 text-white-600 small"><?php echo($_SESSION['user']); ?></span><img
-            class="border rounded-circle img-profile" src="../pictures/avatar1.jpeg"></button>
+            class="border rounded-circle img-profile" src="pictures/avatar1.jpeg"></button>
         <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
           <a class="dropdown-item" role="presentation" href="#"><i
               class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item"
@@ -61,7 +65,7 @@
           <a class="dropdown-item" role="presentation" href="#"><i
               class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity
             log</a>
-          <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation" href="includes/logout.php"><i
+          <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation" href="includes/logout.inc.php"><i
               class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" onclick="logoutred()"></i>&nbsp;Logout</a>
         </div>
       </div>

@@ -39,3 +39,21 @@ else {
         </div>
       </footer>
     </div>
+    <script>
+    function signupred() {
+      window.location.href = "/signup/";
+    } 
+
+    function signinred() {
+      window.location.href = "/signin/";
+    }
+
+    function profilered() {
+      window.location.href = "profile/";
+    }  
+
+    function logoutred() {
+      window.location.href = "includes/logout.inc.php";
+    }  
+
+</script> 
