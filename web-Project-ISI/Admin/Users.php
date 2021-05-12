@@ -25,7 +25,7 @@ if ($_SESSION['isadmin'] == false){
     <div id="wrapper">
         <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-deepbluesky p-0">
             <div class="container-fluid d-flex flex-column p-0">
-                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="../index.php">
                     <div class="sidebar-brand-icon rotate-n-15"><img src="../pictures/logof2.png" width="50px"
                             class="pulse animated infinite"></div>
                     <div class="sidebar-brand-text mx-3"><span>Geek Store</span></div>
@@ -207,8 +207,6 @@ if ($_SESSION['isadmin'] == false){
                     <div class="card shadow">
                         <div class="card-header py-3">
                             <p class="text-primary m-0 font-weight-bold">User Info</p>
-                            <button class="btn btn-primary bg-gradient-deepbluesky" type="button"
-                                style="width: 111px;height: 32px;padding-top: 3px;font-size: 15px;">Create New</button>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -250,7 +248,7 @@ $query = mysqli_query($conn,$sql);
 ?>
                                         <?php
 while ($row = mysqli_fetch_array($query)) {
-    echo "<tr>";
+    echo "<tr data-href=\"#\">";
     echo "<td>" . $row['first_name'] . "</td>";
     echo "<td>" . $row['last_name'] . "</td>";
     echo "<td>" . $row['adress'] . "</td>";
@@ -332,6 +330,29 @@ function FilteredSearch() {
     }
   }
 }
+let isCommandPressed = false;
+        window.addEventListener("keydown", (event) => {
+        if (event.which === 91) {
+            isCommandPressed = true;
+        }
+        });
+
+        window.addEventListener("keyup", (event) => {
+        if (event.which === 91) {
+            isCommandPressed = false;
+        }
+        });
+        $(document).ready(function () {
+            $(document.body).on("click", "tr[data-href]", function () {
+                //window.location.href = this.dataset.href;
+                if (isCommandPressed) {
+                    window.open(this.dataset.href, "_blank");
+                    }
+                else {
+                    window.location.href = this.dataset.href;
+                    }
+            });
+        });
 </script>
 </body>
 

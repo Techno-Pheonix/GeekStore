@@ -1,5 +1,10 @@
 <?php 
     require_once 'includes/dbh.inc.php';
-    $sql = "DELETE FROM product";
-    $result = mysqli_query($conn, $sql);
+    echo"hi";
+    $query = 'DESCRIBE product';
+    $results = mysqli_query($conn, $query) or die('Query error: ' . mysqli_error());
+    while($row = mysqli_fetch_array($results)) {
+	    print_r($row);
+	    echo '<br />';
+    }
 ?>

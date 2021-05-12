@@ -25,7 +25,7 @@ if ($_SESSION['isadmin'] == false){
     <div id="wrapper">
         <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-deepbluesky p-0">
             <div class="container-fluid d-flex flex-column p-0">
-                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="../index.php">
                     <div class="sidebar-brand-icon rotate-n-15"><img src="../pictures/logof2.png" width="50px"
                             class="pulse animated infinite"></div>
                     <div class="sidebar-brand-text mx-3"><span>Geek Store</span></div>
@@ -245,6 +245,7 @@ if ($_SESSION['isadmin'] == false){
                                     <thead>
                                         <tr>
                                             <th>Name</th>
+                                            <th>ID</th>
                                             <th>Category</th>
                                             <th>Quantity</th>
                                             <th>Price</th>
@@ -253,14 +254,15 @@ if ($_SESSION['isadmin'] == false){
                                     <tbody>
 <?php 
 require_once 'includes/dbh.inc.php';
-$sql = "SELECT p.title as ProdName, p.quantity as Qty, p.price as Price ,c.title as cat from product p,category c where p.id_cat = c.id_cat;";
+$sql = "SELECT p.title as ProdName,p.id_p as ID, p.quantity as Qty, p.price as Price ,c.title as cat, p.picture as pic from product p,category c where p.id_cat = c.id_cat;";
 $query = mysqli_query($conn,$sql);
 
 ?>
                                         <?php
 while ($row = mysqli_fetch_array($query)) {
-    echo "<tr>";
-    echo "<td>" . $row['ProdName'] . "</td>";
+    echo "<tr data-href=\"#\">";
+    echo "<td><img class=\"rounded-circle mr-2\" width=\"30\" height=\"30\" src=\"". $row['pic'] ."\">". $row['ProdName'] ."</td>";
+    echo "<td>" . $row['ID'] . "</td>";
     echo "<td>" . $row['cat'] . "</td>";
     echo "<td>" . $row['Qty'] . "</td>";
     echo "<td>" . $row['Price'] . "</td>";
@@ -271,6 +273,7 @@ while ($row = mysqli_fetch_array($query)) {
                                     <tfoot>
                                         <tr>
                                             <th>Name</th>
+                                            <th>ID</th>
                                             <th>Category</th>
                                             <th>Quantity</th>
                                             <th>Price</th>
@@ -342,6 +345,29 @@ while ($row = mysqli_fetch_array($query)) {
                 }
             }
         }
+        let isCommandPressed = false;
+        window.addEventListener("keydown", (event) => {
+        if (event.which === 91) {
+            isCommandPressed = true;
+        }
+        });
+
+        window.addEventListener("keyup", (event) => {
+        if (event.which === 91) {
+            isCommandPressed = false;
+        }
+        });
+        $(document).ready(function () {
+            $(document.body).on("click", "tr[data-href]", function () {
+                //window.location.href = this.dataset.href;
+                if (isCommandPressed) {
+                    window.open(this.dataset.href, "_blank");
+                    }
+                else {
+                    window.location.href = this.dataset.href;
+                    }
+            });
+        });
     </script>
 </body>
 
