@@ -19,6 +19,11 @@
         <div class="row pt-4">
             <div class="col-lg-8 panier-contenu mx-1">
                 <h3 class="my-3">Mon Panier</h3>
+                <?php if (count($_SESSION["shopping_cart"])):?>
+                    <div class="alert alert-primary" role="alert">
+                        No Items In Cart
+                    </div>
+                <?php endif ?>
                 <?php 
                 $i=-1;
                 foreach ($_SESSION["shopping_cart"] as $item):?>

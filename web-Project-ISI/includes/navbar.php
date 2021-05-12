@@ -10,7 +10,7 @@
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark"
   style="background: linear-gradient(135deg, rgb(57, 79, 230) 0%, rgb(0, 204, 255) 100%);">
-  <a href="/">
+  <a href="../">
     <img class="nav-logo" src="../pictures/logof2.png" width="80" height="auto" alt="">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
