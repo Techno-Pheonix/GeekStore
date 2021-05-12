@@ -51,7 +51,7 @@ function loginuser($conn, $email, $password){
         $row = mysqli_fetch_array($result);
         if (password_verify($password, $row['password'])){
             session_start();
-            $_SESSION['user'] = $row['first_name'];
+            $_SESSION['user'] = $row['first_name']." ".$row['last_name'];
             $_SESSION['user_id'] = $row['id_user'];
             $_SESSION['loggedin'] = true;
             if ($row['admin']==1){
@@ -60,7 +60,11 @@ function loginuser($conn, $email, $password){
             else {
                 $_SESSION['isadmin'] = false;
             }
-            header("location:../");
+            if ($_SESSION["sign-to-cart"] == true){
+                header("location:../cart");
+            }
+            else {
+            header("location:../");}
             exit();
         }
         else {

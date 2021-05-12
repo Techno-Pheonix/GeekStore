@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../admin/assets/css/styles.css">
     <link rel="stylesheet" href="../admin/assets/bootstrap/css/bootstrap2.min.css">
     <link rel="stylesheet" href="../admin/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="icon" href="../pictures/fav.ico" />
+    <link rel="icon" href="../pictures/fav.ico"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
     
