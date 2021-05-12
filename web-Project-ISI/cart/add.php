@@ -14,6 +14,12 @@ if (isset($_GET["arr"])){
 }
 ?>
 
+<?php 
+/*require_once '../includes/dbh.inc.php';
+$sql = "";*/
+$arr = $_GET['arr'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +34,8 @@ if (isset($_GET["arr"])){
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="icon" href="pictures/fav.ico" />
+    <link href="form-validation.css" rel="stylesheet">
+    <link rel="icon" href="../pictures/fav.ico" /> 
 
   <title>Shipment</title>
 </head>
@@ -37,6 +44,7 @@ if (isset($_GET["arr"])){
 <?php require_once '../includes/navbar.php'; ?>
 
 <section class="container">
+
 <div class="title text-center mt-4">
         <h1>Shipment</h1>
     </div>
@@ -46,40 +54,29 @@ if (isset($_GET["arr"])){
         <span class="text-muted">Your cart</span>
         <span class="badge badge-secondary badge-pill">3</span>
       </h4>
+
       <ul class="list-group mb-3">
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <h6 class="my-0">Product name</h6>
-            <small class="text-muted">Brief description</small>
-          </div>
-          <span class="text-muted">$12</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <h6 class="my-0">Second product</h6>
-            <small class="text-muted">Brief description</small>
-          </div>
-          <span class="text-muted">$8</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <h6 class="my-0">Third item</h6>
-            <small class="text-muted">Brief description</small>
-          </div>
-          <span class="text-muted">$5</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between bg-light">
-          <div class="text-success">
-            <h6 class="my-0">Promo code</h6>
-            <small>EXAMPLECODE</small>
-          </div>
-          <span class="text-success">-$5</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between">
-          <span>Total (USD)</span>
-          <strong>$20</strong>
-        </li>
-      </ul>
+        <?php
+          for ($i = 0 ;$i<$count;$i++){
+            $title = $_SESSION["shopping_cart"][$i]["item_name"];
+            $quantity = "Quantity : ".$_SESSION["shopping_cart"][$i]["item_quantity"];
+            $price = $_SESSION["shopping_cart"][$i]["item_price"];
+
+            echo('
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">'.$title.'</h6>
+                <small class="text-muted">'.$quantity.'</small>
+              </div>
+              <span class="text-muted">'.$price.'</span>
+            </li>');
+          }
+       ?>
+       <li class="list-group-item d-flex justify-content-between">
+              <span>Total (USD)</span>
+              <strong>$20</strong>
+            </li>
+          </ul>
 
       <form class="card p-2">
         <div class="input-group">
@@ -112,7 +109,7 @@ if (isset($_GET["arr"])){
 
         <div class="mb-3">
           <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="you@example.com">
+          <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
           <div class="invalid-feedback">
             Please enter a valid email address for shipping updates.
           </div>
@@ -160,7 +157,7 @@ if (isset($_GET["arr"])){
             </div>
           </div>
         </div>
-        <hr class="mb-4">
+        <hr class="mb-2">
         <div class="custom-control custom-checkbox">
         </div>
 
@@ -226,8 +223,11 @@ if (isset($_GET["arr"])){
 </section>
 <?php require_once '../includes/footer.php'; ?>
 
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="form-validation.js"></script>
 </body>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
