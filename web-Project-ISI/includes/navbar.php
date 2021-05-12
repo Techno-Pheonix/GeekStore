@@ -63,8 +63,8 @@
         <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
           <?php 
             if($_SESSION['user'] == "guest"){
-              echo "<a class=\"dropdown-item\" role=\"presentation\" href=\"signup/index.php\"><i
-              class=\"fas fa-user fa-sm fa-fw mr-2 text-gray-400\" onclick=\"logoutred()\"></i>&nbsp;Signup</a>
+              echo "<a class=\"dropdown-item\" role=\"presentation\" href=\"signup\"><i
+              class=\"fas fa-user fa-sm fa-fw mr-2 text-gray-400\"></i>&nbsp;Signup</a>
               ";}
             else{
               echo "<a class=\"dropdown-item\" role=\"presentation\" href=\"#\"><i
@@ -72,19 +72,19 @@
               ";
               }
               ?>
-          <a class="dropdown-item" role="presentation" href="#"><i
+          <a class="dropdown-item" role="presentation" href="cart"><i
               class="fas fa-shopping-cart fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Shopping Cart</a>
           <a class="dropdown-item" role="presentation" href="#"><i
               class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Purchase
             log</a>
           <?php 
             if($_SESSION['user'] == "guest"){
-              echo "<div class=\"dropdown-divider\"></div><a class=\"dropdown-item\" role=\"presentation\" href=\"signin/index.php\"><i
-              class=\"fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400\" onclick=\"logoutred()\"></i>&nbsp;Login</a>
+              echo "<div class=\"dropdown-divider\"></div><a class=\"dropdown-item\" role=\"presentation\" href=\"signin\"><i
+              class=\"fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400\" ></i>&nbsp;Login</a>
               ";}
             else{
               echo "<div class=\"dropdown-divider\"></div><a class=\"dropdown-item\" role=\"presentation\" href=\"includes/logout.inc.php\"><i
-              class=\"fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400\" onclick=\"logoutred()\"></i>&nbsp;Logout</a>
+              class=\"fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400\"></i>&nbsp;Logout</a>
               ";
               }
               ?>

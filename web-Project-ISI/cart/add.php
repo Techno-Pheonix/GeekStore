@@ -6,5 +6,10 @@ if (isset($_GET["arr"])){
     for ($i = 0 ;$i<$count;$i++){
       $_SESSION["shopping_cart"][$i]["item_quantity"] =$array[$i]["item_quantity"];  
     }
+
+    if ($_SESSION["loggedin"]!=true){
+      $_SESSION["sign-to-cart"] = true;
+      header("location:../signin");
+    }
 }
 ?>

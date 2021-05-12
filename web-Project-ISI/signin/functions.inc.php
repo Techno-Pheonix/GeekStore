@@ -60,7 +60,11 @@ function loginuser($conn, $email, $password){
             else {
                 $_SESSION['isadmin'] = false;
             }
-            header("location:../");
+            if ($_SESSION["sign-to-cart"] == true){
+                header("location:../cart");
+            }
+            else {
+            header("location:../");}
             exit();
         }
         else {
