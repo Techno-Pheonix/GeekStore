@@ -1,4 +1,10 @@
-
+<?php
+session_start();
+if ($_SESSION['isadmin'] == false){
+    header("location:login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -202,12 +208,12 @@
                         <div class="card-header py-3">
                             <p class="text-primary m-0 font-weight-bold">Product Info</p>
                             <div class="d-flex">
-                            <a href="./AddProduct">
+                            <a href="AddProduct/index.php">
                                 <button class="btn btn-primary bg-gradient-deepbluesky" type="button"
                                     style="width: 111px;height: 32px;padding-top: 3px;font-size: 15px;"
                                     onclick="creatnew()">Create New</button>
                             </a>
-                            <a href="./addCategory">
+                            <a href="addCategory/index.php">
                                 <button class="btn btn-primary bg-gradient-deepbluesky" type="button"
                                     style="width: 135px;height: 32px;padding-top: 3px;font-size: 15px;margin-left:4px;"
                                     onclick="creatnew()">Add Category</button>
@@ -248,12 +254,13 @@
                                     <tbody>
 <?php 
 require_once 'includes/dbh.inc.php';
-$sql = "SELECT p.title as ProdName,p.id_p as ID, p.quantity as Qty, p.price as Price ,c.title as cat, p.picture as pic from product p,category c where p.id_cat = c.id_cat;";
+$sql = "SELECT p.title as ProdName, p.slug as slug, p.id_p as ID, p.quantity as Qty, p.price as Price ,c.title as cat, p.picture as pic from product p,sub_category c where p.id_cat = c.id_sub;";
 $query = mysqli_query($conn,$sql);
+
 ?>
                                         <?php
 while ($row = mysqli_fetch_array($query)) {
-    echo "<tr data-href=\"#\">";
+    echo "<tr data-href=\"Product.php?slug=".$row['slug']."\">";
     echo "<td><img class=\"rounded-circle mr-2\" width=\"30\" height=\"30\" src=\"". $row['pic'] ."\">". $row['ProdName'] ."</td>";
     echo "<td>" . $row['ID'] . "</td>";
     echo "<td>" . $row['cat'] . "</td>";
