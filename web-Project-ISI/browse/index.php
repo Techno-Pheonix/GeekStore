@@ -4,7 +4,7 @@
   }else{
     $page = $_GET["page"];
   }
-  $number_per_page = 12;
+  $number_per_page = 1;
   ?>
   <?php require_once '../includes/header.php'; ?>
   <link rel="stylesheet" href="style.css">
@@ -72,52 +72,49 @@
                 </div>
               </div>  
 
-            <div class="col-md-12 col-xl-9 col-sm-12 bg-light">
-<!--             
-            <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-
-                <label>Show&nbsp;
-
-                <form action="index.php" method="get" name="nb_per_page_form"></form>  
-                  <select class="form-control form-control-sm custom-select custom-select-sm" onchange='nb_per_page_form.submit()' name="number-ppg">
-                    <option value="10" selected="">12</option>
-                    <option value="25">20</option>
-                    <option value="50">40</option>
-                  </select>
-                  <noscript><input type="submit" value="Submit"></noscript>
-                </form>
-                  &nbsp;
-                </label>
-              </div>
-              -->
-                          
+            <div class="col-md-12 col-xl-9 col-sm-12 bg-light">     
               <div class="row">
                 <?php 
                 $this_page=($page-1)*$number_per_page;
+
                 if (isset($_GET["sub_catg"])){
-                  $sql_sub = "SELECT * FROM sub_category where  title = ".$_GET["sub_catg"]." ;";
-                  $result = mysqli_query($conn, $sql);
+                  //Get sub category ID
+                  $x = $_GET["sub_catg"];
+                  $sql_sub = "SELECT * FROM sub_category where title = '$x' ;";
+                  $result = mysqli_query($conn, $sql_sub);
                   $row = mysqli_fetch_assoc($result);
                   //Get Items Count
-                  $sql1 = "SELECT * FROM product as p where  p.id_cat = ".$row["id_cat"]." ;";
+                  $sql1 = "SELECT * FROM product as p where  p.id_cat = ".$row["id_sub"]." ;";
                   $result1 = mysqli_query($conn, $sql1);
-                  $row1 = mysqli_fetch_assoc($result);
+                  $row1 = mysqli_fetch_assoc($result1);
                   $resultcheck = mysqli_num_rows($result1);
                   //the actual query
-                  $sql = "SELECT * FROM product as p where  p.id_cat = ".$row["id_cat"]." LIMIT ".$this_page." , ".$number_per_page." ;";
+                  $sql = "SELECT  * FROM product as p where  p.id_cat = ".$row["id_sub"]." LIMIT ".$this_page." , ".$number_per_page." ;";
                 }else if (isset($_GET["catg"])){
-                  $sql_sub = "SELECT * FROM category where  title = ".$_GET["catg"]." ;";
-                  $result = mysqli_query($conn, $sql);
+                  //Get category ID
+                  $x = $_GET["catg"];
+                  $sql_sub = "SELECT * FROM category where slug = '$x' ;";
+                  $result = mysqli_query($conn, $sql_sub);
                   $row = mysqli_fetch_assoc($result);
                   //Get Items Count
-                  $sql1 = "SELECT p.* FROM product as p, sub_category as s where p.id_cat = s.id_cat and s.id_cat = ".$row["id_cat"]." ;";
+                  $sql1 = "SELECT DISTINCT count(*) as cat_slug from product as p, category as c,sub_category as s 
+                  where p.id_cat = s.id_sub and s.id_cat = c.id_cat and c.id_cat =".$row["id_cat"].";";
                   $result1 = mysqli_query($conn, $sql1);
-                  $row1 = mysqli_fetch_assoc($result);
+                  $row1 = mysqli_fetch_assoc($result1);
+                  print_r($row1);
                   $resultcheck = mysqli_num_rows($result1);
-                  $sql = "SELECT p.* FROM product as p, sub_category as s where p.id_cat = s.id_cat and s.id_cat = ".$row["id_cat"]." LIMIT ".$this_page." , ".$number_per_page." ;"; 
+                  $sql = "SELECT DISTINCT p.*,c.slug as cat_slug from product as p, category as c,sub_category as s 
+                  where p.id_cat = s.id_sub and s.id_cat = c.id_cat and c.id_cat =".$row["id_cat"]." LIMIT ".$this_page." , ".$number_per_page." ;";
                 }
                 $result = mysqli_query($conn, $sql);
-                
+                $resultNums = mysqli_num_rows($result);
+                if ($resultNums ==0):?>
+                <div class="d-flex justify-content-center w-100 my-2">
+                  <div class="alert alert-primary" role="alert">
+                    No products yet
+                  </div>
+                </div>
+                <?php endif;
                 $number_of_pages = ceil($resultcheck/$number_per_page);
                 ?>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>

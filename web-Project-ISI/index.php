@@ -72,25 +72,35 @@
     ?>
     <?php while ($row_cat = mysqli_fetch_assoc($res_1)):?>
       <?php 
-      $sql = "SELECT p.*,c.slug as cat_slug from product as p, category as c,sub_category as s where p.id_cat = s.id_cat and s.id_cat = c.id_cat and c.id_cat = ".$row_cat["id_cat"]." LIMIT 3;";
+      $sql = "SELECT DISTINCT p.*,c.slug as cat_slug from product as p, category as c,sub_category as s 
+      where p.id_cat = s.id_sub and s.id_cat = c.id_cat and c.id_cat =".$row_cat["id_cat"].";";
       $result = mysqli_query($conn, $sql);
-      ?>
-
+      $resultcheck = mysqli_num_rows($result);?>
+    
       <div class="title mt-4">
           <p class="h1 text-center"><?php echo $row_cat["slug"];?></p>
       </div>
+   
+      <?php if ($resultcheck==0):?>
+      <div class="mbt mt-4 d-flex justify-content-center">
+        <div class="alert alert-primary" role="alert">
+            No products yet
+        </div>
+      </div>
+      <?php endif ?>
+   
       <div class="tech-container d-flex justify-content-center">
-      <div class="tech-prod d-flex flex-row bd-highlight justify-content-center mt-4 row">
+        <div class="tech-prod d-flex flex-row bd-highlight justify-content-center mt-4 row">
       <?php while ($row = mysqli_fetch_assoc($result)):?>
         <div class="c">
         <div class="card" style="width: 18rem;">
-            <img src="pictures/viper.jpg" class="card-img-top" alt="...">
+            <img src="pictures/<?php echo $row["picture"];?>" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title"><?php echo $row["title"];?></h5>
               <p class="card-text"><?php echo $row["summary"];?></p>
             </div>
             <div class="card-body">
-                <a href="#" class="btn btn-primary mr-4">Buy</a>
+                <a href="./product?id=<?php echo $row["id_p"];?>" class="btn btn-primary mr-4">Buy</a>
                 <a><?php echo $row["price"];?>$</a>
             </div>
           </div>

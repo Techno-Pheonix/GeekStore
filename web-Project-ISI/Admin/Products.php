@@ -1,10 +1,4 @@
-<?php
-session_start();
-if ($_SESSION['isadmin'] == false){
-    header("location:login.php");
-    exit();
-}
-?>
+
 <!DOCTYPE html>
 <html>
 
@@ -256,7 +250,6 @@ if ($_SESSION['isadmin'] == false){
 require_once 'includes/dbh.inc.php';
 $sql = "SELECT p.title as ProdName,p.id_p as ID, p.quantity as Qty, p.price as Price ,c.title as cat, p.picture as pic from product p,category c where p.id_cat = c.id_cat;";
 $query = mysqli_query($conn,$sql);
-
 ?>
                                         <?php
 while ($row = mysqli_fetch_array($query)) {

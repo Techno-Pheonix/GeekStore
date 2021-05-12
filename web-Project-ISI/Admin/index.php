@@ -1,10 +1,4 @@
-<?php
-session_start();
-if ($_SESSION['isadmin'] == false){
-    header("location:login.php");
-    exit();
-}
-?>
+
 
 <!DOCTYPE html>
 <html>
