@@ -4,20 +4,26 @@
  include "includes/dbh.inc.php";
  if(isset($_POST['pInfo']))
  {
+    
     $pname=$_POST['product_name'];
     $summary=$_POST['summary'];
     $price=$_POST['price'];
     $productId=$_POST['product_id'];
-    $select= "SELECT * from product where slug =".$_SESSION['slug'];
+    $current = date("Y-m-d h:i:sa");
+    $select= "SELECT * from product where id_p =".$_SESSION['id_p'];
     $sql = mysqli_query($conn,$select);
     $row = mysqli_fetch_assoc($sql);
+    $res = $row['id_p'];
     if (emptyInputUpdate($pname, $summary, $price)==true) 
         {
         header("location:Product.php?slug=".$_SESSION['slug']."&error=emptyinput");
         exit();
         }
-       $update = "UPDATE product set title='$pname', summary='$summary', price='$price' where id_p='$productId'";
+    if($res === $_SESSION['id_p']){
+       $update = "UPDATE product set title='$pname', summary='$summary', price='$price', updated_at ='$current' where id_p=".$_SESSION['id_p'].";";
        $sql2=mysqli_query($conn,$update);
+       $_SESSION['update'] = $update;
+       $_SESSION['query'] = $sql2; 
        if($sql2)
        { 
            /*Successful*/
@@ -32,20 +38,24 @@
            header($arg);
            exit();
        }
+    }
 }
  
  if(isset($_POST['shopInfo']))
  {
     $qty=$_POST['quantity'];
     $meta=$_POST['meta_title'];
+    $current = date("Y-m-d h:i:sa");
     $select= "SELECT * from product where slug =".$_SESSION['slug'];
     $sql = mysqli_query($conn,$select);
     $row = mysqli_fetch_assoc($sql);
+    $res = $row['id_p'];
     if (emptyInputlogin($qty, $meta)==true) {
         header("location:Product.php?slug=".$_SESSION['slug']."&error=emptyinput");
         exit();
     }
-       $update = "UPDATE product set quantity='$qty', meta_title='$meta' where slug=".$_SESSION['slug'];
+    if($res === $_SESSION['id_p']){
+       $update = "UPDATE product set quantity='$qty', meta_title='$meta', updated_at='$current' where id_p=".$_SESSION['id_p'].";";
        $sql2=mysqli_query($conn,$update);
        if($sql2)
        { 
@@ -62,6 +72,7 @@
            exit();
        }
     }
+}
  
 
 ?>

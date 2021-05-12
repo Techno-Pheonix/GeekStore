@@ -14,6 +14,8 @@ $m = $_GET['slug'];
 $sql = "SELECT * from product where slug = '$m'";
 $query = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($query);
+$_SESSION['id_p'] = $row['id_p'];
+
 ?>
 <head>
     <meta charset="utf-8">
