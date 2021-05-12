@@ -15,8 +15,16 @@ if (isset($_GET["arr"])){
 ?>
 
 <?php 
-/*require_once '../includes/dbh.inc.php';
-$sql = "";*/
+require_once '../includes/dbh.inc.php';
+$x=$_SESSION['user_id'];
+$sql = "select * from user where id_user = '$x'";
+$query = mysqli_query($conn,$sql);
+$row = mysqli_fetch_array($query);
+$fname = $row["first_name"];
+$lname = $row["last_name"];
+$email = $row["email"];
+$address = $row["adress"];
+
 $arr = $_GET['arr'];
 ?>
 
@@ -52,16 +60,17 @@ $arr = $_GET['arr'];
     <div class="col-md-4 order-md-2 mb-4">
       <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-muted">Your cart</span>
-        <span class="badge badge-secondary badge-pill">3</span>
+        <span class="badge badge-secondary badge-pill"><?php echo($count); ?></span>
       </h4>
 
       <ul class="list-group mb-3">
         <?php
+        $total=0;
           for ($i = 0 ;$i<$count;$i++){
             $title = $_SESSION["shopping_cart"][$i]["item_name"];
             $quantity = "Quantity : ".$_SESSION["shopping_cart"][$i]["item_quantity"];
             $price = $_SESSION["shopping_cart"][$i]["item_price"];
-
+            $total = $total+$price;
             echo('
             <li class="list-group-item d-flex justify-content-between lh-condensed">
               <div>
@@ -74,7 +83,7 @@ $arr = $_GET['arr'];
        ?>
        <li class="list-group-item d-flex justify-content-between">
               <span>Total (USD)</span>
-              <strong>$20</strong>
+              <strong><?php echo($total);?></strong>
             </li>
           </ul>
 
@@ -93,14 +102,15 @@ $arr = $_GET['arr'];
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">First name</label>
-            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+            <?php/* echo"<input type=\"text\" class=\"form-control\" id=\"firstName\" placeholder=\"'$fname'\" value=\"\" required>" */?>
+            <input type="text" class="form-control" id="firstName" placeholder="" value="<?php echo(''.$fname); ?>" required>
             <div class="invalid-feedback">
               Valid first name is required.
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="lastName">Last name</label>
-            <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+            <input type="text" class="form-control" id="lastName" placeholder="" value="<?php echo(''.$lname); ?>" required>
             <div class="invalid-feedback">
               Valid last name is required.
             </div>
@@ -109,7 +119,7 @@ $arr = $_GET['arr'];
 
         <div class="mb-3">
           <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+          <input type="email" class="form-control" id="email" placeholder="" value="<?php echo(''.$email); ?>" required>
           <div class="invalid-feedback">
             Please enter a valid email address for shipping updates.
           </div>
@@ -117,7 +127,7 @@ $arr = $_GET['arr'];
 
         <div class="mb-3">
           <label for="address">Address</label>
-          <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+          <input type="text" class="form-control" id="address" placeholder="" value="<?php echo(''.$address); ?>" required>
           <div class="invalid-feedback">
             Please enter your shipping address.
           </div>
