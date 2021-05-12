@@ -261,7 +261,7 @@ $query = mysqli_query($conn,$sql);
                                         <?php
 while ($row = mysqli_fetch_array($query)) {
     echo "<tr data-href=\"Product.php?slug=".$row['slug']."\">";
-    echo "<td><img class=\"rounded-circle mr-2\" width=\"30\" height=\"30\" src=\"". $row['pic'] ."\">". $row['ProdName'] ."</td>";
+    echo "<td><img class=\"rounded-circle mr-2\" width=\"30\" height=\"30\" src=\"../pictures/". $row['pic'] ."\">". $row['ProdName'] ."</td>";
     echo "<td>" . $row['ID'] . "</td>";
     echo "<td>" . $row['cat'] . "</td>";
     echo "<td>" . $row['Qty'] . "</td>";
