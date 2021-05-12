@@ -4,7 +4,7 @@
   }else{
     $page = $_GET["page"];
   }
-  $number_per_page = 1;
+  $number_per_page = 12;
   $catg="";
   if (isset($_GET["catg"])){
     $catg = "catg=".$_GET["catg"];
@@ -35,7 +35,7 @@
         </ol>
     </nav>
         <div class="row mt-2">
-              <div class="col-md-12 col-xl-3 bg-light">
+              <div class="col-md-4 col-xl-3 bg-light">
                 <section>
                   <?php 
                   $sql = "SELECT * FROM category;";
@@ -62,7 +62,7 @@
                     <?php endwhile ?>      
                 </section>
                 <h4 class="mt-5">Price :</h4>
-                <div class="d-flex align-items-center justify-content-center">
+                <div class="d-flex align-items-center justify-content-center mb-5">
                     <div class="middle">
                       <form action="index.php?<?php echo ''.$catg; ?><?php echo ''.$sub_catg; ?>" method="POST">
                         <div class="slider-container">
@@ -91,7 +91,7 @@
                 </div>
               </div>  
 
-            <div class="col-md-12 col-xl-9 col-sm-12 bg-light">     
+            <div class="col-md-8 col-xl-9 col-sm-12 bg-light">     
               <div class="row">
                 <?php 
                 $this_page=($page-1)*$number_per_page;
