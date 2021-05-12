@@ -49,7 +49,6 @@
                     </div>
                 <?php endforeach ?>
             </div>
-            <?php var_dump($_GET);?>
             <div class="col-lg-3 total-price mx-1 ">
             <div class="d-flex">
                     <h4>Total Price : </h4><h4 id="total_price">12</h4><h4>$</h4>
