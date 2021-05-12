@@ -5,6 +5,14 @@
     $page = $_GET["page"];
   }
   $number_per_page = 1;
+  $catg="";
+  if (isset($_GET["catg"])){
+    $catg = "catg=".$_GET["catg"];
+  }
+  $sub_catg="";
+  if (isset($_GET["sub_catg"])){
+    $sub_catg = "&sub_catg=".$_GET["sub_catg"];
+  }
   ?>
   <?php require_once '../includes/header.php'; ?>
   <link rel="stylesheet" href="style.css">
@@ -18,11 +26,11 @@
             <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
             <?php if (isset($_GET["catg"])): ?>
             <?php $url="catg=". $_GET["catg"]; ?>
-            <li class="breadcrumb-item"><a href="./index.php?catg=<?php echo $_GET["catg"]; ?>"><?php echo $_GET["catg"]; ?></a></li>
+            <li class="breadcrumb-item"><a href="./index.php?<?php echo $catg; ?>"><?php echo $_GET["catg"]; ?></a></li>
             <?php endif; ?>
             <?php if (isset($_GET["sub_catg"])): ?>
             <?php $url="catg=". $_GET["catg"] ."&sub_catg=".$_GET["sub_catg"]; ?>
-            <li class="breadcrumb-item"><a href="./index.php?catg=<?php echo $_GET["catg"]; ?>&sub_catg=<?php echo $_GET["sub_catg"]?>"><?php echo $_GET["sub_catg"]; ?></a></li>
+            <li class="breadcrumb-item"><a href="./index.php?<?php echo $catg; ?><?php echo $sub_catg; ?>"><?php echo $_GET["sub_catg"]; ?></a></li>
             <?php endif; ?>
         </ol>
     </nav>
@@ -53,21 +61,32 @@
                     </ul>
                     <?php endwhile ?>      
                 </section>
-                <h4>Price :</h4>
+                <h4 class="mt-5">Price :</h4>
                 <div class="d-flex align-items-center justify-content-center">
-                  <div class="middle">
-                    <div class="slider-container">
-                      <div class="row">
-                        <div class="col-6">
-                          <span class="bar"><span class="fill"></span></span>
-                          <input id="slider" class="slider" type="range" min="0" max="100" value="50" onchange="updateTextInput(this.value);">
-                          
+                    <div class="middle">
+                      <form action="index.php?<?php echo ''.$catg; ?><?php echo ''.$sub_catg; ?>" method="POST">
+                        <div class="slider-container">
+                          <div class="row">
+                            <div class="col-6">
+                              <div class="form-group">
+                                <label for="exampleInputEmail1">Min :</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" name="min" aria-describedby="emailHelp" placeholder="Min">
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <div class="form-group">
+                                <label for="exampleInputEmail1">Max :</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" name="max" aria-describedby="emailHelp" placeholder="Max">
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <div class="col-6">
-                            <input type="text" class="form-control w-10" id="textInput" value="50" >
-                        </div>
-                      </div>
-                      </div>
+                        <div class="d-flex justify-content-center">
+                        <button class="btn btn-dark" type="submit">
+                          Search
+                        </button>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>  
@@ -76,6 +95,16 @@
               <div class="row">
                 <?php 
                 $this_page=($page-1)*$number_per_page;
+                //Get Min price
+                $min = 0;
+                if (isset($_POST["min"])){
+                  $min = (int)$_POST["min"];
+                }
+                // Get max price
+                $max = 1000000;
+                if (isset($_POST["max"])){
+                  $max = (int)$_POST["max"];
+                }
 
                 if (isset($_GET["sub_catg"])){
                   //Get sub category ID
@@ -84,12 +113,13 @@
                   $result = mysqli_query($conn, $sql_sub);
                   $row = mysqli_fetch_assoc($result);
                   //Get Items Count
-                  $sql1 = "SELECT * FROM product as p where  p.id_cat = ".$row["id_sub"]." ;";
+                  $sql1 = "SELECT count(*) as nb FROM product as p where  p.id_cat = ".$row["id_sub"]." ;";
                   $result1 = mysqli_query($conn, $sql1);
                   $row1 = mysqli_fetch_assoc($result1);
-                  $resultcheck = mysqli_num_rows($result1);
+                  $num_of_res = $row1["nb"];
                   //the actual query
-                  $sql = "SELECT  * FROM product as p where  p.id_cat = ".$row["id_sub"]." LIMIT ".$this_page." , ".$number_per_page." ;";
+
+                  $sql = "SELECT  * FROM product as p where  p.id_cat = ".$row["id_sub"]." and p.price>".$min." and p.price<".$max."  LIMIT ".$this_page." , ".$number_per_page." ;";
                 }else if (isset($_GET["catg"])){
                   //Get category ID
                   $x = $_GET["catg"];
@@ -97,14 +127,14 @@
                   $result = mysqli_query($conn, $sql_sub);
                   $row = mysqli_fetch_assoc($result);
                   //Get Items Count
-                  $sql1 = "SELECT DISTINCT count(*) as cat_slug from product as p, category as c,sub_category as s 
+                  $sql1 = "SELECT DISTINCT count(*) as nb from product as p, category as c,sub_category as s 
                   where p.id_cat = s.id_sub and s.id_cat = c.id_cat and c.id_cat =".$row["id_cat"].";";
                   $result1 = mysqli_query($conn, $sql1);
                   $row1 = mysqli_fetch_assoc($result1);
-                  print_r($row1);
+                  $num_of_res = $row1["nb"];
                   $resultcheck = mysqli_num_rows($result1);
                   $sql = "SELECT DISTINCT p.*,c.slug as cat_slug from product as p, category as c,sub_category as s 
-                  where p.id_cat = s.id_sub and s.id_cat = c.id_cat and c.id_cat =".$row["id_cat"]." LIMIT ".$this_page." , ".$number_per_page." ;";
+                  where p.id_cat = s.id_sub and s.id_cat = c.id_cat and c.id_cat =".$row["id_cat"]." and p.price>".$min." and p.price<".$max." LIMIT ".$this_page." , ".$number_per_page." ;";
                 }
                 $result = mysqli_query($conn, $sql);
                 $resultNums = mysqli_num_rows($result);
@@ -114,9 +144,8 @@
                     No products yet
                   </div>
                 </div>
-                <?php endif;
-                $number_of_pages = ceil($resultcheck/$number_per_page);
-                ?>
+                <?php endif;?>
+                <?php $number_of_pages = ceil($num_of_res/$number_per_page); ?>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
                   <div class="col-md-6 col-xl-4 col-sm-12 mb-2" >
                     <div class="card">
@@ -156,8 +185,8 @@
                     <?php endfor;?>                    
                     <!--Next button-->
                     <li class="page-item">
-                      <a class="page-link" href="index.php?<?php echo $url; ?>&page=<?php 
-                      if ($page+1<$number_of_pages){
+                      <a class="page-link" href="index.php?<?php echo $url;?>&page=<?php 
+                      if ($page+1<=$number_of_pages){
                         echo $page+1;
                       }else{
                         echo $page;
