@@ -43,7 +43,7 @@
         <select class="form-control" id="Category" name="prod-category">
           <option value="none"> Select category 
           <?php 
-          $sql = "SELECT * FROM category";
+          $sql = "SELECT * FROM sub_category";
           $result = mysqli_query($conn, $sql);?>
           <?php while ($row = mysqli_fetch_assoc($result)): ?>
             <option value="<?php echo  $row["id_cat"] ?>"><?php echo $row["title"] ?></option>

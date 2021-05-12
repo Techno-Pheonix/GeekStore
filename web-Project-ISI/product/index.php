@@ -1,16 +1,5 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
+  <?php require_once "../includes/header.php"; ?>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-
     <title>Hello, world!</title>
   </head>
   <body>
@@ -47,7 +36,7 @@
       <div class="product row mt-4">
         <img class="col-md-6 col-sm-12" src="../pictures/<?php echo $row["picture"]?>" alt="" height="500px" width="30%">
         <div class="col-md-5 col-sm-12 prod-form pt-5">
-          <form action="index.php?id=<?php echo $_GET["id"];?>" method="post">  
+          <form action="index.php?id=<?php echo $_GET["id"];?>&add=success" method="post">  
             <h1 class="prod-name my-5"><?php echo $row["title"] ?></h1>
             <div class=" price-add row">
               <h4 class="col-4 " style="color :#14213d">Quantity: </h4>
@@ -67,6 +56,11 @@
               <button type="submit" id="to_cart" name="add_to_cart">Add To Cart</button>
             </div>
           </form>
+          <?php if(isset($_GET["add"])): ?>
+          <div class="alert alert-success" role="alert">
+            Items Added To Cart
+          </div>
+          <?php endif ?>
         </div>
       </div>
       <div class="prod-desc">
@@ -83,7 +77,7 @@
       </h1>
       <div class="other-items my-4 row gx-3">
                 <?php 
-                $sql = "SELECT * FROM sub_category, product as p where p.id_cat = sub_category.id_sub and  p.id_p <> ".$_GET["id"].";";                
+                $sql = "SELECT * FROM sub_category, product as p where p.id_cat = sub_category.id_sub and  p.id_p <> ".$_GET["id"]." LIMIT 3;";                
                 $result = mysqli_query($conn, $sql);
                 ?>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
@@ -104,10 +98,7 @@
 
     <script>
       const el = document.getElementById("quantity")
-
-      console.log(el.value)
       const add = ()=>{
-        
         el.value= parseInt(el.value)+1
       }
       const sous = ()=>{

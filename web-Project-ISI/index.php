@@ -24,6 +24,7 @@
 <body>
        <?php
         require_once 'includes/navbar.php';
+        require_once 'includes/dbh.inc.php';
        ?>
     <div class="slcontainer d-flex justify-content-center py-1">
     <div class="slider container">
@@ -65,169 +66,42 @@
           </div>
     </div>
 
-    <div class="title mt-4">
-        <p class="h1 text-center">Tech</p>
-    </div>
-    <div class="tech-container d-flex justify-content-center">
-        <div class="tech-prod d-flex flex-row bd-highlight justify-content-center mt-4 row">
+    <?php
+      $sql1 = "SELECT * FROM category;";
+      $res_1 = mysqli_query($conn, $sql1);
+    ?>
+    <?php while ($row_cat = mysqli_fetch_assoc($res_1)):?>
+      <?php 
+      $sql = "SELECT p.*,c.slug as cat_slug from product as p, category as c,sub_category as s where p.id_cat = s.id_cat and s.id_cat = c.id_cat and c.id_cat = ".$row_cat["id_cat"]." LIMIT 3;";
+      $result = mysqli_query($conn, $sql);
+      ?>
+
+      <div class="title mt-4">
+          <p class="h1 text-center"><?php echo $row_cat["slug"];?></p>
+      </div>
+      <div class="tech-container d-flex justify-content-center">
+      <div class="tech-prod d-flex flex-row bd-highlight justify-content-center mt-4 row">
+      <?php while ($row = mysqli_fetch_assoc($result)):?>
         <div class="c">
         <div class="card" style="width: 18rem;">
             <img src="pictures/viper.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">RAZER VIPER 8K</h5>
-              <p class="card-text">Ambidextrous Esports Gaming Mouse with 8000Hz Polling Rate</p>
+              <h5 class="card-title"><?php echo $row["title"];?></h5>
+              <p class="card-text"><?php echo $row["summary"];?></p>
             </div>
             <div class="card-body">
                 <a href="#" class="btn btn-primary mr-4">Buy</a>
-                <a>320 DT</a>
+                <a><?php echo $row["price"];?>$</a>
             </div>
           </div>
         </div>
-
-        <div class="c">
-        <div class="card" style="width: 18rem;">
-            <img src="pictures/hyperxcloud.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">HyperX Cloud</h5>
-              <p class="card-text">ultra-comfortable gaming headset with amazing sound</p>
-            </div>
-            <div class="card-body">
-                <a href="#" class="btn btn-primary mr-4">Buy</a>
-                <a>450 DT</a>
-            </div>
-          </div>
-        </div>
-
-          <div class="c">
-          <div class="card" style="width: 18rem;">
-            <img src="pictures/brahma.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Redragon Brahma</h5>
-              <p class="card-text">Ultimate Budget mechanical Keyboard</p>
-            </div>
-            <div class="card-body">
-                <a href="#" class="btn btn-primary mr-4">Buy</a>
-                <a>250 DT</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="mbt mt-4">
+      <?php endwhile?>
+      <div class="mbt mt-4">
         <button type="button" class="btn btn-primary btn-lg btn-block">Show More</button>
-        </div>
-
-          
+      </div>
+      </div>
     </div>
-    </div>
-
-    <div class="title mt-4">
-        <p class="h1 text-center">Gaming</p>
-    </div>
-    <div class="tech-container d-flex justify-content-center">
-        <div class="tech-prod d-flex flex-row bd-highlight justify-content-center mt-4 row">
-        <div class="c">
-        <div class="card" style="width: 18rem;">
-            <img src="pictures/cyberpunk.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Cyberpunk 2077</h5>
-              <p class="card-text">Role playing game in the open World Cyberpubk universe</p>
-            </div>
-            <div class="card-body">
-                <a href="#" class="btn btn-primary mr-4">Buy</a>
-                <a>170 DT</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="c">
-        <div class="card" style="width: 18rem;">
-            <img src="pictures/ps5.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Playstation 5</h5>
-              <p class="card-text">The iconic Gaming console from Sony</p>
-            </div>
-            <div class="card-body">
-                <a href="#" class="btn btn-primary mr-4">Buy</a>
-                <a>1500 DT</a>
-            </div>
-          </div>
-        </div>
-
-          <div class="c">
-          <div class="card" style="width: 18rem;">
-            <img src="pictures/nswitch.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Nintendo Switch</h5>
-              <p class="card-text">Best mobile family gaming console</p>
-            </div>
-            <div class="card-body">
-                <a href="#" class="btn btn-primary mr-4">Buy</a>
-                <a>250 DT</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="mbt mt-4">
-            <button type="button" class="btn btn-primary btn-lg btn-block">Show More</button>
-            </div>
-          
-    </div>
-    </div>
-
-    <div class="title mt-4">
-        <p class="h1 text-center">Anime</p>
-    </div>
-    <div class="tech-container d-flex justify-content-center">
-        <div class="tech-prod d-flex flex-row bd-highlight justify-content-center mt-4 row">
-        <div class="c">
-        <div class="card" style="width: 18rem;">
-            <img src="pictures/hokagehoodie.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Naruto Hokage Hoodie</h5>
-              <p class="card-text">Inherit the will of the fourth Hokage</p>
-            </div>
-            <div class="card-body">
-                <a href="#" class="btn btn-primary mr-4">Buy</a>
-                <a>50 DT</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="c">
-        <div class="card" style="width: 18rem;">
-            <img src="pictures/onepiece.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">One piece Volume</h5>
-              <p class="card-text">The most popular manga in shonen jump</p>
-            </div>
-            <div class="card-body">
-                <a href="#" class="btn btn-primary mr-4">Buy</a>
-                <a>35 DT</a>
-            </div>
-          </div>
-        </div>
-
-          <div class="c">
-          <div class="card" style="width: 18rem;">
-            <img src="pictures/nogame.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Anime Posters</h5>
-              <p class="card-text">High quality limited edition posters</p>
-            </div>
-            <div class="card-body">
-                <a href="#" class="btn btn-primary mr-4">Buy</a>
-                <a>15 DT</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="mbt mt-4">
-            <button type="button" class="btn btn-primary btn-lg btn-block">Show More</button>
-            </div>
-          
-    </div>
-    </div>
-
+    <?php endwhile?>
     <div class="all">
         
     </div>
