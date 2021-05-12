@@ -46,9 +46,8 @@
           $sql = "SELECT * FROM sub_category";
           $result = mysqli_query($conn, $sql);?>
           <?php while ($row = mysqli_fetch_assoc($result)): ?>
-            <option value="<?php echo  $row["id_cat"] ?>"><?php echo $row["title"] ?></option>
+            <option value="<?php echo  $row["id_sub"] ?>"><?php echo $row["title"] ?></option>
           <?php endwhile ?>
-
         </select>
       </div>
       <div class="form-group">
