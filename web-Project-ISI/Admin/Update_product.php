@@ -45,7 +45,7 @@
         header("location:Product.php?slug=".$_SESSION['slug']."&error=emptyinput");
         exit();
     }
-       $update = "UPDATE user set email='$email', adress='$adress', phone='$phone' where id_user=".$_SESSION['user_id'];
+       $update = "UPDATE product set quantity='$qty', meta_title='$meta' where slug=".$_SESSION['slug'];
        $sql2=mysqli_query($conn,$update);
        if($sql2)
        { 
