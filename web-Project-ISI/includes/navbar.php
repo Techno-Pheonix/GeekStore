@@ -3,12 +3,13 @@
   if (!isset($_SESSION["shopping_cart"])){
     $_SESSION["shopping_cart"] = array();
   }
-  if(isset($_SESSION['loggedin'])){
+  if(isset($_SESSION['loggedin']) == false){
     $_SESSION['user'] = "guest";
     $_SESSION['isadmin'] = false;
   }
 ?>
-<nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(135deg, rgb(57, 79, 230) 0%, rgb(0, 204, 255) 100%);">
+<nav class="navbar navbar-expand-lg navbar-dark"
+  style="background: linear-gradient(135deg, rgb(57, 79, 230) 0%, rgb(0, 204, 255) 100%);">
   <a href="/">
     <img class="nav-logo" src="pictures/logof2.png" width="80" height="auto" alt="">
   </a>
@@ -54,19 +55,40 @@
     height: 2.375rem;
     margin: auto 1rem;"></div>
     <div class="nav-item dropdown no-arrow" role="presentation">
-      <div class="nav-item dropdown no-arrow"><button class="btn btn-primary dropdown-toggle" style="background: linear-gradient(135deg, rgb(42, 39, 218), rgb(42, 170, 200));"
-          data-toggle="dropdown" aria-expanded="false" type="button"><span
+      <div class="nav-item dropdown no-arrow"><button class="btn btn-primary dropdown-toggle"
+          style="background: linear-gradient(135deg, rgb(42, 39, 218), rgb(42, 170, 200));" data-toggle="dropdown"
+          aria-expanded="false" type="button"><span
             class="d-none d-lg-inline mr-2 text-white-600 small"><?php echo($_SESSION['user']); ?></span><img
             class="border rounded-circle img-profile" src="pictures/avatar1.jpeg"></button>
         <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
+          <?php 
+            if($_SESSION['user'] == "guest"){
+              echo "<a class=\"dropdown-item\" role=\"presentation\" href=\"signup/index.php\"><i
+              class=\"fas fa-user fa-sm fa-fw mr-2 text-gray-400\" onclick=\"logoutred()\"></i>&nbsp;Signup</a>
+              ";}
+            else{
+              echo "<a class=\"dropdown-item\" role=\"presentation\" href=\"#\"><i
+              class=\"fas fa-user fa-sm fa-fw mr-2 text-gray-400\" ></i>&nbsp;Profile</a>
+              ";
+              }
+              ?>
           <a class="dropdown-item" role="presentation" href="#"><i
-              class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item"
-            role="presentation" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a>
+              class="fas fa-shopping-cart fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Shopping Cart</a>
           <a class="dropdown-item" role="presentation" href="#"><i
-              class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity
+              class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Purchase
             log</a>
-          <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation" href="includes/logout.inc.php"><i
-              class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" onclick="logoutred()"></i>&nbsp;Logout</a>
+          <?php 
+            if($_SESSION['user'] == "guest"){
+              echo "<div class=\"dropdown-divider\"></div><a class=\"dropdown-item\" role=\"presentation\" href=\"signin/index.php\"><i
+              class=\"fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400\" onclick=\"logoutred()\"></i>&nbsp;Login</a>
+              ";}
+            else{
+              echo "<div class=\"dropdown-divider\"></div><a class=\"dropdown-item\" role=\"presentation\" href=\"includes/logout.inc.php\"><i
+              class=\"fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400\" onclick=\"logoutred()\"></i>&nbsp;Logout</a>
+              ";
+              }
+              ?>
+
         </div>
       </div>
     </div>
