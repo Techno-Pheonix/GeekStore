@@ -89,7 +89,22 @@ if(isset($_POST['picInfo']))
 
     // Check if file already exists
     if (file_exists($target_file)) {
-    $uploadOk = 0;
+        $uploadOk = 0;
+        $update = "UPDATE product set picture='$target_file', updated_at='$current' where id_p=".$_SESSION['id_p'].";";
+        $sql2=mysqli_query($conn,$update);
+        if(!$sql2)
+        {
+            /*sorry your profile was not updated*/
+            $_SESSION['upload'] = "Image path failed to update";
+            $arg = "location:Product.php?slug=".$_SESSION['slug']."&res=failure3";
+            header($arg);
+            exit();
+        }
+        else{
+            $arg = "location:Product.php?slug=".$_SESSION['slug']."&res=success2";
+            header($arg);
+            exit();
+        }
     }
 
     // Allow certain file formats
@@ -106,11 +121,8 @@ if(isset($_POST['picInfo']))
         exit();
     // if everything is ok, try to upload file
     } else {
-    if (move_uploaded_file($_FILES["pic"]["tmp_name"], $target_file)) {
+    if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
         $_SESSION['upload'] = "The image ". htmlspecialchars( basename( $_FILES["file"]["name"])). " has been uploaded.";
-        $arg = "location:Product.php?slug=".$_SESSION['slug']."&res=success2";
-        header($arg);
-        exit();
     } 
     else {
         $arg = "location:Product.php?slug=".$_SESSION['slug']."&res=failure2";
@@ -122,10 +134,16 @@ if(isset($_POST['picInfo']))
     if(!$sql2)
     {
         /*sorry your profile was not updated*/
-        $arg = "location:Product.php?slug=".$_SESSION['slug']."&res=failure";
+        $_SESSION['upload'] = "File path failed to update";
+        $arg = "location:Product.php?slug=".$_SESSION['slug']."&res=failure3";
+        header($arg);
+        exit();
+    }
+    else{
+        $arg = "location:Product.php?slug=".$_SESSION['slug']."&res=success";
         header($arg);
         exit();
     }
     }
-}
+ }
 ?>

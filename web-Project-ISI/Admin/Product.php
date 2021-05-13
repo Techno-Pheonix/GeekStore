@@ -10,9 +10,6 @@ else {
     exit();
 };
 require_once 'includes/dbh.inc.php';
-if(isset($_SESSION['file'])){
-    echo($_SESSION['file']);
-}
 $m = $_GET['slug'];
 $sql = "SELECT * from product where slug = '$m'";
 $query = mysqli_query($conn,$sql);
@@ -463,7 +460,10 @@ $_SESSION['id_p'] = $row['id_p'];
                                     $mtotal = "There are empty fields !";
                                 }
                                 if ($_GET["error"] == "format"){
-                                    $mtotal = " Only JPG, JPEG, PNG & GIF files are allowed !";
+                                    $mtotal = "Only JPG, JPEG, PNG & GIF files are allowed !";
+                                }
+                                if ($_GET["error"] == "file"){
+                                    $mtotal = "Image already exists !";
                                 }
                             }
                             if (isset($_GET["res"])){
@@ -471,13 +471,16 @@ $_SESSION['id_p'] = $row['id_p'];
                                     $mtotal = "Product updated successfully !";
                                 }
                                 if ($_GET["res"] == "success2"){
-                                    $mtotal = $_SESSION['update'];
+                                    $mtotal = "Image already exists, path changed successfully!";
                                 }
                                 if ($_GET["res"] == "failure"){
                                     $mtotal = "Product failed to update !";
                                 }
                                 if ($_GET["res"] == "failure2"){
                                     $mtotal = "Image failed to upload !";
+                                }
+                                if ($_GET["res"] == "failure3"){
+                                    $mtotal = $_SESSION['upload'];
                                 }
                                 
                             }
