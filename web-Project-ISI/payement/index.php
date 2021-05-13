@@ -102,7 +102,7 @@ $arr = $_GET['arr'];
     </div>
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Billing address</h4>
-      <form class="needs-validation" novalidate>
+      <form class="needs-validation " id="payment-form" novalidate>
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">First name</label>
@@ -194,7 +194,7 @@ $arr = $_GET['arr'];
         
         
         <hr class="mb-4">
-        <form id="payment-form">
+        <form id="">
             <div id="card-element"><!--Stripe.js injects the Card Element--></div>
             <button id="submit">
               <div class="spinner hidden " id="spinner"></div>
