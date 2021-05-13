@@ -11,6 +11,7 @@ else {
 };
 require_once 'includes/dbh.inc.php';
 $m = $_GET['slug'];
+$_SESSION['url'] = "Product.php?slug=".$m;
 $sql = "SELECT * from product where slug = '$m'";
 $query = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($query);
@@ -216,6 +217,10 @@ $_SESSION['id_p'] = $row['id_p'];
                     <h3 class="text-dark mb-4" style="margin-bottom: 10px;">Product</h3><button
                         class="btn btn-primary bg-gradient-deepbluesky bg-gradient-deepbluesky" type="button"
                         style="margin-bottom: 15px;">Create New</button>
+                        <a  href="<?php echo($_SESSION['url']); ?>&confirm=true">
+                        <button
+                        class="btn btn-primary bg-gradient-deepbluesky bg-gradient-deepbluesky" type="button"
+                        style="margin-bottom: 15px;">Delete Product</button></a>
                     <div class="row mb-3">
                         <div class="col-lg-4">
 
@@ -238,10 +243,10 @@ $_SESSION['id_p'] = $row['id_p'];
                             </form>
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="text-primary font-weight-bold m-0">Statistics</h6>
+                                    <h6 class="text-primary font-weight-bold m-0">Past Purchases</h6>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="small font-weight-bold">Server migration<span
+                                    <h4 class="small font-weight-bold">Admin<span
                                             class="float-right">40%</span></h4>
                                     <div class="progress progress-sm mb-3">
                                         <div class="progress-bar bg-danger" aria-valuenow="20" aria-valuemin="0"
@@ -447,6 +452,9 @@ $_SESSION['id_p'] = $row['id_p'];
                     if (isset($_GET["res"])){
                         echo "<h3 class=\"modal-title\" id=\"exampleModalLongTitle\">Update</h3>";
                     } 
+                    if (isset($_GET["confirm"])){
+                        echo "<h3 class=\"modal-title\" id=\"exampleModalLongTitle\">Delete</h3>";
+                    } 
                     ?>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -484,13 +492,27 @@ $_SESSION['id_p'] = $row['id_p'];
                                 }
                                 
                             }
+                            if (isset($_GET["confirm"])){
+                                if ($_GET["confirm"] == "true"){
+                                    $mtotal = "Product about to be deleted, are you sure ?";
+                                }                            
+                            } 
                             
                             echo('<h4>'.$mtotal.'</h4>');
                             ?>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <a class="btn btn-secondary"  <?php if(!($_GET['confirm'] == true)) echo('data-dismiss="modal"'); ?> href="<?php if($_GET['confirm'] == true) echo "Delete_product.php?id=".$row['id_p'];
+                                            else echo('#');?>"><?php
+                            if($_GET['confirm'] == true) echo "Confirm";
+                            else echo('Close');
+                             ?>
+                             </a>
+                             <?php if($_GET['confirm'] == true){
+                                 echo "<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>";
+                             } ?>
+                            
                         </div>
                     </div>
                 </div>
@@ -501,7 +523,7 @@ $_SESSION['id_p'] = $row['id_p'];
             </button>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2019</span></div>
+                    <div class="text-center my-auto copyright"><span>Copyright © GEEK Store 2021</span></div>
                 </div>
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
@@ -514,6 +536,13 @@ $_SESSION['id_p'] = $row['id_p'];
     </script>
     <?php endif ?>
     <?php if (isset($_GET["res"])): ?>
+    <script>
+        window.onload = function () {
+            document.getElementById('a').click();
+        }
+    </script>
+    <?php endif ?>
+    <?php if (isset($_GET["confirm"])): ?>
     <script>
         window.onload = function () {
             document.getElementById('a').click();
