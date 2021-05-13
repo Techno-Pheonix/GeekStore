@@ -110,6 +110,8 @@ $arr = $_GET['arr'];
             <input type="text" class="form-control" id="firstName" placeholder="" value="<?php echo(''.$fname); ?>" required>
             <input type="text" class="d-none item_id" id="total_price" name="total_price" value="<?php echo $total?>">
             <input type="text" class="d-none all_items" id="all_items" name="all_items" value='<?php echo json_encode($_SESSION["shopping_cart"])?>'>
+            <input type="text" class="d-none all_items" id="user_id" name="user_id" value='<?php echo $_SESSION["user_id"]?>'>
+            
             <div class="invalid-feedback">
               Valid first name is required.
             </div>

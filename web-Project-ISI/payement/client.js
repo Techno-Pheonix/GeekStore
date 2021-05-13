@@ -12,7 +12,7 @@ const address2 = document.getElementById("address2").value
 const country = document.getElementById("country").value
 const zip = document.getElementById("zip").value
 const state = document.getElementById("state").value
-
+const user_id = document.getElementById("user_id").value
 
 
 var purchase = {
@@ -24,7 +24,8 @@ var purchase = {
   address2,
   zip,
   country,
-  state
+  state,
+  user_id
 };
 //
 
