@@ -10,7 +10,7 @@ function calculateOrderAmount(array $items): int {
   // Replace this constant with a calculation of the order's amount
   // Calculate the order total on the server to prevent
   // customers from directly manipulating the amount on the client
-  return 1400;
+  return $items[0]->total_price*100;
 }
 
 header('Content-Type: application/json');
@@ -21,7 +21,7 @@ try {
   $json_obj = json_decode($json_str);
 
   $paymentIntent = \Stripe\PaymentIntent::create([
-    'amount' => calculateOrderAmount($json_obj->items),
+    'amount' => calculateOrderAmount($json_obj->total_price),
     'currency' => 'usd',
   ]);
 

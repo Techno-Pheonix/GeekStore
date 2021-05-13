@@ -44,7 +44,7 @@
                                 <input type="text" class="d-none item_id" name="title" value="<?php echo $item["item_id"]?>">
                                 <h5 class="text-secondary my-3"><?php echo $item["item_name"];?></h5>
                                 <div class="d-flex align-items-center justify-content-start flex-st my-4">
-                                    <label for="exampleFormControlSelect1" class="mx-2">Quantity</label>
+                                    <label or="exampleFormControlSelect1" class="mx-2">Quantity</label>
                                     <div class="col-4 d-flex mr-3" style="height:40px">
                                         <button class="btn btn-dark" onclick="sous(this.id)" id ="<?php echo $i;?>">-</button>
                                         <div class="form-group">

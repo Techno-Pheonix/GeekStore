@@ -17,7 +17,7 @@
     <link href="form-validation.css" rel="stylesheet">
     <script src="https://js.stripe.com/v3/"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
-    <script src="./client.js" defer></script>
+    
     <link rel="icon" href="../pictures/fav.ico" /> 
     <link rel="stylesheet" href="global.css" />
   <title>Shipment</title>
@@ -108,6 +108,8 @@ $arr = $_GET['arr'];
             <label for="firstName">First name</label>
             <?php/* echo"<input type=\"text\" class=\"form-control\" id=\"firstName\" placeholder=\"'$fname'\" value=\"\" required>" */?>
             <input type="text" class="form-control" id="firstName" placeholder="" value="<?php echo(''.$fname); ?>" required>
+            <input type="text" class="d-none item_id" id="total_price" name="total_price" value="<?php echo $total?>">
+            <input type="text" class="d-none all_items" id="all_items" name="all_items" value='<?php echo json_encode($_SESSION["shopping_cart"])?>'>
             <div class="invalid-feedback">
               Valid first name is required.
             </div>
@@ -146,8 +148,8 @@ $arr = $_GET['arr'];
           <div class="col-md-5 mb-3">
             <label for="country">Country</label>
             <select class="custom-select d-block w-100" id="country" required>
-              <option value="">Choose...</option>
-              <option>Tunisia</option>
+              <option value="Nothing" selected>Choose...</option>
+              <option value="Tunisia">Tunisia</option>
             </select>
             <div class="invalid-feedback">
               Please select a valid country.
@@ -220,6 +222,7 @@ $arr = $_GET['arr'];
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
         <script src="form-validation.js"></script>
+        <script src="./client.js" defer></script>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

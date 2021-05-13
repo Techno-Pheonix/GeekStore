@@ -1,33 +1,32 @@
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
-  'use strict'
-
-  window.addEventListener('load', function () {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation')
-
-    // Loop over them and prevent submission
-    Array.prototype.filter.call(forms, function (form) {
-      form.addEventListener('submit', function (event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-        form.classList.add('was-validated')
-      }, false)
-    })
-  }, false)
-})()
-
-
-
 // A reference to Stripe.js initialized with your real test publishable API key.
 var stripe = Stripe("pk_test_51IqdUVGpFYvTwmSor6jY1btwMxFkuW4SzEU3BUi8BuVtBNxxQJPysJpKzDRp2K53oDWYkW36FdqVr1Rvb7lBOZQv00OaujUsc9");
 
-// The items the customer wants to buy
+// Get Fields Fields
+const total_price = document.getElementById("total_price").value
+const cart_items = document.getElementById("all_items").value
+const firstName = document.getElementById("firstName").value
+const lastName = document.getElementById("lastName").value
+const email = document.getElementById("email").value
+const address = document.getElementById("address").value
+const address2 = document.getElementById("address2").value
+const country = document.getElementById("country").value
+const zip = document.getElementById("zip").value
+const state = document.getElementById("state").value
+
+
+
 var purchase = {
-  items: [{ id: "xl-tshirt" }]
+  total_price: [{ total_price: parseInt(total_price)}],
+  firstName,
+  lastName,
+  email,
+  address,
+  address2,
+  zip,
+  country,
+  state
 };
+//
 
 // Disable the button until we have Stripe set up on the page
 document.querySelector("button").disabled = true;
