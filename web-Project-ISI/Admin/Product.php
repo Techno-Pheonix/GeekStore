@@ -2,6 +2,9 @@
 <html>
 <?php 
 session_start();
+if ($_SESSION["isadmin"]!=true){
+    header("location:../");
+}
 if(isset($_GET['slug'])){
     $_SESSION['slug'] = $_GET['slug'];
 }
