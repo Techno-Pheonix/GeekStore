@@ -12,8 +12,7 @@ body {
 
 .panier-contenu,
 .total-price {
-  background-color: #f3f3f3;
-  box-shadow: 0 0 2px;
+  box-shadow: 0 0 50px;
 }
 
 .prod img {

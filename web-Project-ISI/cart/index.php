@@ -17,9 +17,9 @@
   <?php require_once "../includes/navbar.php"; ?>
     <div class="container">
         <div class="row pt-4">
-            <div class="col-lg-8 panier-contenu mx-1">
+            <div class="col-lg-8 panier-contenu mx-1 bg-light">
                 <h3 class="my-3">Mon Panier</h3>
-                <?php if (count($_SESSION["shopping_cart"])):?>
+                <?php if (count($_SESSION["shopping_cart"]) == 0):?>
                     <div class="alert alert-primary" role="alert">
                         No Items In Cart
                     </div>
@@ -27,11 +27,16 @@
                 <?php 
                 $i=-1;
                 foreach ($_SESSION["shopping_cart"] as $item):?>
+                <?php
+                $sql = "SELECT * FROM product where id_p = ".$item["item_id"]." ;";                
+                $result = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_assoc($result);
+                ?>
                 <?php $i=$i+1;?>                    
                     <div class="prod">
-                        <div class="row">
+                        <div class="row my-2">
                             <div class="col-md-4 center">
-                                <img src="img.jpg" height="220px" width="100%" style="max-width: 300px;">
+                                <img src="../picture/<?php echo $row["picture"];?>" height="220px" width="100%" style="max-width: 300px;">
                             </div>
                             <div class="col-md-8">
                                 <h1 class="price_tag" id =<?php echo $i;?>><?php echo $item["item_price"]*$item["item_quantity"]?>$</h1>
@@ -54,7 +59,7 @@
                     </div>
                 <?php endforeach ?>
             </div>
-            <div class="col-lg-3 total-price mx-1 ">
+            <div class="col-lg-3 total-price mx-1 bg-light">
             <div class="d-flex">
                     <h4>Total Price : </h4><h4 id="total_price">12</h4><h4>$</h4>
                 </div>    
@@ -87,7 +92,7 @@
                 const item_quantity = main_el[i].querySelector(".item_quantity").value
                 arr.push({item_id,item_price,item_quantity})
             }
-            window.location.href = "./add.php?arr="+JSON.stringify(arr);
+            window.location.href = "../payement/index.php?arr="+JSON.stringify(arr);
         }
 
         const updateElem=(id)=>{
