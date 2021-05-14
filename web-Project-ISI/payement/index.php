@@ -1,4 +1,19 @@
 
+<?php 
+session_start();
+if (isset($_GET["arr"])){
+    $array = json_decode($_GET["arr"], true);
+    $count = count($array);
+    for ($i = 0 ;$i<$count;$i++){
+      $_SESSION["shopping_cart"][$i]["item_quantity"] =$array[$i]["item_quantity"];  
+    }
+
+    if ($_SESSION["loggedin"]!=true){
+      $_SESSION["sign-to-cart"] = true;
+      header("location:../signin");
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,20 +41,6 @@
 <body>
 <?php require_once '../includes/navbar.php'; ?>
 
-<?php 
-if (isset($_GET["arr"])){
-    $array = json_decode($_GET["arr"], true);
-    $count = count($array);
-    for ($i = 0 ;$i<$count;$i++){
-      $_SESSION["shopping_cart"][$i]["item_quantity"] =$array[$i]["item_quantity"];  
-    }
-
-    if ($_SESSION["loggedin"]!=true){
-      $_SESSION["sign-to-cart"] = true;
-      header("location:../signin");
-    }
-}
-?>
 
 <?php 
 require_once '../includes/dbh.inc.php';
@@ -183,22 +184,18 @@ $arr = $_GET['arr'];
 
         <div class="d-block my-3">
           <div class="custom-control custom-radio">
-            <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+            <input id="credit" name="paymentMethod"value="Credit"  type="radio" class="custom-control-input" checked required>
             <label class="custom-control-label" for="credit">Credit card</label>
           </div>
           <div class="custom-control custom-radio">
-            <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-            <label class="custom-control-label" for="debit">Debit card</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-            <label class="custom-control-label" for="paypal">PayPal</label>
+            <input id="debit" name="paymentMethod" value="shippment" type="radio" class="custom-control-input" required>
+            <label class="custom-control-label" for="debit">On shippment</label>
           </div>
         </div>
         
         
         <hr class="mb-4">
-        <form id="">
+        <div id="credit-from">
             <div id="card-element"><!--Stripe.js injects the Card Element--></div>
             <button id="submit">
               <div class="spinner hidden " id="spinner"></div>
@@ -209,7 +206,7 @@ $arr = $_GET['arr'];
               Payment succeeded, see the result in your
               <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
             </p>
-          </form>        
+        </div>        
       </form>
     </div>
   </div>
@@ -224,6 +221,7 @@ $arr = $_GET['arr'];
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
         <script src="form-validation.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
         <script src="./client.js" defer></script>
 </body>
 
