@@ -214,7 +214,12 @@
             <img src="./pictures/<?php echo $row["picture"];?>" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title"><?php echo $row["title"];?></h5>
-              <p class="card-text"><?php echo substr($row["summary"],0,40)."...";?></p>
+              <p class="card-text"><?php echo 
+              substr($row["summary"],0,40)."...";
+              for ($j = 0;$j<40-strlen(substr($row["summary"],0,40));$j++):?>
+                <span style="opacity:0">a</span>
+              <?php endfor ?>
+              </p>
             </div>
             <div class="card-body">
                 <a href="./product?id=<?php echo $row["id_p"];?>" class="btn btn-primary mr-4">Buy</a>

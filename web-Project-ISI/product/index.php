@@ -87,7 +87,10 @@
                       <div class="card-body">
                         <h5 class="card-title"><?php echo $row["title"] ?></h5>
                         <h5 class="card-title"><?php echo $row["price"] ?></h5>
-                        <p class="card-text"><?php echo substr($row["summary"],0,30)  ?></p>
+                        <p class="card-text"><?php echo substr($row["summary"],0,30);
+                        for ($j = 0;$j<40-strlen(substr($row["summary"],0,40));$j++):?>
+                          <span style="opacity:0">a</span>
+                        <?php endfor ?> ?></p>
                         <a href="./?id=<?php echo $row["id_p"];?>" class="btn btn-primary">Check The product</a>
                       </div>
                     </div>
