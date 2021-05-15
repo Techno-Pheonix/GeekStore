@@ -232,7 +232,7 @@ $query = mysqli_query($conn,$sql);
 ?>
                                         <?php
 while ($row = mysqli_fetch_array($query)) {
-    echo "<tr data-href=\"#\">";
+    echo "<tr data-href=\"profile.php?id=". $row['id_user']."\">";
     echo "<td>" . $row['first_name'] . "</td>";
     echo "<td>" . $row['last_name'] . "</td>";
     echo "<td>" . $row['adress'] . "</td>";

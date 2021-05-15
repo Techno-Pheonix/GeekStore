@@ -6,6 +6,15 @@
   if(isset($_SESSION['loggedin']) == false){
     $_SESSION['user'] = "guest";
     $_SESSION['isadmin'] = false;
+    $_SESSION['purl'] = "../pictures/default.png";
+    $p = $_SESSION['purl'];
+
+  }
+
+  else {
+    //lehné remplacih bech ye5ou mel database 
+    $_SESSION['purl'] = "../pictures/avatar1.jpeg";
+    $p = $_SESSION['purl'];
   }
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark"
@@ -58,8 +67,10 @@
       <div class="nav-item dropdown no-arrow"><button class="btn btn-primary dropdown-toggle"
           style="background: linear-gradient(135deg, rgb(42, 39, 218), rgb(42, 170, 200));" data-toggle="dropdown"
           aria-expanded="false" type="button"><span
-            class="d-none d-lg-inline mr-2 text-white-600 small"><?php echo($_SESSION['user']); ?></span><img
-            class="border rounded-circle img-profile" src="../pictures/avatar1.jpeg"></button>
+            class="d-none d-lg-inline mr-2 text-white-600 small"><?php echo($_SESSION['user']); ?></span>
+            <img
+            class="border rounded-circle img-profile" width=60px height=60px src="<?php echo($p); ?>">
+            </button>
         <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
           <?php 
             if($_SESSION['user'] == "guest"){

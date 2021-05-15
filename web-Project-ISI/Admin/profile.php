@@ -4,6 +4,22 @@ if ($_SESSION['isadmin'] == false){
     header("location:login.php");
     exit();
 }
+require_once 'includes/dbh.inc.php';
+if(isset($_GET['id'])){
+$id = $_GET['id'];
+$sql = "SELECT * from user where id_user = ".$id;
+$_SESSION['perm'] = " readonly=\"readonly\"";
+$_SESSION['url'] = "profile.php?id=".$id;
+}
+else
+{
+$sql = "SELECT * from user where id_user =".$_SESSION['user_id'];
+$_SESSION['perm'] = "";
+$_SESSION['url'] = "profile.php";
+}
+
+$query = mysqli_query($conn,$sql);
+$row = mysqli_fetch_array($query);
 ?>
 <!DOCTYPE html>
 <html>
@@ -75,107 +91,6 @@ if ($_SESSION['isadmin'] == false){
                                     </form>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown no-arrow mx-1" role="presentation">
-                                <div class="nav-item dropdown no-arrow"><button
-                                        class="btn btn-primary bg-gradient-deepbluesky dropdown-toggle"
-                                        data-toggle="dropdown" aria-expanded="false" type="button"><span
-                                            class="badge badge-danger badge-counter">3+</span><i
-                                            class="fas fa-bell fa-fw"></i></button>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-list dropdown-menu-right animated--grow-in"
-                                        role="menu">
-                                        <h6 class="dropdown-header">alerts center</h6>
-                                        <a class="d-flex align-items-center dropdown-item" href="#">
-                                            <div class="mr-3">
-                                                <div class="bg-primary icon-circle"><i
-                                                        class="fas fa-file-alt text-white"></i></div>
-                                            </div>
-                                            <div><span class="small text-gray-500">December 12, 2019</span>
-                                                <p>A new monthly report is ready to download!</p>
-                                            </div>
-                                        </a>
-                                        <a class="d-flex align-items-center dropdown-item" href="#">
-                                            <div class="mr-3">
-                                                <div class="bg-success icon-circle"><i
-                                                        class="fas fa-donate text-white"></i></div>
-                                            </div>
-                                            <div><span class="small text-gray-500">December 7, 2019</span>
-                                                <p>$290.29 has been deposited into your account!</p>
-                                            </div>
-                                        </a>
-                                        <a class="d-flex align-items-center dropdown-item" href="#">
-                                            <div class="mr-3">
-                                                <div class="bg-warning icon-circle"><i
-                                                        class="fas fa-exclamation-triangle text-white"></i></div>
-                                            </div>
-                                            <div><span class="small text-gray-500">December 2, 2019</span>
-                                                <p>Spending Alert: We've noticed unusually high spending for your
-                                                    account.</p>
-                                            </div>
-                                        </a><a class="text-center dropdown-item small text-gray-500" href="#">Show All
-                                            Alerts</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown no-arrow mx-1" role="presentation">
-                                <div class="nav-item dropdown no-arrow"><button
-                                        class="btn btn-primary bg-gradient-deepbluesky dropdown-toggle"
-                                        data-toggle="dropdown" aria-expanded="false" type="button"><i
-                                            class="fas fa-envelope fa-fw"></i><span
-                                            class="badge badge-danger badge-counter">7</span></button>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-list dropdown-menu-right animated--grow-in"
-                                        role="menu">
-                                        <h6 class="dropdown-header">alerts center</h6>
-                                        <a class="d-flex align-items-center dropdown-item" href="#">
-                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle"
-                                                    src="../pictures/avatar4.jpeg">
-                                                <div class="bg-success status-indicator"></div>
-                                            </div>
-                                            <div class="font-weight-bold">
-                                                <div class="text-truncate"><span>Hi there! I am wondering if you can
-                                                        help me with a problem I've been having.</span></div>
-                                                <p class="small text-gray-500 mb-0">Emily Fowler - 58m</p>
-                                            </div>
-                                        </a>
-                                        <a class="d-flex align-items-center dropdown-item" href="#">
-                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle"
-                                                    src="../pictures/avatar2.jpeg">
-                                                <div class="status-indicator"></div>
-                                            </div>
-                                            <div class="font-weight-bold">
-                                                <div class="text-truncate"><span>I have the photos that you ordered last
-                                                        month!</span></div>
-                                                <p class="small text-gray-500 mb-0">Jae Chun - 1d</p>
-                                            </div>
-                                        </a>
-                                        <a class="d-flex align-items-center dropdown-item" href="#">
-                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle"
-                                                    src="../pictures/avatar3.jpeg">
-                                                <div class="bg-warning status-indicator"></div>
-                                            </div>
-                                            <div class="font-weight-bold">
-                                                <div class="text-truncate"><span>Last month's report looks great, I am
-                                                        very happy with the progress so far, keep up the good
-                                                        work!</span></div>
-                                                <p class="small text-gray-500 mb-0">Morgan Alvarez - 2d</p>
-                                            </div>
-                                        </a>
-                                        <a class="d-flex align-items-center dropdown-item" href="#">
-                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle"
-                                                    src="../pictures/avatar5.jpeg">
-                                                <div class="bg-success status-indicator"></div>
-                                            </div>
-                                            <div class="font-weight-bold">
-                                                <div class="text-truncate"><span>Am I a good boy? The reason I ask is
-                                                        because someone told me that people say this to all dogs, even
-                                                        if they aren't good...</span></div>
-                                                <p class="small text-gray-500 mb-0">Chicken the Dog · 2w</p>
-                                            </div>
-                                        </a><a class="text-center dropdown-item small text-gray-500" href="#">Show All
-                                            Alerts</a>
-                                    </div>
-                                </div>
-                                <div class="shadow dropdown-list dropdown-menu dropdown-menu-right"
-                                    aria-labelledby="alertsDropdown"></div>
                             </li>
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow" role="presentation">
@@ -205,6 +120,10 @@ if ($_SESSION['isadmin'] == false){
                 </nav>
                 <div class="container-fluid">
                     <h3 class="text-dark mb-4">Profile</h3>
+                    <a  href="<?php echo($_SESSION['url']); ?>&confirm=true">
+                        <button
+                        class="btn btn-primary bg-gradient-deepbluesky bg-gradient-deepbluesky" type="button"
+                        style="margin-bottom: 15px;">Delete User</button></a>
                     <div class="row mb-3">
                         <div class="col-lg-4">
                             <div class="card mb-3">
@@ -297,27 +216,20 @@ if ($_SESSION['isadmin'] == false){
                                             <p class="text-primary m-0 font-weight-bold">User Settings</p>
                                         </div>
                                         <div class="card-body">
-                                            <?php 
-
-require_once 'includes/dbh.inc.php';
-$sql = "SELECT * from user where id_user =".$_SESSION['user_id'];
-$query = mysqli_query($conn,$sql);
-$row = mysqli_fetch_array($query); 
-?>
                                             <form action="Update_profile.php" method="post">
                                                 <div class="form-row">
                                                     <?php
                                                     echo    "<div class=\"col\">"."
                                                         <div class=\"form-group\"><label for=\"first_name\"><strong>First
                                                                     Name</strong></label><input class=\"form-control\"
-                                                                type=\"text\" placeholder=\"".$row['first_name']."\" name=\"first_name\"></div>
+                                                                type=\"text\" placeholder=\"".$row['first_name']."\" name=\"first_name\"".$_SESSION['perm']."></div>
                                                     </div>";
                                                     ?>
                                                     <?php
                                                     echo    "<div class=\"col\">"."
                                                         <div class=\"form-group\"><label for=\"last_name\"><strong>Last
                                                                     Name</strong></label><input class=\"form-control\"
-                                                                type=\"text\" placeholder=\"".$row['last_name']."\" name=\"last_name\"></div>
+                                                                type=\"text\" placeholder=\"".$row['last_name']."\" name=\"last_name\"".$_SESSION['perm']."></div>
                                                     </div>";
                                                     ?>
 
@@ -327,7 +239,7 @@ $row = mysqli_fetch_array($query);
                                                 echo "<label
                                                         for=\"email\"><strong>Password</strong></label><input
                                                         class=\"form-control\" type=\"password\"placeholder=\"".$row['password'].
-                                                        "\"name=\"password\">
+                                                        "\"name=\"password\"".$_SESSION['perm'].">
                                                 </div>";
                                                 ?>
 
@@ -348,7 +260,7 @@ $row = mysqli_fetch_array($query);
                                                 echo "<label
                                                         for=\"email\"><strong>E-mail Address</strong></label><input
                                                         class=\"form-control\" type=\"text\"placeholder=\"".$row['email'].
-                                                        "\"name=\"email\">
+                                                        "\"name=\"email\"".$_SESSION['perm'].">
                                                 </div>";
                                                 ?>
                                                 <div class="form-row">
@@ -356,7 +268,7 @@ $row = mysqli_fetch_array($query);
                                                     echo    "<div class=\"col\">"."
                                                         <div class=\"form-group\"><label for=\"phone\"><strong>Phone
                                                                     Number</strong></label><input class=\"form-control\"
-                                                                type=\"text\" placeholder=\"".$row['phone']."\" name=\"phone\"></div>
+                                                                type=\"text\" placeholder=\"".$row['phone']."\" name=\"phone\"".$_SESSION['perm']."></div>
                                                     </div>";
                                                     ?>
                                                     <?php 
@@ -364,7 +276,7 @@ $row = mysqli_fetch_array($query);
                                                     echo "<label
                                                         for=\"address\"><strong>Address</strong></label><input
                                                         class=\"form-control\" type=\"text\"placeholder=\"".$row['adress'].
-                                                        "\"name=\"address\">
+                                                        "\"name=\"address\"".$_SESSION['perm'].">
                                                     </div>";
                                                     ?>
                                                 </div>
@@ -391,6 +303,9 @@ $row = mysqli_fetch_array($query);
                     } 
                     if (isset($_GET["res"])){
                         echo "<h3 class=\"modal-title\" id=\"exampleModalLongTitle\">Update</h3>";
+                    } 
+                    if (isset($_GET["confirm"])){
+                        echo "<h3 class=\"modal-title\" id=\"exampleModalLongTitle\">Delete</h3>";
                     } 
                     ?>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -420,14 +335,26 @@ $row = mysqli_fetch_array($query);
                                 }
                                 
                             }
+                            if (isset($_GET["confirm"])){
+                                if ($_GET["confirm"] == "true"){
+                                    $mtotal = "Profile about to be deleted, are you sure ?";
+                                }                            
+                            } 
                             
                             echo('<h4>'.$mtotal.'</h4>');
                             ?>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
+                        <a class="btn btn-secondary"  <?php if(!($_GET['confirm'] == true)) echo('data-dismiss="modal"'); ?> href="<?php if($_GET['confirm'] == true) echo "Delete_profile.php?id=".$id;
+                                            else echo('#');?>"><?php
+                            if($_GET['confirm'] == true) echo "Confirm";
+                            else echo('Close');
+                             ?>
+                             </a>
+                             <?php if($_GET['confirm'] == true){
+                                 echo "<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>";
+                             } ?>                        </div>
                     </div>
                 </div>
             </div>
@@ -437,7 +364,7 @@ $row = mysqli_fetch_array($query);
             </button>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2019</span></div>
+                    <div class="text-center my-auto copyright"><span>Copyright © GEEK Store 2019</span></div>
                 </div>
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
@@ -450,6 +377,13 @@ $row = mysqli_fetch_array($query);
     </script>
     <?php endif ?>
     <?php if (isset($_GET["res"])): ?>
+    <script>
+        window.onload = function () {
+            document.getElementById('a').click();
+        }
+    </script>
+    <?php endif ?>
+    <?php if (isset($_GET["confirm"])): ?>
     <script>
         window.onload = function () {
             document.getElementById('a').click();

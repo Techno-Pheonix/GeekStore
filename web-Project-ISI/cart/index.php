@@ -113,6 +113,7 @@
             const final_price = document.querySelector("#Final_price")
             const tax = document.querySelector("#tax")
             final_price.innerText = "Final price : "+Math.round(parseInt(total_price.innerText)*(1+(parseInt(tax.innerText)/100)) * 100) / 100+"$"
+           
         }
         const add = (id)=>{
             const el = document.querySelectorAll(".quantity_btn")[id]
