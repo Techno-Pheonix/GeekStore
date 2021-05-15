@@ -35,7 +35,7 @@
         //Insert into Commande table
         $sql = "INSERT into sales
         (`id_p`,`datetime`,`quantity`,`total_price`,`id_c`) 
-        VALUES('$id_p','$datetime','$quantity','$total_price','$id_c')"; //? its a placeholder
+        VALUES('$id_p','$datetime','$quantity','$total_price','$commande_id')"; //? its a placeholder
         mysqli_query($conn, $sql);
     }
 

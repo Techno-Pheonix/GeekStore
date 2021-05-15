@@ -215,8 +215,7 @@ if ($_SESSION['isadmin'] == false){
                                 <table class="table dataTable my-0" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
+                                            <th>Full Name</th>
                                             <th>Address</th>
                                             <th>E-mail</th>
                                             <th>Account creation date</th>
@@ -233,8 +232,7 @@ $query = mysqli_query($conn,$sql);
                                         <?php
 while ($row = mysqli_fetch_array($query)) {
     echo "<tr data-href=\"profile.php?id=". $row['id_user']."\">";
-    echo "<td>" . $row['first_name'] . "</td>";
-    echo "<td>" . $row['last_name'] . "</td>";
+    echo "<td><img class=\"rounded-circle mr-2\" width=\"30\" height=\"30\" src=\"../avatars/". $row['avatar'] ."\">" . $row['first_name'] ." ". $row['last_name'] . "</td>";
     echo "<td>" . $row['adress'] . "</td>";
     echo "<td>" . $row['email'] . "</td>";
     echo "<td>" . $row['registered_at'] . "</td>";
@@ -245,8 +243,7 @@ while ($row = mysqli_fetch_array($query)) {
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
+                                            <th>Full Name</th>
                                             <th>Address</th>
                                             <th>E-mail</th>
                                             <th>Account creation date</th>

@@ -126,13 +126,23 @@ $row = mysqli_fetch_array($query);
                         style="margin-bottom: 15px;">Delete User</button></a>
                     <div class="row mb-3">
                         <div class="col-lg-4">
+                        <form action="Update_profile.php" method="post" enctype="multipart/form-data">
                             <div class="card mb-3">
                                 <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4"
-                                        src="assets/img/dogs/image2.jpeg" width="160" height="160">
-                                    <div class="mb-3"><button class="btn btn-primary bg-gradient-deepbluesky btn-sm"
-                                            type="button">Change Photo</button></div>
+                                        src="../avatars/<?php echo($row['avatar']);?>" width="160" height="160">
+                                        <div class="mb-3">
+                                            <label style="cursor: pointer;" for="file"
+                                                class="btn btn-primary bg-gradient-deepbluesky bg-gradient-deepbluesky btn-sm">Change
+                                                Photo</label>
+                                            <input type="file" accept=".jpg,.jpeg,.png,.gif" id="file" name="file"
+                                                hidden><br>
+                                            <button
+                                                class="btn btn-primary bg-gradient-deepbluesky bg-gradient-deepbluesky btn-sm"
+                                                type="submit" value="Upload Photo" name="picInfo">Save</button>
+                                        </div>
                                 </div>
                             </div>
+                        </form>
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="text-primary font-weight-bold m-0">Projects</h6>
@@ -323,15 +333,29 @@ $row = mysqli_fetch_array($query);
                                 else if ($_GET["error"] == "invalidemail"){
                                     $mtotal = "invalid email : try foulen@exemple.com";
                                 }
+                                if ($_GET["error"] == "format"){
+                                    $mtotal = "Only JPG, JPEG, PNG & GIF files are allowed !";
+                                }
+                                if ($_GET["error"] == "file"){
+                                    $mtotal = "Image already exists !";
+                                }
                                 
                             }
                             if (isset($_GET["res"])){
                                 if ($_GET["res"] == "success"){
                                     $mtotal = "Profile updated successfully !";
                                 }
-
                                 else if ($_GET["res"] == "failure"){
                                     $mtotal = "Profile failed to update !";
+                                }
+                                if ($_GET["res"] == "success2"){
+                                    $mtotal = "Image already exists, path changed successfully!";
+                                }
+                                if ($_GET["res"] == "failure2"){
+                                    $mtotal = "Image failed to upload !";
+                                }
+                                if ($_GET["res"] == "failure3"){
+                                    $mtotal = $_SESSION['upload'];
                                 }
                                 
                             }
