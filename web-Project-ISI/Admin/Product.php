@@ -217,9 +217,11 @@ $_SESSION['id_p'] = $row['id_p'];
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4" style="margin-bottom: 10px;">Product</h3><button
+                    <h3 class="text-dark mb-4" style="margin-bottom: 10px;">Product</h3>
+                        <a href="AddProduct/index.php">
+                        <button
                         class="btn btn-primary bg-gradient-deepbluesky bg-gradient-deepbluesky" type="button"
-                        style="margin-bottom: 15px;">Create New</button>
+                        style="margin-bottom: 15px;">Create New</button></a>
                         <a  href="<?php echo($_SESSION['url']); ?>&confirm=true">
                         <button
                         class="btn btn-primary bg-gradient-deepbluesky bg-gradient-deepbluesky" type="button"
