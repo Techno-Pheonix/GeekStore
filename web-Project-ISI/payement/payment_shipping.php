@@ -23,10 +23,6 @@
 
     mysqli_query($conn, $sql);
     $commande_id = mysqli_insert_id($conn);
-    
-    
-
-
 
     foreach($_SESSION["shopping_cart"] as $item){  
         //Synatize input
@@ -35,7 +31,7 @@
         $quantity = mysqli_real_escape_string($conn,$item["item_quantity"]);
         $total_price = mysqli_real_escape_string($conn,$item["item_price"]);
         $id_c = mysqli_real_escape_string($conn,$commande_id);
-        
+
         //Insert into Commande table
         $sql = "INSERT into sales
         (`id_p`,`datetime`,`quantity`,`total_price`,`id_c`) 
