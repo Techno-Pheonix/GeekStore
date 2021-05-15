@@ -13,7 +13,7 @@
 
   else {
     //lehné remplacih bech ye5ou mel database 
-    $_SESSION['purl'] = "../pictures/avatar1.png";
+    $_SESSION['purl'] = "../pictures/avatar1.jpeg";
     $p = $_SESSION['purl'];
   }
 ?>

@@ -1,3 +1,7 @@
+<?php 
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,12 +11,18 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../home/style.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../admin/assets/css/styles.css">
+    <link rel="stylesheet" href="../admin/assets/bootstrap/css/bootstrap2.min.css">
+    <link rel="stylesheet" href="../admin/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="icon" href="../pictures/fav.ico" />
     <title>FAQ</title>
 </head>
 <body>
     <header>
-        <?php require_once 'includes/navbar.php'; ?>
+        <?php require_once '../includes/navbar.php'; ?>
     </header>
     <div class="title text-center mt-4">
         <h1>Frequently Asked Questions</h1>
@@ -92,7 +102,7 @@
                     </div>
                     <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
                       <div class="card-body">
-                        <p>You can sign up from <a target="_blank" href="store.hafhouf.com/signup">here</a>, or you can watch this video :</p> 
+                        <p>You can sign up from <a target="_blank" href="../signup">here</a>, or you can watch this video :</p> 
                       <div class="embed-responsive embed-responsive-16by9">
                         <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/1PO2AVXWBhk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                       </div>
@@ -106,36 +116,9 @@
     </div>
 
     <div class="f mt-4">
-        <footer class="pt-4 my-md-5 pt-md-5 border-top d-flex justify-content-center">
-            <div id="footer-faq" class="row">
-              <div class="col-6 col-md">
-                <h5>Products</h5>
-                <ul class="list-unstyled text-small">
-                  <li><a class="text-muted" href="#">Trending</a></li>
-                  <li><a class="text-muted" href="#">Best Seller</a></li>
-                  <li><a class="text-muted" href="#">Discounts</a></li>
-                </ul>
-              </div>
-              <div class="col-6 col-md">
-                <h5>User</h5>
-                <ul class="list-unstyled text-small">
-                  <li><a class="text-muted" href="#">My Account</a></li>
-                  <li><a class="text-muted" href="store.hafhouf.com/faq"><strong>FAQ</strong></a></li>
-                  <li><a class="text-muted" href="#">Terms and conditions</a></li>
-                </ul>
-              </div>
-              <div class="about">
-              <div class="col-6 col-md">
-                <h5>About Us</h5>
-                <ul class="list-unstyled text-small">
-                  <li><a class="text-muted" href="#">Contact</a></li>
-                  <li><a class="text-muted" href="#">Location</a></li>
-                  <li><a class="text-muted" href="#">Delivery</a></li>
-                </ul>
-              </div>
-            </div>
-        </div>
-          </footer>
+        <?php
+        require_once '../includes/footer.php';
+        ?>
         </div>
     </div>
 </body>
