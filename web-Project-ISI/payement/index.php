@@ -156,7 +156,7 @@ $arr = $_GET['arr'];
           <div class="col-md-5 mb-3">
             <label for="country">Country</label>
             <select class="custom-select d-block w-100" id="country" required>
-              <option value="Nothing" selected>Choose...</option>
+              <option value="" selected>Choose...</option>
               <option value="Tunisia">Tunisia</option>
             </select>
             <div class="invalid-feedback">
