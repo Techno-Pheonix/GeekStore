@@ -1,3 +1,7 @@
+<?php 
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,12 +11,18 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../home/style.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../admin/assets/css/styles.css">
+    <link rel="stylesheet" href="../admin/assets/bootstrap/css/bootstrap2.min.css">
+    <link rel="stylesheet" href="../admin/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="icon" href="../pictures/fav.ico" />
     <title>FAQ</title>
 </head>
 <body>
     <header>
-        <?php require_once 'includes/navbar.php'; ?>
+        <?php require_once '../includes/navbar.php'; ?>
     </header>
     <div class="title text-center mt-4">
         <h1>Frequently Asked Questions</h1>
