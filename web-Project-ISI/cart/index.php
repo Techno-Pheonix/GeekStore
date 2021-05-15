@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,7 +18,7 @@
   <?php require_once "../includes/navbar.php"; ?>
     <div class="container">
         <div class="row pt-4">
-            <div class="col-lg-8 panier-contenu mx-1 bg-light">
+            <div class="col-lg-<?php if (count($_SESSION["shopping_cart"])) echo "8"; else echo "12";?> panier-contenu mx-1 bg-light">
                 <h3 class="my-3">Mon Panier</h3>
                 <?php if (count($_SESSION["shopping_cart"]) == 0):?>
                     <div class="alert alert-primary" role="alert">
@@ -59,20 +60,22 @@
                     </div>
                 <?php endforeach ?>
             </div>
-            <div class="col-lg-3 total-price mx-1 bg-light">
-            <div class="d-flex">
-                    <h4>Total Price : </h4><h4 id="total_price">12</h4><h4>$</h4>
-                </div>    
-            
+            <?php if (count($_SESSION["shopping_cart"])):?>
+                <div class="col-lg-3 total-price mx-1 bg-light">
                 <div class="d-flex">
-                    <h4>Tax:</h4><h4 id ="tax">12</h4><h4>%</h4>
+                        <h4>Total Price : </h4><h4 id="total_price">12</h4><h4>$</h4>
+                    </div>    
+                
+                    <div class="d-flex">
+                        <h4>Tax:</h4><h4 id ="tax">12</h4><h4>%</h4>
+                    </div>
+                    <h4 id = "Final_price">Total: 12%</h4>
+                    <hr>
+                    <div class="center">
+                        <button class="btn btn-primary btn-lg" onclick="redirect()">Procced to shipment</button>
+                    </div>
                 </div>
-                <h4 id = "Final_price">Total: 12%</h4>
-                <hr>
-                <div class="center">
-                    <button class="btn btn-primary btn-lg" onclick="redirect()">Procced to shipment</button>
-                </div>
-            </div>
+            <?php endif ?>
         </div>
     </div>
     

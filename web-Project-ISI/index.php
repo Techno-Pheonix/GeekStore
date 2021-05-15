@@ -210,40 +210,32 @@
       <?php endif ?>
    
       <div class="tech-container d-flex justify-content-center">
-        <div class="tech-prod d-flex flex-row bd-highlight justify-content-center mt-4 row">
-        <?php $i=-1;?>
-        <?php if ($i%3==0):?>
-          <div class="row equal">
-        <?php endif ?>
-      <?php while ($row = mysqli_fetch_assoc($result)):?>
-        <?php $i=$i+1;?>
-        <div class="c">
-        <div class="card my-2 align-items-stretch h-100" style="width: 18rem;">
-            <img src="./pictures/<?php echo $row["picture"];?>" width=175px height =200px; class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title text-primary"><?php echo $row["title"];?></h5>
-              <p class="card-text text-secondary"><?php echo 
-              substr($row["summary"],0,40)."...";
-              for ($j = 0;$j<40-strlen(substr($row["summary"],0,40));$j++):?>
-                <span style="opacity:0">a</span>
-              <?php endfor ?>
-              </p>
-            </div>
-            <div class="card-body">
-                <a href="./product?id=<?php echo $row["id_p"];?>" class="btn btn-primary mr-4">Buy</a>
-                <a><?php echo $row["price"];?>$</a>
+        <div class="tech-prod d-flex flex-row bd-highlight justify-content-center mt-4 row equal">
+        <?php while ($row = mysqli_fetch_assoc($result)):?>
+          <div class="c">
+          <div class="card my-2 align-items-stretch h-100 mr-2" style="width: 18rem;">
+              <img src="./pictures/<?php echo $row["picture"];?>" width=175px height =200px; class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title text-primary"><?php echo $row["title"];?></h5>
+                <p class="card-text text-secondary"><?php echo 
+                substr($row["summary"],0,40)."...";
+                for ($j = 0;$j<40-strlen(substr($row["summary"],0,40));$j++):?>
+                  <span style="opacity:0">a</span>
+                <?php endfor ?>
+                </p>
+              </div>
+              <div class="card-body">
+                  <a href="./product?id=<?php echo $row["id_p"];?>" class="btn btn-primary mr-4">Buy</a>
+                  <a><?php echo $row["price"];?>$</a>
+              </div>
             </div>
           </div>
+        <?php endwhile?>
+        <div class="mbt mt-4">
+          <a href="./browse?catg=<?php echo $row_cat["slug"] ?>">
+            <button type="button" class="btn btn-primary btn-lg btn-block">Show More</button>
+          </a>
         </div>
-      <?php endwhile?>
-        <?php if ($i%3==0):?>
-          </div>
-        <?php endif ?>
-      <div class="mbt mt-4">
-        <a href="./browse?catg=<?php echo $row_cat["slug"] ?>">
-          <button type="button" class="btn btn-primary btn-lg btn-block">Show More</button>
-        </a>
-      </div>
       </div>
     </div>
     <?php endwhile?>

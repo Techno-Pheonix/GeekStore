@@ -1,19 +1,3 @@
-<?php 
-session_start();
-if (isset($_GET["arr"])){
-    $array = json_decode($_GET["arr"], true);
-    $count = count($array);
-    for ($i = 0 ;$i<$count;$i++){
-      $_SESSION["shopping_cart"][$i]["item_quantity"] =$array[$i]["item_quantity"];  
-    }
-
-    if ($_SESSION["loggedin"]!=true){
-      $_SESSION["sign-to-cart"] = true;
-      header("location:../signin");
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,6 +24,22 @@ if (isset($_GET["arr"])){
 <body>
 <?php require_once '../includes/navbar.php'; ?>
 
+<?php 
+if (isset($_GET["arr"])){
+    $array = json_decode($_GET["arr"], true);
+    $count = count($array);
+    for ($i = 0 ;$i<$count;$i++){
+      $_SESSION["shopping_cart"][$i]["item_quantity"] =$array[$i]["item_quantity"];  
+    }
+
+    if ($_SESSION["loggedin"]!=true){
+      $_SESSION["sign-to-cart"] = true;
+      header("location:../signin");
+    }
+}
+?>
+
+<?php if (count($_SESSION["shopping_cart"])):?> 
 
 <?php 
 require_once '../includes/dbh.inc.php';
@@ -211,10 +211,12 @@ $arr = $_GET['arr'];
       </form>
     </div>
   </div>
-
-  
 </div>
-
+<?php else : ?>
+  <div class="alert alert-primary container my-5" role="alert">
+      No Items In Cart To do any payment
+  </div>
+<?php endif; ?>
 
 </section>
 <?php require_once '../includes/footer.php'; ?>
