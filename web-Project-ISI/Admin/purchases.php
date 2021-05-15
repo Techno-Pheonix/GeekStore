@@ -128,7 +128,7 @@ if ($_SESSION['isadmin'] == false){
                                     <tbody>
 <?php 
 require_once 'includes/dbh.inc.php';
-$sql = "SELECT p.title as ProdName, p.picture as pic, c.id_c as idCmd, s.datetime as dte, s.total_price as total, s.quantity as qty, u.first_name as fname, u.last_name as lname from product p,sales s, commande c, user u where p.id_p = s.id_p and s.id_c = c.id_c and c.id_user = u.id_user;";
+$sql = "SELECT p.title as ProdName, p.picture as pic, c.id_c as idCmd, s.datetime as dte, s.total_price*s.quantity as total, s.quantity as qty, u.first_name as fname, u.last_name as lname from product p,sales s, commande c, user u where p.id_p = s.id_p and s.id_c = c.id_c and c.id_user = u.id_user;";
 $query = mysqli_query($conn,$sql);
 
 ?>
