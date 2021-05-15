@@ -9,13 +9,13 @@ if(isset($_GET['id'])){
 $id = $_GET['id'];
 $sql = "SELECT * from user where id_user = ".$id;
 $_SESSION['perm'] = " readonly=\"readonly\"";
-$_SESSION['url'] = "Profile.php?id=".$id;
+$_SESSION['url'] = "profile.php?id=".$id;
 }
 else
 {
 $sql = "SELECT * from user where id_user =".$_SESSION['user_id'];
 $_SESSION['perm'] = "";
-$_SESSION['url'] = "Profile.php";
+$_SESSION['url'] = "profile.php";
 }
 
 $query = mysqli_query($conn,$sql);
