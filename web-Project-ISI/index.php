@@ -193,7 +193,7 @@
     <?php while ($row_cat = mysqli_fetch_assoc($res_1)):?>
       <?php 
       $sql = "SELECT DISTINCT p.*,c.slug as cat_slug from product as p, category as c,sub_category as s 
-      where p.id_cat = s.id_sub and s.id_cat = c.id_cat and c.id_cat =".$row_cat["id_cat"].";";
+      where p.id_cat = s.id_sub and s.id_cat = c.id_cat and c.id_cat =".$row_cat["id_cat"]."  LIMIT 3;";
       $result = mysqli_query($conn, $sql);
       $resultcheck = mysqli_num_rows($result);
       ?>
