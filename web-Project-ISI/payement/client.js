@@ -13,6 +13,8 @@ const country = document.getElementById("country").value
 const zip = document.getElementById("zip").value
 const state = document.getElementById("state").value
 const user_id = document.getElementById("user_id").value
+const pay_method = $("input[type='radio'][name='paymentMethod']:checked").val()
+
 const form_init = document.getElementById("credit-from")  
 
 const payWithCreditCard = ()=>{
@@ -32,21 +34,19 @@ const payWithCreditCard = ()=>{
       // The items the customer wants to buy
       var purchase = {
         total_price: parseInt(total_price)*100,
-        firstName,
-        lastName,
         email,
         address,
         address2,
         zip,
         country,
         state,
-        user_id
+        pay_method
       };
       
   
       // Disable the button until we have Stripe set up on the page
       document.querySelector("button").disabled = true;
-      fetch("./create.php", {
+      fetch("./payment_card.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
