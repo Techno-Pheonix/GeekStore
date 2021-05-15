@@ -156,9 +156,12 @@
                     <div class="card h-100">
                       <img class="card-img-top img-fluid" src="../pictures/<?php echo $row["picture"]?>" alt="Card image cap">
                       <div class="card-body">
-                        <h5 class="card-title"><?php echo $row["title"] ?></h5>
-                        <h5 class="card-title"><?php echo $row["price"] ?></h5>
-                        <p class="card-text"><?php echo substr($row["summary"],0,40)."...";  ?></p>
+                        <h3 class="card-title mb-3 text-primary"><?php echo $row["title"] ?></h3>
+                        <h5 class="card-title"><?php echo $row["price"] ?>$</h5>
+                        <p class="card-text text-secondary"><?php echo substr($row["summary"],0,40)."...";
+                        for ($j = 0;$j<40-strlen(substr($row["summary"],0,40));$j++):?>
+                          <span style="opacity:0">a</span>
+                        <?php endfor ?></p>
                         <a href="../product?id=<?php echo $row["id_p"];?>" class="btn btn-primary">Check The product</a>
                       </div>
                     </div>

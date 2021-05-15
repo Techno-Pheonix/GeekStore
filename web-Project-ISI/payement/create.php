@@ -7,13 +7,14 @@ require 'vendor/autoload.php';
 
 header('Content-Type: application/json');
 
+
 try {
   // retrieve JSON from POST body
   $json_str = file_get_contents('php://input');
   $json_obj = json_decode($json_str);
 
   $paymentIntent = \Stripe\PaymentIntent::create([
-    'amount' => $json_obj->total_price*100,
+    'amount' => $json_obj->total_price,
     'currency' => 'usd',
   ]);
 

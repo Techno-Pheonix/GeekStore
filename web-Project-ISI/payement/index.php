@@ -1,4 +1,3 @@
-
 <?php 
 session_start();
 if (isset($_GET["arr"])){
@@ -71,24 +70,30 @@ $arr = $_GET['arr'];
       <ul class="list-group mb-3">
         <?php
         $total=0;
+        $ftotal=0;
           for ($i = 0 ;$i<$count;$i++){
             $title = $_SESSION["shopping_cart"][$i]["item_name"];
             $quantity = "Quantity : ".$_SESSION["shopping_cart"][$i]["item_quantity"];
+            $quant = $_SESSION["shopping_cart"][$i]["item_quantity"];
             $price = $_SESSION["shopping_cart"][$i]["item_price"];
-            $total = $total+$price;
+            $total = $total+($price*$quant);
             echo('
             <li class="list-group-item d-flex justify-content-between lh-condensed">
               <div>
                 <h6 class="my-0">'.$title.'</h6>
                 <small class="text-muted">'.$quantity.'</small>
               </div>
-              <span class="text-muted">'.$price.'</span>
+              <span class="text-muted">'.$total.'</span>
             </li>');
+            $ftotal = $ftotal + $total;
+            $total =0;
           }
        ?>
        <li class="list-group-item d-flex justify-content-between">
               <span>Total (USD)</span>
-              <strong><?php echo($total);?></strong>
+              <strong><?php
+              $ftotal = (($ftotal/100)*12)+$ftotal;
+              echo($ftotal);?></strong>
             </li>
           </ul>
 
@@ -109,7 +114,7 @@ $arr = $_GET['arr'];
             <label for="firstName">First name</label>
             <?php/* echo"<input type=\"text\" class=\"form-control\" id=\"firstName\" placeholder=\"'$fname'\" value=\"\" required>" */?>
             <input type="text" class="form-control" id="firstName" placeholder="" value="<?php echo(''.$fname); ?>" required>
-            <input type="text" class="d-none item_id" id="total_price" name="total_price" value="<?php echo $total?>">
+            <input type="text" class="d-none item_id" id="total_price" name="total_price" value="<?php echo $ftotal?>">
             <input type="text" class="d-none all_items" id="all_items" name="all_items" value='<?php echo json_encode($_SESSION["shopping_cart"])?>'>
             <input type="text" class="d-none all_items" id="user_id" name="user_id" value='<?php echo $_SESSION["user_id"]?>'>
             
@@ -206,7 +211,10 @@ $arr = $_GET['arr'];
               Payment succeeded, see the result in your
               <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
             </p>
-        </div>        
+        </div>    
+        <div id="shipping-from" class="d-none">
+          <button class="btn btn-primary mx-auto" type="submit">Order Now</button>
+        </div>            
       </form>
     </div>
   </div>

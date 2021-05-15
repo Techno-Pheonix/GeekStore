@@ -213,8 +213,8 @@
         <div class="card my-2 align-items-stretch h-100" style="width: 18rem;">
             <img src="./pictures/<?php echo $row["picture"];?>" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title"><?php echo $row["title"];?></h5>
-              <p class="card-text"><?php echo 
+              <h5 class="card-title text-primary"><?php echo $row["title"];?></h5>
+              <p class="card-text text-secondary"><?php echo 
               substr($row["summary"],0,40)."...";
               for ($j = 0;$j<40-strlen(substr($row["summary"],0,40));$j++):?>
                 <span style="opacity:0">a</span>
