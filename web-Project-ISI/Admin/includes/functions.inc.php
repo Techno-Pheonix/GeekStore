@@ -62,7 +62,7 @@ function adminmail($conn, $email, $password){
              $_SESSION['user'] = $row['first_name']." ".$row['last_name'];
              $_SESSION['user_id'] = $row['id_user'];
              $_SESSION['loggedin'] = true;
-             $_SESSION['admin'] = true;
+             $_SESSION['avatar'] = $row['avatar'];
              $_SESSION['isadmin'] = true;
              header("location:../");
              exit();
