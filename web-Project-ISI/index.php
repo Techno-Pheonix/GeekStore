@@ -217,9 +217,9 @@
         <?php if ($i%3==0):?>
           <div class="row equal">
         <?php endif ?>
-        <div class="c ">
-        <div class="card my-2 align-items-stretch h-100" style="width: 18rem;">
-            <img src="./pictures/<?php echo $row["picture"];?>" class="card-img-top" alt="...">
+        <div class="c">
+        <div class="card my-2 align-items-stretch h-100 mr-2" style="width: 18rem;">
+            <img src="./pictures/<?php echo $row["picture"];?>" width=175px height =200px; class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title text-primary"><?php echo $row["title"];?></h5>
               <p class="card-text text-secondary"><?php echo 
