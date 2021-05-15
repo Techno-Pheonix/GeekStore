@@ -87,12 +87,12 @@
         {
             /*sorry your profile was not updated*/
             $_SESSION['upload'] = "Image path failed to update";
-            $arg = "location:profile.php&res=failure3";
+            $arg = "location:profile.php?res=failure3";
             header($arg);
             exit();
         }
         else{
-            $arg = "location:profile.php&res=success2";
+            $arg = "location:profile.php?res=success2";
             header($arg);
             exit();
         }
@@ -101,13 +101,13 @@
     // Allow certain file formats
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
     && $imageFileType != "gif" ) {
-    header("location:profile.php&error=format");
+    header("location:profile.php?error=format");
     exit();
     }
 
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
-        $arg = "location:profile.php&res=failure";
+        $arg = "location:profile.php?res=failure";
         header($arg);
         exit();
     // if everything is ok, try to upload file
@@ -116,7 +116,7 @@
         $_SESSION['upload'] = "The image ". htmlspecialchars( basename( $_FILES["file"]["name"])). " has been uploaded.";
     } 
     else {
-        $arg = "location:profile.php&res=failure2";
+        $arg = "location:profile.php?res=failure2";
            header($arg);
            exit();
     }
@@ -126,12 +126,12 @@
     {
         /*sorry your profile was not updated*/
         $_SESSION['upload'] = "File path failed to update";
-        $arg = "location:profile.php&res=failure3";
+        $arg = "location:profile.php?res=failure3";
         header($arg);
         exit();
     }
     else{
-        $arg = "location:profile.php&res=success";
+        $arg = "location:profile.php?res=success";
         header($arg);
         exit();
     }

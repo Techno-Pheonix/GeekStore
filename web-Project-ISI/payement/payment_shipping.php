@@ -10,12 +10,12 @@
     $country= mysqli_real_escape_string($conn,$_POST["country"]);
     $state = mysqli_real_escape_string($conn,$_POST["state"]);
     $zip = mysqli_real_escape_string($conn,$_POST["zip"]);
-    $payement = mysqli_real_escape_string($conn,$_POST["payement"]);
+    $payement = mysqli_real_escape_string($conn,$_POST["paymentMethod"]);
 
 
     //Insert into Commande table
     $sql = "INSERT into commande
-    (`id_user`,`adress1`,`adress2`,`country`,`state`,`zip`,`payement`) 
+    (`id_user`,`adress1`,`adress2`,`country`,`state`,`zip`,`payment`) 
     VALUES('$id_user','$adress1','$adress2','$country','$state','$zip','$payement')"; //? its a placeholder 
     move_uploaded_file($tmp_name,$fileDestination);
     
@@ -34,7 +34,7 @@
         //Insert into Commande table
         $sql = "INSERT into sales
         (`id_p`,`datetime`,`quantity`,`total_price`,`id_c`) 
-        VALUES('$id_p','$datetime','$quantity','$total_price','$id_c')"; //? its a placeholder
+        VALUES('$id_p','$datetime','$quantity','$total_price','$commande_id')"; //? its a placeholder
         mysqli_query($conn, $sql);
     }
 
