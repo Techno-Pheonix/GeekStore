@@ -5,25 +5,30 @@
 
     //Synatize input
     $id_user = mysqli_real_escape_string($conn,$_SESSION["user_id"]);
-    $adress1 = mysqli_real_escape_string($conn,$_POST["adress1"]);
-    $adress2 = mysqli_real_escape_string($conn,$_POST["adress2"]);
+    $adress1 = mysqli_real_escape_string($conn,$_POST["address"]);
+    
+    $adress2 = mysqli_real_escape_string($conn,$_POST["address2"]);
+    
     $country= mysqli_real_escape_string($conn,$_POST["country"]);
     $state = mysqli_real_escape_string($conn,$_POST["state"]);
     $zip = mysqli_real_escape_string($conn,$_POST["zip"]);
-    $payement = mysqli_real_escape_string($conn,$_POST["payement"]);
+    $payement = mysqli_real_escape_string($conn,$_POST["paymentMethod"]);
 
 
     //Insert into Commande table
     $sql = "INSERT into commande
-    (`id_user`,`adress1`,`adress2`,`country`,`state`,`zip`,`payement`) 
+    (`id_user`,`adress1`,`adress2`,`country`,`state`,`zip`,`payment`) 
     VALUES('$id_user','$adress1','$adress2','$country','$state','$zip','$payement')"; //? its a placeholder 
-    move_uploaded_file($tmp_name,$fileDestination);
     
 
     mysqli_query($conn, $sql);
     $commande_id = mysqli_insert_id($conn);
+    
+    
 
-    foreach($_POST["all_items"] as $item){
+
+
+    foreach($_SESSION["shopping_cart"] as $item){  
         //Synatize input
         $id_p = mysqli_real_escape_string($conn,$item["item_id"]);
         $datetime = date("Y-m-d h:i:sa");
@@ -38,7 +43,7 @@
         mysqli_query($conn, $sql);
     }
 
-    header("location:sucess.php");   
+
 
 
 ?>

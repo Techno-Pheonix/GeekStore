@@ -164,7 +164,10 @@ const payOnShipping = ()=>{
 
 const fn =()=>{
   const shipping_from = document.getElementById("shipping-from")
+  
+  
   const credit_form = document.getElementById("credit-from")
+
   shipping_from.classList.toggle("d-none")
   credit_form.classList.toggle("d-none")
 

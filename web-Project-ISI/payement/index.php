@@ -97,14 +97,7 @@ $arr = $_GET['arr'];
             </li>
           </ul>
 
-      <form class="card p-2">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Promo code">
-          <div class="input-group-append">
-            <button type="submit" class="btn btn-secondary">Redeem</button>
-          </div>
-        </div>
-      </form>
+      
     </div>
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Billing address</h4>
@@ -141,7 +134,7 @@ $arr = $_GET['arr'];
 
         <div class="mb-3">
           <label for="address">Address</label>
-          <input type="text" class="form-control" id="address" placeholder="" value="<?php echo(''.$address); ?>" required>
+          <input type="text" class="form-control" id="address" name="address" placeholder="" value="<?php echo(''.$address); ?>" required>
           <div class="invalid-feedback">
             Please enter your shipping address.
           </div>
@@ -149,13 +142,13 @@ $arr = $_GET['arr'];
 
         <div class="mb-3">
           <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-          <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+          <input type="text" class="form-control" id="address2" name="address2" placeholder="Apartment or suite">
         </div>
 
         <div class="row">
           <div class="col-md-5 mb-3">
             <label for="country">Country</label>
-            <select class="custom-select d-block w-100" id="country" required>
+            <select class="custom-select d-block w-100" id="country" name="country" required>
               <option value="" selected>Choose...</option>
               <option value="Tunisia">Tunisia</option>
             </select>
@@ -165,7 +158,7 @@ $arr = $_GET['arr'];
           </div>
           <div class="col-md-4 mb-3">
             <label for="state">State</label>
-            <select class="custom-select d-block w-100" id="state" required>
+            <select class="custom-select d-block w-100" id="state" name="state" required>
               <option value="">Choose...</option>
               <option>Tunis</option>
             </select>
@@ -175,7 +168,7 @@ $arr = $_GET['arr'];
           </div>
           <div class="col-md-3 mb-3">
             <label for="zip">Zip</label>
-            <input type="text" class="form-control" id="zip" placeholder="" required>
+            <input type="text" class="form-control" id="zip" name="zip" placeholder="" required>
             <div class="invalid-feedback">
               Zip code required.
             </div>
