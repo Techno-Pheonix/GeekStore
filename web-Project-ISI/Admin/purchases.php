@@ -20,6 +20,7 @@ if ($_SESSION['isadmin'] == false){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/rowgroup/1.1.2/css/rowGroup.dataTables.min.css">
 </head>
 
 <body id="page-top">
@@ -39,10 +40,11 @@ if ($_SESSION['isadmin'] == false){
                                 class="fas fa-user"></i><span>Profile</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="Users.php"><i
                                 class="fas fa-users"></i><span>Users</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="Products.php"><i
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="Products.php"><i
                                 class="fas fa-table"></i><span>Products</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="purchases.php"><i
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="purchases.php"><i
                                 class="fas fa-cash-register"></i><span>Sales</span></a></li>
+                                
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
                         id="sidebarToggle" type="button"></button></div>
@@ -84,12 +86,12 @@ if ($_SESSION['isadmin'] == false){
                                         class="btn btn-primary bg-gradient-deepbluesky dropdown-toggle"
                                         data-toggle="dropdown" aria-expanded="false" type="button"><span
                                             class="d-none d-lg-inline mr-2 text-white-600 small"><?php echo($_SESSION['user']); ?></span><img
-                                            class="border rounded-circle img-profile"  width="60px" height="60px"
+                                            class="border rounded-circle img-profile"
                                             src="../avatars/<?php echo $_SESSION['avatar']; ?>"></button>
                                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
                                         <a class="dropdown-item" role="presentation" href="#"><i
                                                 class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a><a
-                                            class="dropdown-item" role="presentation" href="#"><i
+                                            class="dropdown-item" role="presentation" href="profile.php"><i
                                                 class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a>
                                         <a class="dropdown-item" role="presentation" href="#"><i
                                                 class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity
@@ -104,22 +106,10 @@ if ($_SESSION['isadmin'] == false){
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4">Products</h3>
+                    <h3 class="text-dark mb-4">Sales</h3>
                     <div class="card shadow">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 font-weight-bold">Product Info</p>
-                            <div class="d-flex">
-                            <a href="AddProduct/index.php">
-                                <button class="btn btn-primary bg-gradient-deepbluesky" type="button"
-                                    style="width: 111px;height: 32px;padding-top: 3px;font-size: 15px;"
-                                    onclick="creatnew()">Create New</button>
-                            </a>
-                            <a href="addCategory/index.php">
-                                <button class="btn btn-primary bg-gradient-deepbluesky" type="button"
-                                    style="width: 135px;height: 32px;padding-top: 3px;font-size: 15px;margin-left:4px;"
-                                    onclick="creatnew()">Add Category</button>
-                            </a>
-                            </div>
+                            <p class="text-primary m-0 font-weight-bold">Sales Info</p>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive table mt-2" id="data_Table" role="grid"
@@ -127,39 +117,42 @@ if ($_SESSION['isadmin'] == false){
                                 <table class="table dataTable my-0" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>ID</th>
-                                            <th>Category</th>
+                                            <th>Product</th>
+                                            <th>Customer</th>
                                             <th>Quantity</th>
-                                            <th>Price</th>
+                                            <th>Command</th>
+                                            <th>Date</th>
+                                            <th>Total Price</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 <?php 
 require_once 'includes/dbh.inc.php';
-$sql = "SELECT p.title as ProdName, p.slug as slug, p.id_p as ID, p.quantity as Qty, p.price as Price ,c.title as cat, p.picture as pic from product p,sub_category c where p.id_cat = c.id_sub;";
+$sql = "SELECT p.title as ProdName, p.picture as pic, c.id_c as idCmd, s.datetime as dte, s.total_price as total, s.quantity as qty, u.first_name as fname, u.last_name as lname from product p,sales s, commande c, user u where p.id_p = s.id_p and s.id_c = c.id_c and c.id_user = u.id_user;";
 $query = mysqli_query($conn,$sql);
 
 ?>
                                         <?php
 while ($row = mysqli_fetch_array($query)) {
-    echo "<tr data-href=\"Product.php?slug=".$row['slug']."\">";
-    echo "<td><img class=\"rounded-circle mr-2\" width=\"30\" height=\"30\" src=\"../pictures/". $row['pic'] ."\">". $row['ProdName'] ."</td>";
-    echo "<td>" . $row['ID'] . "</td>";
-    echo "<td>" . $row['cat'] . "</td>";
-    echo "<td>" . $row['Qty'] . "</td>";
-    echo "<td>" . $row['Price'] . "</td>";
+    echo "<tr data-href=\"#\">";
+    echo "<td><img class=\"rounded-circle mr-2\" width=\"30\" height=\"30\" src=\"". $row['pic'] ."\">". $row['ProdName'] ."</td>";
+    echo "<td>" . $row['fname'] ." ".$row['lname']. "</td>";
+    echo "<td>" . $row['qty'] . "</td>";
+    echo "<td>" . $row['idCmd']. "</td>";
+    echo "<td>" . $row['dte']. "</td>";
+    echo "<td>" . $row['total'] . "</td>";
     echo "</tr>";
 }
 ?>
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>ID</th>
-                                            <th>Category</th>
+                                            <th>Product</th>
+                                            <th>Customer</th>
                                             <th>Quantity</th>
-                                            <th>Price</th>
+                                            <th>Command</th>
+                                            <th>Date</th>
+                                            <th>Total Price</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -170,7 +163,7 @@ while ($row = mysqli_fetch_array($query)) {
             </div>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2019</span></div>
+                    <div class="text-center my-auto copyright"><span>Copyright © GEEK Store 2021</span></div>
                 </div>
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
@@ -183,34 +176,14 @@ while ($row = mysqli_fetch_array($query)) {
     <script src="assets/js/theme.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/rowgroup/1.1.2/js/dataTables.rowGroup.min.js"></script>
     <script>
         function createnew() {
-            window.location.href = "/AddProduct/index.php";
+            window.location.href = "AddProduct/index.php";
         }
     </script>
     
     <script>
-        function FilteredSearch() {
-            // Declare variables
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("myInput");
-            filter = input.value;
-            table = document.getElementById("dataTable");
-            tr = table.getElementsByTagName("tr");
-
-            // Loop through all table rows, and hide those who don't match the search query
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[1];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
         let isCommandPressed = false;
         window.addEventListener("keydown", (event) => {
         if (event.which === 91) {
@@ -236,7 +209,31 @@ while ($row = mysqli_fetch_array($query)) {
         });
         $(document).ready(function() {
             $('#dataTable').DataTable( {
-                "pagingType": "first_last_numbers"
+                "pagingType": "first_last_numbers",
+                order: [[4, 'dsc']],
+                rowGroup: {
+                    startRender: null,
+                    endRender: function ( rows, group ) {
+                    var salaryAvg = rows
+                    .data()
+                    .pluck(5)
+                    .reduce( function (a, b) {
+                        return a + b.replace(/[^\d]/g, '')*1;
+                    }, 0) ;
+                    salaryAvg = $.fn.dataTable.render.number(',', '.', 0, '$').display( salaryAvg );
+                    return $('<tr/>')
+                    .append( '<td colspan="3">Command Id°'+group+'</td>' )
+                    .append( '<td> </td>' )
+                    .append( '<td/>' )
+                    .append( '<td>'+salaryAvg+'</td>' );
+                    },
+                    dataSrc: 3
+                },
+                ordering: true,
+                "columnDefs" : [ {
+                "targets": [0,2,5], /* column index */
+                "orderable" : false, /* true or false */
+                }]
             } );
 } );
     </script>

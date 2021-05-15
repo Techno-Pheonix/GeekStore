@@ -39,6 +39,8 @@ if ($_SESSION["isadmin"]!=true){
                                 class="fas fa-users"></i><span>Users</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="Products.php"><i
                                 class="fas fa-table"></i><span>Products</span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="purchases.php"><i
+                                class="fas fa-cash-register"></i><span>Sales</span></a></li>
 
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
