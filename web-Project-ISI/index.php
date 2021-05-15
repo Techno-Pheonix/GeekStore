@@ -218,7 +218,7 @@
       <?php while ($row = mysqli_fetch_assoc($result)):?>
         <?php $i=$i+1;?>
         <div class="c">
-        <div class="card my-2 align-items-stretch h-100 mr-2" style="width: 18rem;">
+        <div class="card my-2 align-items-stretch h-100" style="width: 18rem;">
             <img src="./pictures/<?php echo $row["picture"];?>" width=175px height =200px; class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title text-primary"><?php echo $row["title"];?></h5>

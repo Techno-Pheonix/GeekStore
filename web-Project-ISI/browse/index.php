@@ -146,7 +146,10 @@
                 </div>
                 <?php endif;?>
                 <?php $number_of_pages = ceil($num_of_res/$number_per_page); ?>
-                <?php $i=0;?>
+                <?php $i=-1;?>
+                <?php if ($i%3==0):?>
+                  <div class="row equal">
+                <?php endif ?>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
                   <?php $i=$i+1;?>
                   <?php if ($i%3==0):?>
@@ -166,10 +169,10 @@
                       </div>
                     </div>
                   </div>
-                  <?php if ($i%3==0):?>
-                    </div>
-                  <?php endif ?>
-                <?php endwhile ?>   
+                <?php endwhile ?> 
+                <?php if ($i%3==0):?>
+                  </div>
+                <?php endif ?>  
                 </div>
 
                 <div aria-label="Page navigation example" class="center">
