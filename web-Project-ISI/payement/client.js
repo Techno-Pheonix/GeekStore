@@ -42,6 +42,7 @@ const payWithCreditCard = ()=>{
         state,
         pay_method
       };
+      console.log(purchase)
       
   
       // Disable the button until we have Stripe set up on the page

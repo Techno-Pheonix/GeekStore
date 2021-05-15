@@ -1,6 +1,9 @@
 <?php
 
 require 'vendor/autoload.php';
+require_once "../includes/dbh.inc.php";
+//Start session
+session_start();
 
 // This is your real test secret API key.
 \Stripe\Stripe::setApiKey('sk_test_51IqdUVGpFYvTwmSoi84jix5uxWonUqCImUj6zGAAR5SQ2GNesbc9o8clWNneSdM5fGsPONFimk4Z2OAvAvZ75kWt00zpm9xzvf');
@@ -19,22 +22,7 @@ try {
   ]);
 
 
-
   //Insert Into DB
-  require_once "../includes/dbh.inc.php";
-  //Start session
-  session_start();
-
-  var purchase = {
-    total_price: parseInt(total_price)*100,
-    email,
-    address,
-    address2,
-    zip,
-    country,
-    state,
-    pay_method
-  };
 
   //Synatize input
   $id_user = mysqli_real_escape_string($conn,$_SESSION["user_id"]);
@@ -68,12 +56,10 @@ try {
       mysqli_query($conn, $sql);
   }
     
+
   $output = [
     'clientSecret' => $paymentIntent->client_secret,
   ];
-
-  
-
   echo json_encode($output);
 } catch (Error $e) {
   http_response_code(500);
