@@ -83,7 +83,7 @@ if ($_SESSION['isadmin'] == false){
                                         data-toggle="dropdown" aria-expanded="false" type="button"><span
                                             class="d-none d-lg-inline mr-2 text-white-600 small"><?php echo($_SESSION['user']); ?></span><img
                                             class="border rounded-circle img-profile"
-                                            src="../pictures/avatar1.jpeg"></button>
+                                            src="../avatars/<?php echo $_SESSION['avatar']; ?>"></button>
                                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
                                         <a class="dropdown-item" role="presentation" href="#"><i
                                                 class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a><a
