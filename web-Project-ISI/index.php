@@ -211,12 +211,12 @@
    
       <div class="tech-container d-flex justify-content-center">
         <div class="tech-prod d-flex flex-row bd-highlight justify-content-center mt-4 row">
-        <?php $i=0;?>
-      <?php while ($row = mysqli_fetch_assoc($result)):?>
-        <?php $i=$i+1;?>
+        <?php $i=-1;?>
         <?php if ($i%3==0):?>
           <div class="row equal">
         <?php endif ?>
+      <?php while ($row = mysqli_fetch_assoc($result)):?>
+        <?php $i=$i+1;?>
         <div class="c">
         <div class="card my-2 align-items-stretch h-100 mr-2" style="width: 18rem;">
             <img src="./pictures/<?php echo $row["picture"];?>" width=175px height =200px; class="card-img-top" alt="...">
@@ -235,10 +235,10 @@
             </div>
           </div>
         </div>
+      <?php endwhile?>
         <?php if ($i%3==0):?>
           </div>
         <?php endif ?>
-      <?php endwhile?>
       <div class="mbt mt-4">
         <a href="./browse?catg=<?php echo $row_cat["slug"] ?>">
           <button type="button" class="btn btn-primary btn-lg btn-block">Show More</button>
