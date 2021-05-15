@@ -146,18 +146,26 @@
                 </div>
                 <?php endif;?>
                 <?php $number_of_pages = ceil($num_of_res/$number_per_page); ?>
+                <?php $i=0;?>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                  <?php $i=$i+1;?>
+                  <?php if ($i%3==0):?>
+                    <div class="row equal">
+                  <?php endif ?>
                   <div class="col-md-6 col-xl-4 col-sm-12 mb-2" >
-                    <div class="card">
+                    <div class="card h-100">
                       <img class="card-img-top img-fluid" src="../pictures/<?php echo $row["picture"]?>" alt="Card image cap">
                       <div class="card-body">
                         <h5 class="card-title"><?php echo $row["title"] ?></h5>
                         <h5 class="card-title"><?php echo $row["price"] ?></h5>
-                        <p class="card-text"><?php echo substr($row["summary"],0,30)  ?></p>
+                        <p class="card-text"><?php echo substr($row["summary"],0,40)."...";  ?></p>
                         <a href="../product?id=<?php echo $row["id_p"];?>" class="btn btn-primary">Check The product</a>
                       </div>
                     </div>
                   </div>
+                  <?php if ($i%3==0):?>
+                    </div>
+                  <?php endif ?>
                 <?php endwhile ?>   
                 </div>
 
