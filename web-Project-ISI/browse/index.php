@@ -119,7 +119,7 @@
                   $num_of_res = $row1["nb"];
                   //the actual query
 
-                  $sql = "SELECT  * FROM product as p where  p.id_cat = ".$row["id_sub"]." and p.price>".$min." and p.price<".$max."  LIMIT ".$this_page." , ".$number_per_page." ;";
+                  $sql = "SELECT  * FROM product as p where  p.id_cat = ".$row["id_sub"]." and p.price>=".$min." and p.price<=".$max."  LIMIT ".$this_page." , ".$number_per_page." ;";
                 }else if (isset($_GET["catg"])){
                   //Get category ID
                   $x = $_GET["catg"];
@@ -134,7 +134,7 @@
                   $num_of_res = $row1["nb"];
                   $resultcheck = mysqli_num_rows($result1);
                   $sql = "SELECT DISTINCT p.*,c.slug as cat_slug from product as p, category as c,sub_category as s 
-                  where p.id_cat = s.id_sub and s.id_cat = c.id_cat and c.id_cat =".$row["id_cat"]." and p.price>".$min." and p.price<".$max." LIMIT ".$this_page." , ".$number_per_page." ;";
+                  where p.id_cat = s.id_sub and s.id_cat = c.id_cat and c.id_cat =".$row["id_cat"]." and p.price>=".$min." and p.price<=".$max." LIMIT ".$this_page." , ".$number_per_page." ;";
                 }
                 $result = mysqli_query($conn, $sql);
                 $resultNums = mysqli_num_rows($result);
@@ -146,15 +146,8 @@
                 </div>
                 <?php endif;?>
                 <?php $number_of_pages = ceil($num_of_res/$number_per_page); ?>
-                <?php $i=-1;?>
-                <?php if ($i%3==0):?>
-                  <div class="row equal">
-                <?php endif ?>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                  <?php $i=$i+1;?>
-                  <?php if ($i%3==0):?>
-                    <div class="row equal">
-                  <?php endif ?>
+                
                   <div class="col-md-6 col-xl-4 col-sm-12 mb-2" >
                     <div class="card h-100">
                       <img class="card-img-top img-fluid" src="../pictures/<?php echo $row["picture"]?>" alt="Card image cap">
@@ -169,10 +162,8 @@
                       </div>
                     </div>
                   </div>
-                <?php endwhile ?> 
-                <?php if ($i%3==0):?>
-                  </div>
-                <?php endif ?>  
+                  
+                <?php endwhile ?>   
                 </div>
 
                 <div aria-label="Page navigation example" class="center">
@@ -191,7 +182,7 @@
                       </a>
                     </li>
                     <?php 
-                    for($i = $page-2;$i<=$page+2;$i++):?>
+                    for($i = $page-3;$i<=$page+3;$i++):?>
                     <?php if ($i>=1 && $i<=$number_of_pages):?>
                       <li class="page-item<?php if ($i==$page) echo " active"?>"><a class="page-link" 
                       href="index.php?<?php echo $url; ?>&page=<?php echo $i;?>"><?php echo $i;?></a></li>

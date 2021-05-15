@@ -1,8 +1,8 @@
 <?php 
     require_once 'includes/dbh.inc.php';
     echo"hi";
-    $query = 'DESC sales;';
-    $results = mysqli_query($conn, $query) or die('Query error: ' . mysqli_error());
-    $row = mysqli_fetch_assoc($results);
+    $sql = "SELECT * from sales;";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
     print_r($row);
 ?>

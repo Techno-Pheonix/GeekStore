@@ -25,6 +25,12 @@ session_start();
 
 <?php require_once '../includes/navbar.php'; ?>
 
+<?php 
+$id = $_SESSION['user_id'];
+$sql = "select * from user where id_user = $id";
+
+?>
+
 <div class="container">
 
 <div class="container-fluid">

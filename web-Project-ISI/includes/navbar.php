@@ -74,7 +74,7 @@
         <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
           <?php 
             if($_SESSION['user'] == "guest"){
-              echo "<a class=\"dropdown-item\" role=\"presentation\" href=\"signup\"><i
+              echo "<a class=\"dropdown-item\" role=\"presentation\" href=\"../signup\"><i
               class=\"fas fa-user fa-sm fa-fw mr-2 text-gray-400\"></i>&nbsp;Signup</a>
               ";}
             else{
@@ -90,11 +90,11 @@
             log</a>
           <?php 
             if($_SESSION['user'] == "guest"){
-              echo "<div class=\"dropdown-divider\"></div><a class=\"dropdown-item\" role=\"presentation\" href=\"signin\"><i
+              echo "<div class=\"dropdown-divider\"></div><a class=\"dropdown-item\" role=\"presentation\" href=\"../signin\"><i
               class=\"fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400\" ></i>&nbsp;Login</a>
               ";}
             else{
-              echo "<div class=\"dropdown-divider\"></div><a class=\"dropdown-item\" role=\"presentation\" href=\"includes/logout.inc.php\"><i
+              echo "<div class=\"dropdown-divider\"></div><a class=\"dropdown-item\" role=\"presentation\" href=\"../includes/logout.inc.php\"><i
               class=\"fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400\"></i>&nbsp;Logout</a>
               ";
               }
