@@ -71,24 +71,30 @@ $arr = $_GET['arr'];
       <ul class="list-group mb-3">
         <?php
         $total=0;
+        $ftotal=0;
           for ($i = 0 ;$i<$count;$i++){
             $title = $_SESSION["shopping_cart"][$i]["item_name"];
             $quantity = "Quantity : ".$_SESSION["shopping_cart"][$i]["item_quantity"];
+            $quant = $_SESSION["shopping_cart"][$i]["item_quantity"];
             $price = $_SESSION["shopping_cart"][$i]["item_price"];
-            $total = $total+$price;
+            $total = $total+($price*$quant);
             echo('
             <li class="list-group-item d-flex justify-content-between lh-condensed">
               <div>
                 <h6 class="my-0">'.$title.'</h6>
                 <small class="text-muted">'.$quantity.'</small>
               </div>
-              <span class="text-muted">'.$price.'</span>
+              <span class="text-muted">'.$total.'</span>
             </li>');
+            $ftotal = $ftotal + $total;
+            $total =0;
           }
        ?>
        <li class="list-group-item d-flex justify-content-between">
               <span>Total (USD)</span>
-              <strong><?php echo($total);?></strong>
+              <strong><?php
+              $ftotal = (($ftotal/100)*12)+$ftotal;
+              echo($ftotal);?></strong>
             </li>
           </ul>
 
