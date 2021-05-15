@@ -102,7 +102,7 @@ session_start();
                     </div>
                     <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
                       <div class="card-body">
-                        <p>You can sign up from <a target="_blank" href="store.hafhouf.com/signup">here</a>, or you can watch this video :</p> 
+                        <p>You can sign up from <a target="_blank" href="../signup">here</a>, or you can watch this video :</p> 
                       <div class="embed-responsive embed-responsive-16by9">
                         <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/1PO2AVXWBhk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                       </div>
@@ -116,36 +116,9 @@ session_start();
     </div>
 
     <div class="f mt-4">
-        <footer class="pt-4 my-md-5 pt-md-5 border-top d-flex justify-content-center">
-            <div id="footer-faq" class="row">
-              <div class="col-6 col-md">
-                <h5>Products</h5>
-                <ul class="list-unstyled text-small">
-                  <li><a class="text-muted" href="#">Trending</a></li>
-                  <li><a class="text-muted" href="#">Best Seller</a></li>
-                  <li><a class="text-muted" href="#">Discounts</a></li>
-                </ul>
-              </div>
-              <div class="col-6 col-md">
-                <h5>User</h5>
-                <ul class="list-unstyled text-small">
-                  <li><a class="text-muted" href="#">My Account</a></li>
-                  <li><a class="text-muted" href="store.hafhouf.com/faq"><strong>FAQ</strong></a></li>
-                  <li><a class="text-muted" href="#">Terms and conditions</a></li>
-                </ul>
-              </div>
-              <div class="about">
-              <div class="col-6 col-md">
-                <h5>About Us</h5>
-                <ul class="list-unstyled text-small">
-                  <li><a class="text-muted" href="#">Contact</a></li>
-                  <li><a class="text-muted" href="#">Location</a></li>
-                  <li><a class="text-muted" href="#">Delivery</a></li>
-                </ul>
-              </div>
-            </div>
-        </div>
-          </footer>
+        <?php
+        require_once '../includes/footer.php';
+        ?>
         </div>
     </div>
 </body>
