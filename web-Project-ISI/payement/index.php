@@ -83,7 +83,7 @@ $arr = $_GET['arr'];
                 <h6 class="my-0">'.$title.'</h6>
                 <small class="text-muted">'.$quantity.'</small>
               </div>
-              <span class="text-muted">'.$total.'</span>
+              <span class="text-muted">$'.(number_format($total,2)).'</span>
             </li>');
             $ftotal = $ftotal + $total;
             $total =0;
@@ -93,7 +93,7 @@ $arr = $_GET['arr'];
               <span>Total (USD)</span>
               <strong><?php
               $ftotal = (($ftotal/100)*12)+$ftotal;
-              echo($ftotal);?></strong>
+              echo("$".number_format($ftotal,2));?></strong>
             </li>
           </ul>
 
@@ -105,7 +105,6 @@ $arr = $_GET['arr'];
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">First name</label>
-            <?php/* echo"<input type=\"text\" class=\"form-control\" id=\"firstName\" placeholder=\"'$fname'\" value=\"\" required>" */?>
             <input type="text" class="form-control" id="firstName" placeholder="" value="<?php echo(''.$fname); ?>" required>
             <input type="text" class="d-none item_id" id="total_price" name="total_price" value="<?php echo $ftotal?>">
             <input type="text" class="d-none all_items" id="all_items" name="all_items" value='<?php echo json_encode($_SESSION["shopping_cart"])?>'>

@@ -11,7 +11,8 @@
       "item_id" => $_GET["id"],
       "item_name" => $_POST["title"],
       "item_price"=> $_POST["price"],
-      "item_quantity"=> $_POST["quantity"]  
+      "item_quantity"=> $_POST["quantity"],
+      "item_av_quantity" => $_POST["av_quantity"]
     );
     $count = count($_SESSION["shopping_cart"]);
     $exists = false;
@@ -43,11 +44,12 @@
               <div class="col-4 d-flex mr-3" style="height:40px">
                 <div class="btn btn-dark" onclick="sous()">-</div>
                 <div class="form-group">
-                  <input type="text" name="quantity" class="form-control" style="width:40px" value=1 width=20 id="quantity" name="quantity">
+                  <input type="text" name="quantity" class="form-control" style="width:45px" value=1 width=20 id="quantity" name="quantity">
                 </div>
                 <input type="text" class="d-none" name="id" value="<?php echo $_GET["id"]?>">
                 <input type="text" class="d-none" name="price" value="<?php echo $row["price"]?>">
                 <input type="text" class="d-none" name="title" value="<?php echo $row["title"]?>">
+                <input type="text" id="av_quantity" class="d-none" name="av_quantity" value="<?php echo $row["quantity"]?>">
                 <div class="btn btn-dark" onclick="add()">+</div>
               </div>
             </div>
@@ -102,9 +104,13 @@
 
     <script>
       const el = document.getElementById("quantity")
+      const qty = document.querySelector("#av_quantity").value
+
       const add = ()=>{
+        if (parseInt(el.value)<qty)
         el.value= parseInt(el.value)+1
       }
+
       const sous = ()=>{
         if (parseInt(el.value)>1)el.value = parseInt(el.value)-1
       }

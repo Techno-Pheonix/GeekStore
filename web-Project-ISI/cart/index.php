@@ -43,6 +43,7 @@
                                 <h1 class="price_tag" id =<?php echo $i;?>><?php echo $item["item_price"]*$item["item_quantity"]?>$</h1>
                                 <input type="text" class="d-none item_price" name="title" value="<?php echo $item["item_price"]?>">
                                 <input type="text" class="d-none item_id" name="title" value="<?php echo $item["item_id"]?>">
+                                <input type="text" class="d-none item_av_quantity" name="item_av_quantity" value="<?php echo $item["item_av_quantity"]?>">
                                 <h5 class="text-secondary my-3"><?php echo $item["item_name"];?></h5>
                                 <div class="d-flex align-items-center justify-content-start flex-st my-4">
                                     <label or="exampleFormControlSelect1" class="mx-2">Quantity</label>
@@ -86,6 +87,7 @@
         window.onload = ()=>{
             updateTotalPrice()
         }
+
         const redirect=()=>{
             const main_el = document.querySelectorAll(".col-md-8");
             arr = []
@@ -104,6 +106,7 @@
             const el2 = document.querySelectorAll(".item_price")[id]
             el1.innerText = el2.value*el.value+"$";
         }
+
         const updateTotalPrice = ()=>{            
             let total_price = document.querySelector("#total_price")
             let items_prices = document.querySelectorAll(".price_tag")
@@ -116,21 +119,23 @@
             const final_price = document.querySelector("#Final_price")
             const tax = document.querySelector("#tax")
             final_price.innerText = "Final price : "+Math.round(parseInt(total_price.innerText)*(1+(parseInt(tax.innerText)/100)) * 100) / 100+"$"
-           
         }
+
         const add = (id)=>{
             const el = document.querySelectorAll(".quantity_btn")[id]
-            el.value= parseInt(el.value)+1
+            const qty_av = document.querySelectorAll(".item_av_quantity")[id]
+            if (parseInt(el.value)<10)el.value= parseInt(el.value)+1
             updateElem(id)
             updateTotalPrice()
-            getElements()
+
         }
+
         const sous = (id)=>{
             const el = document.querySelectorAll(".quantity_btn")[id]
             if (parseInt(el.value)>1)el.value = parseInt(el.value)-1
             updateElem(id)
             updateTotalPrice()
-            getElements()
+
         }
     </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

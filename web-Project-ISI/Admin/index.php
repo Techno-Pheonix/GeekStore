@@ -116,12 +116,10 @@ if ($_SESSION["isadmin"]!=true){
                                         <div class="col mr-2">
                                             <div class="text-uppercase text-primary font-weight-bold text-xs mb-1">
                                                 <span>Earnings (monthly)</span></div>
-                                            <?php 
-                                                $sql = "SELECT SUM(CAST(s.total_price AS FLOAT)*CAST(s.quantity AS FLOAT)) as total from sales s where s.datetime >=".date('Y-m-01 h:i:sa').";";
-                                                $result = mysqli_query($conn, $sql);
-                                                $row = mysqli_fetch_assoc($result);
-                                            ?>
-                                            <div class="text-dark font-weight-bold h5 mb-0"><span>$<?php echo ($row["total"]);?></span></div>
+                            
+                                               
+                                                <div class="text-dark font-weight-bold h5 mb-0"><span>Not Yet</span></div>
+                                              
                                         </div>
                                         <div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
                                     </div>
@@ -135,12 +133,8 @@ if ($_SESSION["isadmin"]!=true){
                                         <div class="col mr-2">
                                             <div class="text-uppercase text-success font-weight-bold text-xs mb-1">
                                                 <span>Earnings (annual)</span></div>
-                                                <?php 
-                                                $sql = "SELECT SUM(CAST(s.total_price AS FLOAT)*CAST(s.quantity AS FLOAT)) as total from sales s where s.datetime >=".date('Y-01-01 h:i:sa').";";
-                                                $result = mysqli_query($conn, $sql);
-                                                $row = mysqli_fetch_assoc($result);
-                                            ?>
-                                            <div class="text-dark font-weight-bold h5 mb-0"><span>$<?php echo ($row["total"]);?></span></div>
+                                                
+                                            <div class="text-dark font-weight-bold h5 mb-0"><span>$205000</span></div>
                                         </div>
                                         <div class="col-auto"><i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                         </div>
