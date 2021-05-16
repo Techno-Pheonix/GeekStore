@@ -9,13 +9,13 @@ if(isset($_GET['id'])){
 $id = $_GET['id'];
 $sql = "SELECT * from user where id_user = ".$id;
 $_SESSION['perm'] = " readonly=\"readonly\"";
-$_SESSION['url'] = "profile.php?id=".$id;
+$_SESSION['url'] = "Profile.php?id=".$id;
 }
 else
 {
 $sql = "SELECT * from user where id_user =".$_SESSION['user_id'];
 $_SESSION['perm'] = "";
-$_SESSION['url'] = "profile.php";
+$_SESSION['url'] = "Profile.php";
 }
 
 $query = mysqli_query($conn,$sql);
@@ -35,6 +35,8 @@ $row = mysqli_fetch_array($query);
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/rowgroup/1.1.2/css/rowGroup.dataTables.min.css">
 </head>
 
 <body id="page-top">
@@ -100,7 +102,7 @@ $row = mysqli_fetch_array($query);
                                         class="btn btn-primary bg-gradient-deepbluesky dropdown-toggle"
                                         data-toggle="dropdown" aria-expanded="false" type="button"><span
                                             class="d-none d-lg-inline mr-2 text-white-600 small"><?php echo($_SESSION['user']); ?></span><img
-                                            class="border rounded-circle img-profile"  width="60px" height="60px"
+                                            class="border rounded-circle img-profile"
                                             src="../avatars/<?php echo $_SESSION['avatar']; ?>"></button>
                                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
                                         <a class="dropdown-item" role="presentation" href="#"><i
@@ -146,45 +148,50 @@ $row = mysqli_fetch_array($query);
                         </form>
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="text-primary font-weight-bold m-0">Projects</h6>
+                                    <h6 class="text-primary font-weight-bold m-0">Purchases</h6>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="small font-weight-bold">Server migration<span
-                                            class="float-right">20%</span></h4>
-                                    <div class="progress progress-sm mb-3">
-                                        <div class="progress-bar bg-danger" aria-valuenow="20" aria-valuemin="0"
-                                            aria-valuemax="100" style="width: 20%;"><span class="sr-only">20%</span>
-                                        </div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Sales tracking<span
-                                            class="float-right">40%</span></h4>
-                                    <div class="progress progress-sm mb-3">
-                                        <div class="progress-bar bg-warning" aria-valuenow="40" aria-valuemin="0"
-                                            aria-valuemax="100" style="width: 40%;"><span class="sr-only">40%</span>
-                                        </div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Customer Database<span
-                                            class="float-right">60%</span></h4>
-                                    <div class="progress progress-sm mb-3">
-                                        <div class="progress-bar bg-primary" aria-valuenow="60" aria-valuemin="0"
-                                            aria-valuemax="100" style="width: 60%;"><span class="sr-only">60%</span>
-                                        </div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Payout Details<span
-                                            class="float-right">80%</span></h4>
-                                    <div class="progress progress-sm mb-3">
-                                        <div class="progress-bar bg-info" aria-valuenow="80" aria-valuemin="0"
-                                            aria-valuemax="100" style="width: 80%;"><span class="sr-only">80%</span>
-                                        </div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Account setup<span
-                                            class="float-right">Complete!</span></h4>
-                                    <div class="progress progress-sm mb-3">
-                                        <div class="progress-bar bg-success" aria-valuenow="100" aria-valuemin="0"
-                                            aria-valuemax="100" style="width: 100%;"><span class="sr-only">100%</span>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="table-responsive table mt-2" id="data_Table" role="grid"
+                                aria-describedby="dataTable_info">
+                                <table class="table dataTable my-0" id="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Qty</th>
+                                            <th>Command</th>
+                                            <th>Total Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+<?php 
+if(!isset($_GET['id']))
+$sql2 = "SELECT p.title as ProdName, p.picture as pic, c.id_c as idCmd, s.datetime as dte, s.total_price*s.quantity as total, s.quantity as qty from product p,sales s, commande c where p.id_p = s.id_p and s.id_c = c.id_c and c.id_user = ".$_SESSION['user_id'];
+else
+$sql2 = "SELECT p.title as ProdName, p.picture as pic, c.id_c as idCmd, s.datetime as dte, s.total_price*s.quantity as total, s.quantity as qty from product p,sales s, commande c where p.id_p = s.id_p and s.id_c = c.id_c and c.id_user = ".$_GET['id'];
+$query2 = mysqli_query($conn,$sql2);
+?>
+                                        <?php
+while ($row2 = mysqli_fetch_array($query2)) {
+    echo "<tr data-href=\"#\">";
+    echo "<td><img class=\"rounded-circle mr-2\" width=\"30\" height=\"30\" src=\"". $row2['pic'] ."\">". $row2['ProdName'] ."</td>";
+    echo "<td>" . $row2['qty'] . "</td>";
+    echo "<td>" . $row2['idCmd']." at ".$row2['dte']."</td>";
+    echo "<td>" . $row2['total'] . "</td>";
+    echo "</tr>";
+}
+?>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Qty</th>
+                                            <th>Command</th>
+                                            <th>Total Price</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
                             </div>
                         </div>
                         <div class="col-lg-8">
@@ -421,6 +428,68 @@ $row = mysqli_fetch_array($query);
     <script src="assets/js/bs-charts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
     <script src="assets/js/theme.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/rowgroup/1.1.2/js/dataTables.rowGroup.min.js"></script>
+    <script>
+        let isCommandPressed = false;
+        window.addEventListener("keydown", (event) => {
+        if (event.which === 91) {
+            isCommandPressed = true;
+        }
+        });
+
+        window.addEventListener("keyup", (event) => {
+        if (event.which === 91) {
+            isCommandPressed = false;
+        }
+        });
+        $(document).ready(function () {
+            $(document.body).on("click", "tr[data-href]", function () {
+                //window.location.href = this.dataset.href;
+                if (isCommandPressed) {
+                    window.open(this.dataset.href, "_blank");
+                    }
+                else {
+                    window.location.href = this.dataset.href;
+                    }
+            });
+        });
+        $(document).ready(function() {
+            $('#dataTable').DataTable( {
+                "pagingType": "first_last_numbers",
+                order: [[2, 'desc']],
+                rowGroup: {
+                    startRender: null,
+                    endRender: function ( rows, group ) {
+                    var salaryAvg = rows
+                    .data()
+                    .pluck(3)
+                    .reduce( function (a, b) {
+                        return a + b.replace(/[^\d]/g, '')*1;
+                    }, 0) ;
+                    salaryAvg = $.fn.dataTable.render.number(',', '.', 0, '$').display( salaryAvg );
+                    return $('<tr/>')
+                    .append( '<td colspan="2">Command Id°'+group+'</td>' )
+                    .append( '<td>'+salaryAvg+'</td>' );
+                    },
+                    dataSrc: 2
+                },
+                ordering: true,
+                "columnDefs" : [ {
+                "targets": [0,1,3], /* column index */
+                "orderable" : false, /* true or false */
+                },
+                {
+                    targets: [2],
+                    visible: false
+                }
+                ],
+                searching: false,
+                lengthMenu: [ 2, 4, 8 ]
+            } );
+        } );
+    </script>
 </body>
 
 </html>
