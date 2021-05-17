@@ -33,15 +33,15 @@
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         if ($row["quantity"]>=$quantity){
-            $sql = "UPDATE product set quantity = quantity - ".$quantity."where id_p = ".$id_p." ";
+            $sql = "UPDATE product set quantity = quantity - ".$quantity." where id_p = ".$id_p." ";
             $result = mysqli_query($conn, $sql);
         }
-
+ 
         //Insert into Commande table
         $sql = "INSERT into sales
         (`id_p`,`datetime`,`quantity`,`total_price`,`id_c`) 
         VALUES('$id_p','$datetime','$quantity','$total_price','$id_c')"; //? its a placeholder
         mysqli_query($conn, $sql);
     }
-    
+
 ?>

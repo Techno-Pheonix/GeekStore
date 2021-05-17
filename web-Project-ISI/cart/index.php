@@ -28,36 +28,37 @@
                     </div>
                 <?php endif ?>
                 <?php 
-                $i=-1;
+
                 foreach ($_SESSION["shopping_cart"] as $item):?>
                 <?php
                 $sql = "SELECT * FROM product where id_p = ".$item["item_id"]." ;";                
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);
                 ?>
-                <?php $i=$i+1;?>                    
+                 
                     <div class="prod">
                         <div class="row my-2">
                             <div class="col-md-4 center">
                                 <img src="../pictures/<?php echo $row["picture"];?>" height="220px" width="100%" style="max-width: 300px;">
                             </div>
                             <div class="col-md-8">
-                                <h1 class="price_tag" id =<?php echo $i;?>><?php echo number_format($item["item_price"]*$item["item_quantity"],2)?>$</h1>
-                                <input type="text" class="d-none item_price" name="title" value="<?php echo $item["item_price"]?>">
                                 <input type="text" class="d-none item_id" name="title" value="<?php echo $item["item_id"]?>">
                                 <input type="text" class="d-none item_av_quantity" name="item_av_quantity" value="<?php echo $item["item_av_quantity"]?>">
+                                <input type="text" class="d-none item_price" name="title" value="<?php echo $item["item_price"]?>">
+                                
+                                <h1 class="price_tag" id = "<?php echo $item["item_id"]."-price" ?>"><?php echo number_format($item["item_price"]*$item["item_quantity"],2)?>$</h1>
                                 <h5 class="text-secondary my-3"><?php echo $item["item_name"];?></h5>
                                 <div class="d-flex align-items-center justify-content-start flex-st my-4">
                                     <label or="exampleFormControlSelect1" class="mx-2">Quantity</label>
                                     <div class="col-4 d-flex mr-3" style="height:40px">
-                                        <button class="btn btn-dark" onclick="sous(this.id)" id ="<?php echo $i;?>">-</button>
+                                        <button class="btn btn-dark" onclick="sous(this.id)" id = "<?php echo $item["item_id"]."-sous" ?>">-</button>
                                         <div class="form-group">
-                                            <input type="text" name="item_quantity" class="form-control quantity_btn item_quantity"  style="width:50px" value=<?php echo $item["item_quantity"]?> width=20 id="this.id" name="quantity">
+                                            <input type="text" name="item_quantity" class="form-control quantity_btn item_quantity"  style="width:50px" value="<?php echo $item["item_quantity"]?>" width=20 id = "<?php echo $item["item_id"] ?>" name="quantity">
                                         </div>
-                                        <button class="btn btn-dark" onclick="add(this.id)" id ="<?php echo $i;?>">+</button>
+                                        <button class="btn btn-dark" onclick="add(this.id)" id = "<?php echo $item["item_id"]."-add" ?>">+</button>
                                     </div>
                                 </div> 
-                                <button class="btn btn-danger remove_btn" id ="<?php echo $i;?>" class ="remove" onclick="remove(this.id)" name="remove_btn">Remove</button>
+                                <button class="btn btn-danger remove_btn" id ="<?php echo $item["item_id"]."-remove";?>" class ="remove" onclick="remove(this.id)" name="remove_btn">Remove</button>
                             </div>
                         </div>
                         <hr>
@@ -92,7 +93,7 @@
         window.onload = ()=>{
             updateTotalPrice()
         }
-        
+
         const updateElem=(id)=>{
             const el = document.querySelectorAll(".quantity_btn")[id]
             const el1 = document.querySelectorAll(".price_tag")[id]
@@ -115,13 +116,27 @@
         }
 
         const add = (id)=>{
-            const el = document.querySelectorAll(".quantity_btn")[id]
-            const qty_av = document.querySelectorAll(".item_av_quantity")[id]
-            if (parseInt(el.value)<10)el.value= parseInt(el.value)+1
-            updateElem(id)
+            //Button clicked
+            const button_clicked = document.getElementById(id)
+            //current quantity
+            const quantity = button_clicked.parentElement.querySelector(".item_quantity")
+            //The container of product info
+            const main_container = button_clicked.parentElement.parentElement.parentElement
+            //the availabe product quantity
+            const av_qty = main_container.querySelector(".item_av_quantity")
+            //The price tag
+            const price_tag = main_container.querySelector(".price_tag")
+            //The item normal price
+            const item_price = main_container.querySelector(".item_price")
+            
+
+            
+            if (parseInt(quantity.value)<av_qty.value)quantity.value= parseInt(quantity.value)+1
+            
+            price_tag.innerText = item_price.value * quantity.value + "$"
             updateTotalPrice()
 
-            const info  = {id,quantity : el.value}
+            const info  = {id : id.substring(0,id.indexOf('-')),quantity : quantity.value}
             fetch("./update.php", {
                 method: "POST",
                 body:JSON.stringify(info)
@@ -131,16 +146,30 @@
                 }).then((res)=>{
                     console.log(res)
                 })
-
+            
         }
 
         const sous = (id)=>{
-           
-            const el = document.querySelectorAll(".quantity_btn")[id]
-            if (parseInt(el.value)>1)el.value = parseInt(el.value)-1
-            updateElem(id)
+            //Button clicked
+            const button_clicked = document.getElementById(id)
+            //current quantity
+            const quantity = button_clicked.parentElement.querySelector(".item_quantity")
+            //The container of product info
+            const main_container = button_clicked.parentElement.parentElement.parentElement
+            //the availabe product quantity
+            const av_qty = main_container.querySelector(".item_av_quantity")
+            //The price tag
+            const price_tag = main_container.querySelector(".price_tag")
+            //The item normal price
+            const item_price = main_container.querySelector(".item_price")
+            
+
+            
+            if (parseInt(quantity.value)>1)quantity.value= parseInt(quantity.value)-1
+            
+            price_tag.innerText = item_price.value * quantity.value + "$"
             updateTotalPrice()
-            const info  = {id,quantity : el.value}
+            const info  = {id : id.substring(0,id.indexOf('-')), quantity : quantity.value}
             fetch("./update.php", {
                 method: "POST",
                 body:JSON.stringify(info)
@@ -150,21 +179,24 @@
                 }).then((res)=>{
                     console.log(res)
                 })
-
         }
 
         const remove=(id)=>{
-            const info = {id}
-            const el = document.querySelectorAll(".remove_btn")[id]
-            const prod_info = el.parentElement
-            prod_info.parentElement.remove()
+            const info  = {id : id.substring(0,id.indexOf('-'))}
+            //Button clicked
+            const button_clicked = document.getElementById(id)
+            //current quantity
+            const quantity = button_clicked.parentElement.querySelector(".item_quantity")
+            //The container of product info
+            const main_container = button_clicked.parentElement.parentElement.parentElement
+            
+            main_container.remove()
             fetch("./remove.php", {
                 method: "POST",
                 body:JSON.stringify(info)
                 })
                 .then(function(result) {
-                    
-                return result.json();
+                    return result.json();
                 }).then((res)=>{
                     console.log(res)
                 })
