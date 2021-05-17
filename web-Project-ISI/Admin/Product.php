@@ -18,6 +18,8 @@ $_SESSION['url'] = "Product.php?slug=".$m;
 $sql = "SELECT * from product where slug = '$m'";
 $query = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($query);
+if($row['quantity']==-1) $deleted="(Deleted)";
+else $deleted="";
 $_SESSION['id_p'] = $row['id_p'];
 ?>
 
@@ -116,7 +118,7 @@ $_SESSION['id_p'] = $row['id_p'];
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4" style="margin-bottom: 10px;">Product</h3>
+                    <h3 class="text-dark mb-4" style="margin-bottom: 10px;">Product<?php echo($deleted);?></h3>
                         <a href="AddProduct/index.php">
                         <button
                         class="btn btn-primary bg-gradient-deepbluesky bg-gradient-deepbluesky" type="button"
