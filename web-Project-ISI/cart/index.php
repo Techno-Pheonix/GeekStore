@@ -9,8 +9,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../admin/assets/css/styles.css">
+    <link rel="stylesheet" href="../admin/assets/bootstrap/css/bootstrap2.min.css">
+    <link rel="stylesheet" href="../admin/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="../home/style.css">
     <link rel="icon" href="../pictures/fav.ico" />
     <title>Cart</title>
   </head>
@@ -20,7 +26,7 @@
     <div class="container">
         <div class="row pt-4">
             <div class="col-lg-<?php if (count($_SESSION["shopping_cart"])) echo "8"; else echo "12";?> panier-contenu mx-1 bg-light">
-                <h3 class="my-3">Mon Panier</h3>
+                <h3 class="my-3">Shopping Cart</h3>
                 <?php if (count($_SESSION["shopping_cart"]) == 0):?>
                 
                     <div class="alert alert-primary" role="alert">
