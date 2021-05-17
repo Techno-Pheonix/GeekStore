@@ -220,7 +220,7 @@
                 <p class="card-text text-secondary"><?php echo 
                 substr($row["summary"],0,40)."...";
                 for ($j = 0;$j<40-strlen(substr($row["summary"],0,40));$j++):?>
-                  <span style="opacity:0">a</span>
+                  <span style="opacity:0">c</span>
                 <?php endfor ?>
                 </p>
               </div>

@@ -35,9 +35,9 @@
                 ?>
                 <?php $i=$i+1;?>                    
                     <div class="prod">
-                        <div class="row my-2">
+                        <div classx="row my-2">
                             <div class="col-md-4 center">
-                                <img src="../picture/<?php echo $row["picture"];?>" height="220px" width="100%" style="max-width: 300px;">
+                                <img src="../pictures/<?php echo $row["picture"];?>" height="220px" width="100%" style="max-width: 300px;">
                             </div>
                             <div class="col-md-8">
                                 <h1 class="price_tag" id =<?php echo $i;?>><?php echo $item["item_price"]*$item["item_quantity"]?>$</h1>
@@ -55,6 +55,9 @@
                                         <button class="btn btn-dark" onclick="add(this.id)" id ="<?php echo $i;?>">+</button>
                                     </div>
                                 </div> 
+                                
+                                <button class="btn btn-danger remove_btn" id ="<?php echo $i;?>" class ="remove" onclick="remove(this.id)" name="remove_btn">Remove</button>
+                                
                             </div>
                         </div>
                         <hr>
@@ -137,6 +140,23 @@
             updateTotalPrice()
 
         }
+
+        const remove=(id)=>{
+            const info = {id}
+            const el = document.querySelectorAll(".remove_btn")[id]
+            const prod_info = el.parentElement
+            prod_info.parentElement.remove()
+            fetch("./remove.php", {
+                method: "POST",
+                body:JSON.stringify(info)
+                })
+                .then(function(result) {
+                    
+                return result.json();
+                }).then((res)=>{
+                    console.log(res)
+                })
+            }
     </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <?php require_once '../includes/footer.php'; ?>
