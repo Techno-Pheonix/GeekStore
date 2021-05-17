@@ -131,8 +131,10 @@ $query = mysqli_query($conn,$sql);
 ?>
                                         <?php
 while ($row = mysqli_fetch_array($query)) {
+    $deleted = "";
+    if($row['admin']==-1) $deleted = "*";
     echo "<tr data-href=\"profile.php?id=". $row['id_user']."\">";
-    echo "<td><img class=\"rounded-circle mr-2\" width=\"30\" height=\"30\" src=\"../avatars/". $row['avatar'] ."\">" . $row['first_name'] ." ". $row['last_name'] . "</td>";
+    echo "<td><img class=\"rounded-circle mr-2\" width=\"30\" height=\"30\" src=\"../avatars/". $row['avatar'] ."\">" . $row['first_name'] ." ". $row['last_name'] . $deleted . "</td>";
     echo "<td>" . $row['adress'] . "</td>";
     echo "<td>" . $row['email'] . "</td>";
     echo "<td>" . $row['registered_at'] . "</td>";
@@ -151,6 +153,7 @@ while ($row = mysqli_fetch_array($query)) {
                                         </tr>
                                     </tfoot>
                                 </table>
+                                <p>(*): Deleted</p>
                             </div>
                         </div>
                     </div>
