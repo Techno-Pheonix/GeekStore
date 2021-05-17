@@ -211,7 +211,7 @@ while ($row = mysqli_fetch_array($query)) {
         $(document).ready(function() {
             $('#dataTable').DataTable( {
                 "pagingType": "first_last_numbers",
-                order: [[3, 'dsc']],
+                order: [[3, 'desc']],
                 rowGroup: {
                     startRender: null,
                     endRender: function ( rows, group ) {
