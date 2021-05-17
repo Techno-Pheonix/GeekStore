@@ -1,7 +1,3 @@
-<?php 
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,13 +24,13 @@ session_start();
                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" name="name" class="form-control" placeholder="Your Name *" value="" />
+                            <input type="text" name="name" class="form-control" placeholder="Your Name *" />
                         </div>
                         <div class="form-group">
-                            <input type="text" name="email" class="form-control" placeholder="Your Email *" value="" />
+                            <input type="text" name="email" class="form-control" placeholder="Your Email *" />
                         </div>
                         <div class="form-group">
-                            <input type="text" name="phone" class="form-control" placeholder="Your Phone Number *" value="" />
+                            <input type="text" name="phone" class="form-control" placeholder="Your Phone Number *"  />
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -44,8 +40,8 @@ session_start();
                     </div>
                 </div>
                 <div class="form-group">
-                        <button type="submit" class="btn btn-outline-primary">Send message</button>
-                        </div>
+                    <button type="submit" name="submit" class="btn btn-outline-primary">Send message</button>
+                </div>
             </form>
 </div>
 
