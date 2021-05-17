@@ -1,11 +1,11 @@
 <?php
 if ($_SESSION['isadmin']==true){
   $account = "Admin Panel";
-  $link = "/admin";
+  $link = "../admin";
 }
 else {
   $account = "My Account";
-  $link = "/profile";
+  $link = "../profile";
 }
 ?>
 <div >
@@ -15,16 +15,16 @@ else {
           <div class="col-6 col-md">
             <h5>Products</h5>
             <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">Trending</a></li>
-              <li><a class="text-muted" href="#">Best Seller</a></li>
-              <li><a class="text-muted" href="#">Discounts</a></li>
+              <li><a class="text-muted" href="../">Trending</a></li>
+              <li><a class="text-muted" href="../">Best Seller</a></li>
+              <li><a class="text-muted" href="../">Discounts</a></li>
             </ul>
           </div>
           <div class="col-6 col-md">
             <h5>User</h5>
             <ul class="list-unstyled text-small">
               <li><a class="text-muted" href=<?php echo("$link"); ?>><?php echo($account); ?></a></li>
-              <li><a class="text-muted" href="/faq">FAQ</a></li>
+              <li><a class="text-muted" href="../faq">FAQ</a></li>
               <li><a class="text-muted" href="../terms">Terms and conditions</a></li>
             </ul>
           </div>
