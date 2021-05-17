@@ -1,6 +1,6 @@
   <?php require_once "../includes/header.php"; ?>
     <link rel="stylesheet" href="style.css">
-    <title>Hello, world!</title>
+    <title>Geek Store - Product</title>
   </head>
   <body>
     
