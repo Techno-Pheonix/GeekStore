@@ -35,7 +35,7 @@
                 ?>
                 <?php $i=$i+1;?>                    
                     <div class="prod">
-                        <div classx="row my-2">
+                        <div class="row my-2">
                             <div class="col-md-4 center">
                                 <img src="../pictures/<?php echo $row["picture"];?>" height="220px" width="100%" style="max-width: 300px;">
                             </div>
@@ -55,7 +55,6 @@
                                         <button class="btn btn-dark" onclick="add(this.id)" id ="<?php echo $i;?>">+</button>
                                     </div>
                                 </div> 
-                                
                                 <button class="btn btn-danger remove_btn" id ="<?php echo $i;?>" class ="remove" onclick="remove(this.id)" name="remove_btn">Remove</button>
                                 
                             </div>
@@ -156,7 +155,7 @@
                 }).then((res)=>{
                     console.log(res)
                 })
-            }
+        }
     </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <?php require_once '../includes/footer.php'; ?>
