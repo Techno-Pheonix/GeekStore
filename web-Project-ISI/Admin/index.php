@@ -223,7 +223,7 @@ require_once 'includes/dbh.inc.php';
                                 <div class="card-body">
                                     <canvas id="myChart"></canvas>
                                     <input type="text" class="d-none" value="<?php 
-                                    $sql = "SELECT count(*) as nb ,datetime from sales as s where DATE_FORMAT(datetime, \"%Y-%m\") <= \"".date("Y-m")."\" GROUP BY MONTH(datetime) DESC;" ;
+                                    $sql = "SELECT count(*) as nb ,datetime from sales as s where DATE_FORMAT(datetime, \"%Y-%m\") <= \"".date("Y-m")."\" GROUP BY MONTH(datetime) DESC LIMIT 6;" ;
                                     $result = mysqli_query($conn, $sql);
                                     while($row = mysqli_fetch_assoc($result)){
                                         echo $row["nb"]." ";
@@ -285,9 +285,6 @@ require_once 'includes/dbh.inc.php';
         labels.push(tab[i+1])
         data_set.push(tab[i])
     }
-console.log(labels)
-console.log(data_set)    
-
     
         
 
