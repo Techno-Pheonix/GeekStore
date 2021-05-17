@@ -20,8 +20,8 @@ session_start();
     <div class="title text-center mt-4">
     <h1>Contact Us</h1>
     </div>
-    <div class="container contact-form">
-            <form action="send.php" method="post">
+    <div class="container contact-form form">
+            <form  action="send.php" method="post">
                 <div class="shy text-center mb-4">
                 <h3 class="t1">Don't be shy, Drop Us a Message</h3>
                 </div>
@@ -44,7 +44,7 @@ session_start();
                     </div>
                 </div>
                 <div class="form-group">
-                        <button name="submit" type="submit" class="btn btn-outline-primary">Send message</button>
+                        <button name="submit" type="submit" class="btn btn-primary btn-block mt-4">Send message</button>
                         </div>
             </form>
 </div>
