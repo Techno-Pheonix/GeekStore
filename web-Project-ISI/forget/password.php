@@ -127,7 +127,7 @@ $sql="select * from user where email = '$x'";
 <?php endif ?>
 <script>
 function test(){
-    window.location.href = '../signin';
+    window.location.href = '../signin/index.php';
 }
 <?php require_once "../includes/footer.php";?> 
 
