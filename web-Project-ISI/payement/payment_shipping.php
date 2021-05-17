@@ -43,4 +43,5 @@
         VALUES('$id_p','$datetime','$quantity','$total_price','$id_c')"; //? its a placeholder
         mysqli_query($conn, $sql);
     }
+    
 ?>
