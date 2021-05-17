@@ -28,18 +28,18 @@ session_start();
                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" name="txtName" class="form-control" placeholder="Your Name *" value="" />
+                            <input type="text" name="name" class="form-control" placeholder="Your Name *" value="" />
                         </div>
                         <div class="form-group">
-                            <input type="text" name="txtEmail" class="form-control" placeholder="Your Email *" value="" />
+                            <input type="text" name="email" class="form-control" placeholder="Your Email *" value="" />
                         </div>
                         <div class="form-group">
-                            <input type="text" name="txtPhone" class="form-control" placeholder="Your Phone Number *" value="" />
+                            <input type="text" name="phone" class="form-control" placeholder="Your Phone Number *" value="" />
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <textarea name="txtMsg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
+                            <textarea name="msg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
                         </div>
                     </div>
                 </div>
@@ -48,6 +48,54 @@ session_start();
                         </div>
             </form>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLongTitle">Error</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <?php
+                            $mtotal="";
+                            if (isset($_GET["error"])){
+                                if ($_GET["error"] == "emptyinput"){
+                                    $mtotal = "There are empty fields !";
+                                }
+
+                                else if ($_GET["error"] == "incorrectpwd"){
+                                    $mtotal = "Incorrect password !";
+                                   
+                                }
+
+                                else if ($_GET["error"] == "emaildont"){
+                                    $mtotal = "Email doesn't exist !";
+        
+                                }
+
+
+                            }
+                            echo('<h4>'.$mtotal.'</h4>');
+                            ?>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<?php if (isset($_GET["error"])): ?>
+<script>
+    window.onload = function(){
+    document.getElementById('a').click();
+}
+</script>
+<?php endif ?>
 
 </body>
 <script src="../admin/assets/js/theme.js"></script>
