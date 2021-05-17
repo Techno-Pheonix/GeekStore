@@ -138,18 +138,19 @@
                 }else if (isset($_GET["search"])){
                   //Get Items Count
                   $sql1 = "SELECT DISTINCT count(*) as nb from product 
-                  where slug = %".mysqli_real_escape_string($conn,$_GET["search"])."%
-                  or title = %".mysqli_real_escape_string($conn,$_GET["search"])."%
+                  where slug LIKE '%".mysqli_real_escape_string($conn,$_GET["search"])."%'
+                  or title LIKE ' %".mysqli_real_escape_string($conn,$_GET["search"])."%'
                   ;";
+                  
                   $result1 = mysqli_query($conn, $sql1);
                   $row1 = mysqli_fetch_assoc($result1);
                   $num_of_res = $row1["nb"];
 
                   //Actual query
-                  $sql = "SELECT DISTINCT * from product 
+                  $sql ="SELECT DISTINCT * from product 
                   where slug LIKE '%".mysqli_real_escape_string($conn,$_GET["search"])."%'
-                  or title LIKE '%".mysqli_real_escape_string($conn,$_GET["search"])."%'
-                  LIMIT ".$this_page." , ".$number_per_page." ;";
+                  or title LIKE'%".mysqli_real_escape_string($conn,$_GET["search"])."%'
+                  LIMIT ".$this_page." , ".$number_per_page." ;"; 
                 }
                 $result = mysqli_query($conn, $sql);
                 $resultNums = mysqli_num_rows($result);
