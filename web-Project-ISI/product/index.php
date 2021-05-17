@@ -31,7 +31,7 @@
     }
   }
   ?>
-  <?php 
+  <?php
     $sql = "SELECT * FROM product where id_p = ".$_GET["id"].";";
     $result = mysqli_query($conn, $sql);
     ?>
@@ -82,7 +82,7 @@
       </h1>
       <div class="other-items my-4 row gx-3">
                 <?php 
-                $sql = "SELECT * FROM sub_category, product as p where p.id_cat = sub_category.id_sub and  p.id_p <> ".$_GET["id"]." LIMIT 3;";                
+                $sql = "SELECT * FROM sub_category, product as p where p.id_cat = sub_category.id_sub and p.quantity>0 and p.id_p <> ".$_GET["id"]." LIMIT 3;";                
                 $result = mysqli_query($conn, $sql);
                 ?>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>

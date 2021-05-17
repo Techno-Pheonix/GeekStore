@@ -1,13 +1,12 @@
 
 <?php
-session_start();
+  session_start();
   if ($_SESSION["loggedin"]!=true){
       $_SESSION["sign-to-cart"] = true;
       header("location:../signin");
     }
     $count = count($_SESSION["shopping_cart"]);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,6 +31,9 @@ session_start();
 
 <body>
 <?php require_once '../includes/navbar.php'; ?>
+
+
+
 
 <?php if (count($_SESSION["shopping_cart"])):?> 
 
@@ -65,7 +67,10 @@ $address = $row["adress"];
         <?php
         $total=0;
         $ftotal=0;
-          for ($i = 0 ;$i<$count;$i++){
+          
+
+        for ($i = 0 ;$i<$count;$i++){
+            
             $title = $_SESSION["shopping_cart"][$i]["item_name"];
             $quantity = "Quantity : ".$_SESSION["shopping_cart"][$i]["item_quantity"];
             $quant = $_SESSION["shopping_cart"][$i]["item_quantity"];
