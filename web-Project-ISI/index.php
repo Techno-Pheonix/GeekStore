@@ -226,7 +226,7 @@
               </div>
               <div class="card-body">
                   <a href="./product?id=<?php echo $row["id_p"];?>" class="btn btn-primary mr-4">Buy</a>
-                  <a><?php echo $row["price"];?>$</a>
+                  <a><?php echo number_format($row["price"],2) ?>$</a>
               </div>
             </div>
           </div>

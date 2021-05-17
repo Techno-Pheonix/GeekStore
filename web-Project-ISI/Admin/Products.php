@@ -144,7 +144,7 @@ $query = mysqli_query($conn,$sql);
                                         <?php
 while ($row = mysqli_fetch_array($query)) {
     $deleted = "";
-    if($row['quantity']==-1) $deleted = "*";
+    if($row['Qty']==-1) $deleted = "*";
     echo "<tr data-href=\"Product.php?slug=".$row['slug']."\">";
     echo "<td><img class=\"rounded-circle mr-2\" width=\"30\" height=\"30\" src=\"../pictures/". $row['pic'] ."\">". $row['ProdName'] . $deleted ."</td>";
     echo "<td>" . $row['ID'] . "</td>";
