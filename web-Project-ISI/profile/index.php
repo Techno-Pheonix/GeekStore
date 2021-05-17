@@ -1,5 +1,17 @@
 <?php 
 session_start();
+require_once '../admin/includes/dbh.inc.php';
+if(isset($_GET['id'])){
+$id = $_GET['id'];
+$sql = "SELECT * from user where id_user = ".$id;
+$_SESSION['url'] = "index.php?id=".$id;
+}
+else
+{
+$sql = "SELECT * from user where id_user =".$_SESSION['user_id'];
+$_SESSION['perm'] = "";
+$_SESSION['url'] = "index.php";
+}
 ?>
 
 
@@ -48,7 +60,7 @@ $password = $row["password"];
                     </div>
                     <div class="row mb-3">
                         <div class="col-lg-4">
-                        <form action="Update_profile.php" method="post" enctype="multipart/form-data">
+                        <form action="update.php" method="post" enctype="multipart/form-data">
                             <div class="card mb-3">
                                 <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4"
                                         src="../avatars/<?php echo($row['avatar']);?>" width="160" height="160">
@@ -67,7 +79,7 @@ $password = $row["password"];
                         </form>
                         
                         <div class="delete mt-4 d-flex justify-content-center">
-                        <a  href="<?php echo($_SESSION['url']); ?>&confirm=true">
+                        <a  href="<?php echo($_SESSION['url']); ?>?confirm=true">
                         <button
                         class="btn btn-primary bg-gradient-deepbluesky bg-gradient-deepbluesky" type="button"
                         style="margin-bottom: 15px;">Delete User</button></a>
@@ -114,7 +126,7 @@ $password = $row["password"];
                                             <p class="text-primary m-0 font-weight-bold">User Settings</p>
                                         </div>
                                         <div class="card-body">
-                                            <form action="Update_profile.php" method="post">
+                                            <form action="update.php" method="post">
                                                 <div class="form-row">
                                                     <?php
                                                     echo    "<div class=\"col\">"."
@@ -136,7 +148,7 @@ $password = $row["password"];
                                                 echo "<div class=\"form-group\">";
                                                 echo "<label
                                                         for=\"email\"><strong>Password</strong></label><input
-                                                        class=\"form-control\" type=\"password\" value=\"".$row['password']. "\" placeholder=\"".$row['password'].
+                                                        class=\"form-control\" type=\"password\" placeholder=\"".$row['password'].
                                                         "\"name=\"password\">
                                                 </div>";
                                                 ?>
@@ -152,7 +164,7 @@ $password = $row["password"];
                                             <p class="text-primary m-0 font-weight-bold">Contact Settings</p>
                                         </div>
                                         <div class="card-body">
-                                            <form action="Update_profile.php" method="post">
+                                            <form action="update.php" method="post">
                                                 <?php 
                                                 echo "<div class=\"form-group\">";
                                                 echo "<label
@@ -191,6 +203,102 @@ $password = $row["password"];
                 </div>
 
 </div>
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLongTitle">Error</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <?php
+                            $mtotal="";
+                            if (isset($_GET["error"])){
+                                if ($_GET["error"] == "emptyinput"){
+                                    $mtotal = "There are empty fields !";
+                                }
+
+                                else if ($_GET["error"] == "invalidemail"){
+                                    $mtotal = "invalid email : try foulen@exemple.com";
+                                }
+                                if ($_GET["error"] == "format"){
+                                    $mtotal = "Only JPG, JPEG, PNG & GIF files are allowed !";
+                                }
+                                if ($_GET["error"] == "file"){
+                                    $mtotal = "Image already exists !";
+                                }
+                                
+                            }
+                            if (isset($_GET["res"])){
+                                if ($_GET["res"] == "success"){
+                                    $mtotal = "Profile updated successfully !";
+                                }
+                                else if ($_GET["res"] == "failure"){
+                                    $mtotal = "Profile failed to update !";
+                                }
+                                if ($_GET["res"] == "success2"){
+                                    $mtotal = "Image already exists, path changed successfully!";
+                                }
+                                if ($_GET["res"] == "failure2"){
+                                    $mtotal = "Image failed to upload !";
+                                }
+                                if ($_GET["res"] == "failure3"){
+                                    $mtotal = $_SESSION['upload'];
+                                }
+                                
+                            }
+                            if (isset($_GET["confirm"])){
+                                if ($_GET["confirm"] == "true"){
+                                    $mtotal = "Profile about to be deleted, are you sure ?";
+                                }                            
+                            } 
+                            
+                            echo('<h4>'.$mtotal.'</h4>');
+                            ?>
+
+
+      </div>
+      <div class="modal-footer">
+                        <a class="btn btn-secondary"  <?php if(!($_GET['confirm'] == true)) echo('data-dismiss="modal"'); ?> href="<?php if($_GET['confirm'] == true) echo "delete.php?id=".$id;
+                                            else echo('#');?>"><?php
+                            if($_GET['confirm'] == true) echo "Confirm";
+                            else echo('Close');
+                             ?>
+                             </a>
+                             <?php if($_GET['confirm'] == true){
+                                 echo "<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>";
+                             } ?>                        </div>
+    </div>
+  </div>
+</div>
+<?php if (isset($_GET["error"])): ?>
+    <script>
+        window.onload = function () {
+            document.getElementById('a').click();
+        }
+    </script>
+    <?php endif ?>
+    <?php if (isset($_GET["res"])): ?>
+    <script>
+        window.onload = function () {
+            document.getElementById('a').click();
+        }
+    </script>
+    <?php endif ?>
+    <?php if (isset($_GET["confirm"])): ?>
+    <script>
+        window.onload = function () {
+            document.getElementById('a').click();
+        }
+    </script>
+    <?php endif ?>
+    <button id="a" type="button" class="btn btn-primary"
+                style="background-color:transparent;border-color:transparent;box-shadow: 10px 10px 10px rgba(0, 0, 0, 0);"
+                data-toggle="modal" data-target="#exampleModalLong">
+            </button>
 
 <?php require_once '../includes/footer.php'; ?>
 </body>

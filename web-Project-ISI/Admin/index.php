@@ -87,7 +87,7 @@ require_once 'includes/dbh.inc.php';
                                         class="btn btn-primary bg-gradient-deepbluesky dropdown-toggle"
                                         data-toggle="dropdown" aria-expanded="false" type="button"><span
                                             class="d-none d-lg-inline mr-2 text-white-600 small"><?php echo($_SESSION['user']); ?></span><img
-                                            class="border rounded-circle img-profile"
+                                            class="border rounded-circle img-profile" width="60px" height="60px"
                                             src="../avatars/<?php echo $_SESSION['avatar']; ?>"></button>
                                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
                                         <a class="dropdown-item" role="presentation" href="#"><i
@@ -160,19 +160,13 @@ require_once 'includes/dbh.inc.php';
                                     <div class="row align-items-center no-gutters">
                                         <div class="col mr-2">
                                             <div class="text-uppercase text-info font-weight-bold text-xs mb-1">
-                                                <span>Tasks</span></div>
+                                                <span>Visitors (Today)</span></div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
                                                     <div class="text-dark font-weight-bold h5 mb-0 mr-3">
-                                                        <span>50%</span></div>
+                                                       <div class="visitor-count"> <?php include "../counter.php"; ?> </div></div>
                                                 </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm">
-                                                        <div class="progress-bar bg-info" aria-valuenow="50"
-                                                            aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
-                                                            <span class="sr-only">50%</span></div>
-                                                    </div>
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-auto"><i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
