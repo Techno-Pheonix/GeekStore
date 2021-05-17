@@ -21,7 +21,7 @@
 
 
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 <?php include "includes/dbh.inc.php";
   session_start(); 
   if (!isset($_SESSION["shopping_cart"])){

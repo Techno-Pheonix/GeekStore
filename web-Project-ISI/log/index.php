@@ -5,7 +5,7 @@ require_once "../includes/header.php"; ?>
     <link rel="stylesheet" href="https://cdn.datatables.net/rowgroup/1.1.2/css/rowGroup.dataTables.min.css">
     <title>Geek Store - Log</title>
   </head>
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     
 <?php require_once "../includes/navbar.php"; ?>
 <div class="container-fluid">

@@ -20,7 +20,7 @@
     <link rel="icon" href="../pictures/fav.ico" />
     <title>Cart</title>
   </head>
-  <body>
+  <body class="d-flex flex-column min-vh-100">
   <?php require_once "../includes/navbar.php"; ?>
 
     <div class="container">

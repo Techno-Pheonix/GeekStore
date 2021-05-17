@@ -30,7 +30,7 @@
   <title>Shipment</title>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 <?php include "../includes/dbh.inc.php";
   if (!isset($_SESSION["shopping_cart"])){
     $_SESSION["shopping_cart"] = array();
