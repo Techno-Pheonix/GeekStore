@@ -1,8 +1,11 @@
-<?php session_start();
-require_once "../includes/dbh.inc.php";
-if ($_SESSION["isadmin"]!=true){
-    header("location:../admin/login.php");
+<?php
+session_start();
+if ($_SESSION['isadmin'] == false){
+    header("location:login.php");
+    exit();
 }
+require_once 'includes/dbh.inc.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -84,7 +87,7 @@ if ($_SESSION["isadmin"]!=true){
                                         class="btn btn-primary bg-gradient-deepbluesky dropdown-toggle"
                                         data-toggle="dropdown" aria-expanded="false" type="button"><span
                                             class="d-none d-lg-inline mr-2 text-white-600 small"><?php echo($_SESSION['user']); ?></span><img
-                                            class="border rounded-circle img-profile" width="60px" height="60px"
+                                            class="border rounded-circle img-profile"
                                             src="../avatars/<?php echo $_SESSION['avatar']; ?>"></button>
                                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
                                         <a class="dropdown-item" role="presentation" href="#"><i
@@ -117,11 +120,14 @@ if ($_SESSION["isadmin"]!=true){
                                     <div class="row align-items-center no-gutters">
                                         <div class="col mr-2">
                                             <div class="text-uppercase text-primary font-weight-bold text-xs mb-1">
-                                                <span>Earnings (monthly)</span></div>
-                            
-                                               
-                                                <div class="text-dark font-weight-bold h5 mb-0"><span>Not Yet</span></div>
-                                              
+                                                <span>Earnings (this month)</span></div>
+                                            <div class="text-dark font-weight-bold h5 mb-0"><span>$<?php
+                                            $sql1 = "SELECT SUM(quantity*total_price) as thismonth from sales where MONTH(datetime) = MONTH(CURRENT_DATE())
+                                            AND YEAR(datetime) = YEAR(CURRENT_DATE())";
+                                            $query = mysqli_query($conn,$sql1);
+                                            $row = mysqli_fetch_assoc($query);
+                                            echo($row['thismonth']);
+                                            ?></span></div>
                                         </div>
                                         <div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
                                     </div>
@@ -135,8 +141,12 @@ if ($_SESSION["isadmin"]!=true){
                                         <div class="col mr-2">
                                             <div class="text-uppercase text-success font-weight-bold text-xs mb-1">
                                                 <span>Earnings (annual)</span></div>
-                                                
-                                            <div class="text-dark font-weight-bold h5 mb-0"><span>$205000</span></div>
+                                            <div class="text-dark font-weight-bold h5 mb-0"><span>$<?php
+                                            $sql1 = "SELECT SUM(quantity*total_price) as thismonth from sales where YEAR(datetime) = YEAR(CURRENT_DATE())";
+                                            $query = mysqli_query($conn,$sql1);
+                                            $row = mysqli_fetch_assoc($query);
+                                            echo($row['thismonth']);
+                                            ?></span></div>
                                         </div>
                                         <div class="col-auto"><i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                         </div>
@@ -177,8 +187,19 @@ if ($_SESSION["isadmin"]!=true){
                                     <div class="row align-items-center no-gutters">
                                         <div class="col mr-2">
                                             <div class="text-uppercase text-warning font-weight-bold text-xs mb-1">
-                                                <span>Pending Requests</span></div>
-                                            <div class="text-dark font-weight-bold h5 mb-0"><span>18</span></div>
+                                                <span>Sales today</span></div>
+                                            <div class="text-dark font-weight-bold h5 mb-0"><span><?php 
+                                            $sql4 = "CREATE VIEW view1 AS
+                                            SELECT DISTINCT c.id_c from sales s, commande c where MONTH(s.datetime) = MONTH(CURRENT_DATE()) AND YEAR(datetime) = YEAR(CURRENT_DATE()) AND DAY(s.datetime) = DAY(CURRENT_DATE()) AND s.id_c = c.id_c;
+                                            ";
+                                            $query = mysqli_query($conn,$sql4);
+                                            $sql5 = "SELECT count(*) as today from view1;";
+                                            $query = mysqli_query($conn,$sql5);
+                                            $row = mysqli_fetch_assoc($query);
+                                            echo($row['today']);
+                                            $sql6 = "DROP VIEW view1;";
+                                            $query = mysqli_query($conn,$sql5);
+                                            ?></span></div>
                                         </div>
                                         <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div>
                                     </div>
@@ -207,7 +228,8 @@ if ($_SESSION["isadmin"]!=true){
                                 </div>
                                 <div class="card-body">
                                     <div class="chart-area"><canvas
-                                            data-bs-chart="{&quot;type&quot;:&quot;line&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Aug&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Earnings&quot;,&quot;fill&quot;:true,&quot;data&quot;:[&quot;0&quot;,&quot;10000&quot;,&quot;5000&quot;,&quot;15000&quot;,&quot;10000&quot;,&quot;20000&quot;,&quot;15000&quot;,&quot;25000&quot;],&quot;backgroundColor&quot;:&quot;rgba(78, 115, 223, 0.05)&quot;,&quot;borderColor&quot;:&quot;rgba(78, 115, 223, 1)&quot;}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false},&quot;title&quot;:{},&quot;scales&quot;:{&quot;xAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;],&quot;drawOnChartArea&quot;:false},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;padding&quot;:20}}],&quot;yAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;]},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;padding&quot;:20}}]}}}"></canvas>
+                                            data-bs-chart="{&quot;type&quot;:&quot;line&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Aug&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Earnings&quot;,&quot;fill&quot;:true,&quot;data&quot;:[&quot;0&quot;,&quot;1000&quot;,&quot;500&quot;,&quot;1500&quot;,&quot;1000&quot;,&quot;2000&quot;,&quot;1500&quot;,&quot;2500&quot;],&quot;backgroundColor&quot;:&quot;rgba(78, 115, 223, 0.05)&quot;,&quot;borderColor&quot;:&quot;rgba(78, 115, 223, 1)&quot;}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false},&quot;title&quot;:{},&quot;scales&quot;:{&quot;xAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;],&quot;drawOnChartArea&quot;:false},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;padding&quot;:20}}],&quot;yAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;]},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;padding&quot;:20}}]}}}">
+                                            </canvas>
                                     </div>
                                 </div>
                             </div>
@@ -248,7 +270,7 @@ if ($_SESSION["isadmin"]!=true){
             </div>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2019</span></div>
+                    <div class="text-center my-auto copyright"><span>Copyright © GEEK Store 2021</span></div>
                 </div>
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
