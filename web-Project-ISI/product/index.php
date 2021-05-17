@@ -104,6 +104,7 @@
                 <?php endwhile ?>   
       </div>
     </div>
+    <?php require_once "../includes/footer.php" ?>
 
     <script>
       const el = document.getElementById("quantity")
