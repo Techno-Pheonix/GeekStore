@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="admin/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="icon" href="pictures/fav.ico" />
+    <link rel="icon" href="pictures/fav.ico"/>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -106,7 +106,7 @@
               ?>
           <a class="dropdown-item" role="presentation" href="cart"><i
               class="fas fa-shopping-cart fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Shopping Cart</a>
-          <a class="dropdown-item" role="presentation" href="#"><i
+          <a class="dropdown-item" role="presentation" href="log"><i
               class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Purchase
             log</a>
           <?php 

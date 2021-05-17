@@ -9,7 +9,8 @@ require_once "../includes/header.php"; ?>
     
 <?php require_once "../includes/navbar.php"; ?>
 <div class="container-fluid">
-                    <h3 class="text-dark mb-4">Purchases</h3>
+                    <div class="title text-center mt-4">
+                    <h3 class="text-dark mb-4">Purchases</h3></div>
                     <div class="card shadow">
                         <div class="card-header py-3">
                             <p class="text-primary m-0 font-weight-bold">Purchase Info</p>
