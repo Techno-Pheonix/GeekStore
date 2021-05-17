@@ -139,7 +139,7 @@
             
             if (parseInt(quantity.value)<av_qty.value)quantity.value= parseInt(quantity.value)+1
             
-            price_tag.innerText = item_price.value * quantity.value + "$"
+            price_tag.innerText = (item_price.value * quantity.value).toFixed(2) + "$"
             updateTotalPrice()
 
             const info  = {id : id.substring(0,id.indexOf('-')),quantity : quantity.value}
@@ -173,7 +173,7 @@
             
             if (parseInt(quantity.value)>1)quantity.value= parseInt(quantity.value)-1
             
-            price_tag.innerText = item_price.value * quantity.value + "$"
+            price_tag.innerText = (item_price.value * quantity.value).toFixed(2) + "$"
             updateTotalPrice()
             const info  = {id : id.substring(0,id.indexOf('-')), quantity : quantity.value}
             fetch("./update.php", {

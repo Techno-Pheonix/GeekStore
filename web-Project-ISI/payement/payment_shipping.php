@@ -35,6 +35,8 @@
         if ($row["quantity"]>=$quantity){
             $sql = "UPDATE product set quantity = quantity - ".$quantity." where id_p = ".$id_p;
             $result = mysqli_query($conn, $sql);
+        }else{
+            header("location:./error.php?msg=Items Not available In Stock");
         }
  
         //Insert into Commande table

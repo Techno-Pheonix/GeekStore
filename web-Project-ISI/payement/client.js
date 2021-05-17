@@ -166,25 +166,18 @@ const payOnShipping = ()=>{
 
 const fn =()=>{
   const shipping_from = document.getElementById("shipping-from")
-  
-  
   const credit_form = document.getElementById("credit-from")
-
   shipping_from.classList.toggle("d-none")
   credit_form.classList.toggle("d-none")
 
   if ($("input[type='radio'][name='paymentMethod']:checked").val() === "Credit"){
-    console.log("credit")
     payWithCreditCard()
   }else{
-    console.log("ship")
-
     payOnShipping()
   }
 }
 
-
-payWithCreditCard()
 $('input[name="paymentMethod"]').on("click", function(e){
   fn()
 })
+

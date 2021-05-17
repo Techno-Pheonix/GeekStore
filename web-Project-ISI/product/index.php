@@ -32,8 +32,6 @@
   }
   ?>
   <?php 
-
-  var_dump($_SESSION["shopping_cart"]);
     $sql = "SELECT * FROM product where id_p = ".$_GET["id"].";";
     $result = mysqli_query($conn, $sql);
     ?>

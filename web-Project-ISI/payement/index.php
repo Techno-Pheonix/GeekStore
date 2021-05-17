@@ -1,4 +1,13 @@
 
+<?php
+session_start();
+  if ($_SESSION["loggedin"]!=true){
+      $_SESSION["sign-to-cart"] = true;
+      header("location:../signin");
+    }
+    $count = count($_SESSION["shopping_cart"]);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +25,6 @@
     <link href="form-validation.css" rel="stylesheet">
     <script src="https://js.stripe.com/v3/"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
-    
     <link rel="icon" href="../pictures/fav.ico" /> 
     <link rel="stylesheet" href="global.css" />
   <title>Shipment</title>
@@ -24,14 +32,6 @@
 
 <body>
 <?php require_once '../includes/navbar.php'; ?>
-
-<?php 
-    $count = count($_SESSION["shopping_cart"]);
-    if ($_SESSION["loggedin"]!=true){
-      $_SESSION["sign-to-cart"] = true;
-      header("location:../signin");
-    }
-?>
 
 <?php if (count($_SESSION["shopping_cart"])):?> 
 
@@ -83,7 +83,7 @@ $address = $row["adress"];
             $total =0;
           }
        ?>
-       <li class="list-group-item d-flex justify-content-between">
+            <li class="list-group-item d-flex justify-content-between">
               <span>Total (USD)</span>
               <strong><?php
               $ftotal = (($ftotal/100)*12)+$ftotal;
@@ -175,7 +175,7 @@ $address = $row["adress"];
 
         <div class="d-block my-3">
           <div class="custom-control custom-radio">
-            <input id="credit" name="paymentMethod"value="Credit"  type="radio" class="custom-control-input" checked required>
+            <input id="credit" name="paymentMethod" value="Credit" type="radio" class="custom-control-input" checked required>
             <label class="custom-control-label" for="credit">Credit card</label>
           </div>
           <div class="custom-control custom-radio">
