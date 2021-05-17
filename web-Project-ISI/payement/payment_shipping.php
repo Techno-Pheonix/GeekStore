@@ -33,9 +33,7 @@
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         if ($row["quantity"]>=$quantity){
-
             $sql = "UPDATE product set quantity = quantity - ".$quantity." where id_p = ".$id_p;
-
             $result = mysqli_query($conn, $sql);
         }
  
@@ -45,5 +43,6 @@
         VALUES('$id_p','$datetime','$quantity','$total_price','$id_c')"; //? its a placeholder
         mysqli_query($conn, $sql);
     }
+    header("location:./sucess.php");
 
 ?>
