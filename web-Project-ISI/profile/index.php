@@ -28,6 +28,15 @@ session_start();
 <?php 
 $id = $_SESSION['user_id'];
 $sql = "select * from user where id_user = $id";
+$query = mysqli_query($conn,$sql);
+$row = mysqli_fetch_array($query);
+
+$fname = $row["first_name"];
+$lname = $row["last_name"];
+$email = $row["email"];
+$address = $row["adress"];
+$phone = $row["phone"];
+$password = $row["password"];
 
 ?>
 
@@ -111,14 +120,14 @@ $sql = "select * from user where id_user = $id";
                                                     echo    "<div class=\"col\">"."
                                                         <div class=\"form-group\"><label for=\"first_name\"><strong>First
                                                                     Name</strong></label><input class=\"form-control\"
-                                                                type=\"text\" placeholder=\"".$row['first_name']."\" name=\"first_name\"".$_SESSION['perm']."></div>
+                                                                type=\"text\" value=\"".$row['first_name']. "\" placeholder=\"".$row['first_name']."\" name=\"first_name\"></div>
                                                     </div>";
                                                     ?>
                                                     <?php
                                                     echo    "<div class=\"col\">"."
                                                         <div class=\"form-group\"><label for=\"last_name\"><strong>Last
                                                                     Name</strong></label><input class=\"form-control\"
-                                                                type=\"text\" placeholder=\"".$row['last_name']."\" name=\"last_name\"".$_SESSION['perm']."></div>
+                                                                type=\"text\" value=\"".$row['last_name']. "\" placeholder=\"".$row['last_name']."\" name=\"last_name\"></div>
                                                     </div>";
                                                     ?>
 
@@ -127,8 +136,8 @@ $sql = "select * from user where id_user = $id";
                                                 echo "<div class=\"form-group\">";
                                                 echo "<label
                                                         for=\"email\"><strong>Password</strong></label><input
-                                                        class=\"form-control\" type=\"password\"placeholder=\"".$row['password'].
-                                                        "\"name=\"password\"".$_SESSION['perm'].">
+                                                        class=\"form-control\" type=\"password\" value=\"".$row['password']. "\" placeholder=\"".$row['password'].
+                                                        "\"name=\"password\">
                                                 </div>";
                                                 ?>
 
@@ -148,8 +157,8 @@ $sql = "select * from user where id_user = $id";
                                                 echo "<div class=\"form-group\">";
                                                 echo "<label
                                                         for=\"email\"><strong>E-mail Address</strong></label><input
-                                                        class=\"form-control\" type=\"text\"placeholder=\"".$row['email'].
-                                                        "\"name=\"email\"".$_SESSION['perm'].">
+                                                        class=\"form-control\" type=\"text\" value=\"".$row['email']. "\" placeholder=\"".$row['email'].
+                                                        "\"name=\"email\">
                                                 </div>";
                                                 ?>
                                                 <div class="form-row">
@@ -157,15 +166,15 @@ $sql = "select * from user where id_user = $id";
                                                     echo    "<div class=\"col\">"."
                                                         <div class=\"form-group\"><label for=\"phone\"><strong>Phone
                                                                     Number</strong></label><input class=\"form-control\"
-                                                                type=\"text\" placeholder=\"".$row['phone']."\" name=\"phone\"".$_SESSION['perm']."></div>
+                                                                type=\"text\" value=\"".$row['phone']. "\" placeholder=\"".$row['phone']."\" name=\"phone\"></div>
                                                     </div>";
                                                     ?>
                                                     <?php 
                                                     echo "<div class=\"col-8\">";
                                                     echo "<label
                                                         for=\"address\"><strong>Address</strong></label><input
-                                                        class=\"form-control\" type=\"text\"placeholder=\"".$row['adress'].
-                                                        "\"name=\"address\"".$_SESSION['perm'].">
+                                                        class=\"form-control\" type=\"text\" value=\"".$row['adress']. "\" placeholder=\"".$row['adress'].
+                                                        "\"name=\"address\">
                                                     </div>";
                                                     ?>
                                                 </div>
