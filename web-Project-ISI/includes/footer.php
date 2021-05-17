@@ -31,8 +31,8 @@ else {
           <div class="col-6 col-md">
             <h5>About Us</h5>
             <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">Contact</a></li>
-              <li><a class="text-muted" href="#">Location</a></li>
+              <li><a class="text-muted" href="../contact">Contact</a></li>
+              <li><a class="text-muted" href="../contact">Location</a></li>
               <li><a class="text-muted" href="#">Delivery</a></li>
             </ul>
           </div>

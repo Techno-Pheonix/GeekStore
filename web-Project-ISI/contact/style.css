@@ -2,11 +2,6 @@
  color : deepskyblue;
 }
 
-.map{
-    border: 2px solid red;
+.map{ 
     width: 100%;
-}
-
-.form{
-    background-color: rgb(128, 128, 128);
 }

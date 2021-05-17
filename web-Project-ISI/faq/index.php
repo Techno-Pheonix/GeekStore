@@ -102,10 +102,7 @@ session_start();
                     </div>
                     <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
                       <div class="card-body">
-                        <p>You can sign up from <a target="_blank" href="../signup">here</a>, or you can watch this video :</p> 
-                      <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/1PO2AVXWBhk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                      </div>
+                        <p>You can sign up from <a target="_blank" href="../signup">here</a>, or you can watch this video</p> 
                     </div>
                     </div>
                   </div>
@@ -115,7 +112,11 @@ session_start();
         </div>
     </div>
 
-    <div class="f mt-4">
+    <div class="img d-flex justify-content-center mt-4">
+    <img src="travolta.gif" class="img-fluid" width="300px" height="auto" alt="">
+    </div>
+
+    <div class="f">
         <?php
         require_once '../includes/footer.php';
         ?>
