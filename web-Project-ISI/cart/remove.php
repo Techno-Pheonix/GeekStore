@@ -7,12 +7,12 @@ session_start();
 
 $count = count($_SESSION["shopping_cart"]);
 
-$ind = 0;
+$ind = false;
 for ($i = 0 ;$i<$count;$i++){
     if ($_SESSION["shopping_cart"][$i]["item_id"] == strval($json_obj->id)){
-        $ind = $i;
+        $ind = true;
     }
-    if ($ind>0){
+    if ($ind){
         $_SESSION["shopping_cart"][$i] = $_SESSION["shopping_cart"][$i+1];
     }
 }
