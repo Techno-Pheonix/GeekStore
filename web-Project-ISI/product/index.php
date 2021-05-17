@@ -15,10 +15,11 @@
       "item_quantity"=> $_POST["quantity"],
       "item_av_quantity" => $_POST["av_quantity"]
     );
+
     $count = count($_SESSION["shopping_cart"]);
     $exists = false;
-    
-    for ($i = 1 ;$i<$count;$i++){
+
+    for ($i = 0 ;$i<$count;$i++){
       if ($_SESSION["shopping_cart"][$i]["item_id"] == $item_array["item_id"]){
         $_SESSION["shopping_cart"][$i]["item_quantity"] =$item_array["item_quantity"];
         $exists=true;
@@ -26,11 +27,13 @@
     }
   
     if (!$exists){
-      $_SESSION["shopping_cart"][$count+1] = $item_array;
+      $_SESSION["shopping_cart"][$count] = $item_array;
     }
   }
   ?>
   <?php 
+
+  var_dump($_SESSION["shopping_cart"]);
     $sql = "SELECT * FROM product where id_p = ".$_GET["id"].";";
     $result = mysqli_query($conn, $sql);
     ?>
