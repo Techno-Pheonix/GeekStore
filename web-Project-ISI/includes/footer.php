@@ -25,7 +25,7 @@ else {
             <ul class="list-unstyled text-small">
               <li><a class="text-muted" href=<?php echo("$link"); ?>><?php echo($account); ?></a></li>
               <li><a class="text-muted" href="/faq">FAQ</a></li>
-              <li><a class="text-muted" href="#">Terms and conditions</a></li>
+              <li><a class="text-muted" href="../terms">Terms and conditions</a></li>
             </ul>
           </div>
           <div class="col-6 col-md">
