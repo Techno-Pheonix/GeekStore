@@ -54,7 +54,7 @@ session_start();
                             </div>
                         </div>
                         <div class="col-lg-7 d-flex justify-content-center">
-                        <a href="#">Forget password ?</a>
+                        <a href="./forgot.php">Forget password ?</a>
                         </div>
                         <div class="col-lg-7 d-flex justify-content-center">
                         <p>Don't have an account? <a href="../signup">Register</a></p>
