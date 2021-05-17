@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="style.css">
     <title>Geek Store - Product</title>
   </head>
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     
   <?php require_once "../includes/navbar.php"; ?>
   <?php

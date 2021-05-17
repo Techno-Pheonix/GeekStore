@@ -30,7 +30,7 @@ session_start();
   <title>Shipment</title>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 <?php require_once '../includes/navbar.php'; ?>
 
 <?php if (count($_SESSION["shopping_cart"])):?> 
