@@ -6,6 +6,7 @@
     
   <?php require_once "../includes/navbar.php"; ?>
   <?php
+
   if (isset($_POST["add_to_cart"])){
     $item_array = array(
       "item_id" => $_GET["id"],
@@ -16,7 +17,7 @@
     );
     $count = count($_SESSION["shopping_cart"]);
     $exists = false;
-  
+    
     for ($i = 1 ;$i<$count;$i++){
       if ($_SESSION["shopping_cart"][$i]["item_id"] == $item_array["item_id"]){
         $_SESSION["shopping_cart"][$i]["item_quantity"] =$item_array["item_quantity"];
@@ -26,7 +27,7 @@
     
 
     if (!$exists){
-      $_SESSION["shopping_cart"][$count] = $item_array;
+      $_SESSION["shopping_cart"][$count+1] = $item_array;
     }
   }
   ?>

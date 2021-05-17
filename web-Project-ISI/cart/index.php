@@ -16,6 +16,7 @@
   </head>
   <body>
   <?php require_once "../includes/navbar.php"; ?>
+
     <div class="container">
         <div class="row pt-4">
             <div class="col-lg-<?php if (count($_SESSION["shopping_cart"])) echo "8"; else echo "12";?> panier-contenu mx-1 bg-light">
@@ -154,6 +155,7 @@
                 }).then((res)=>{
                     console.log(res)
                 })
+                updateTotalPrice()
         }
     </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

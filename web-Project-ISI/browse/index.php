@@ -132,9 +132,24 @@
                   $result1 = mysqli_query($conn, $sql1);
                   $row1 = mysqli_fetch_assoc($result1);
                   $num_of_res = $row1["nb"];
-                  $resultcheck = mysqli_num_rows($result1);
+
                   $sql = "SELECT DISTINCT p.*,c.slug as cat_slug from product as p, category as c,sub_category as s 
                   where p.id_cat = s.id_sub and s.id_cat = c.id_cat and c.id_cat =".$row["id_cat"]." and p.price>=".$min." and p.price<=".$max." LIMIT ".$this_page." , ".$number_per_page." ;";
+                }else if (isset($_GET["search"])){
+                  //Get Items Count
+                  $sql1 = "SELECT DISTINCT count(*) as nb from product 
+                  where slug = %".mysqli_real_escape_string($conn,$_GET["search"])."%
+                  or title = %".mysqli_real_escape_string($conn,$_GET["search"])."%
+                  ;";
+                  $result1 = mysqli_query($conn, $sql1);
+                  $row1 = mysqli_fetch_assoc($result1);
+                  $num_of_res = $row1["nb"];
+
+                  //Actual query
+                  $sql = "SELECT DISTINCT * from product 
+                  where slug LIKE '%".mysqli_real_escape_string($conn,$_GET["search"])."%'
+                  or title LIKE '%".mysqli_real_escape_string($conn,$_GET["search"])."%'
+                  LIMIT ".$this_page." , ".$number_per_page." ;";
                 }
                 $result = mysqli_query($conn, $sql);
                 $resultNums = mysqli_num_rows($result);
@@ -147,7 +162,6 @@
                 <?php endif;?>
                 <?php $number_of_pages = ceil($num_of_res/$number_per_page); ?>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                
                   <div class="col-md-6 col-xl-4 col-sm-12 mb-2" >
                     <div class="card h-100">
                       <img class="card-img-top img-fluid" width=175px height =200px; src="../pictures/<?php echo $row["picture"]?>" alt="Card image cap">
@@ -162,7 +176,6 @@
                       </div>
                     </div>
                   </div>
-                  
                 <?php endwhile ?>   
                 </div>
 
