@@ -247,15 +247,9 @@ require_once 'includes/dbh.inc.php';
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="chart-area"><canvas
-                                            data-bs-chart="{&quot;type&quot;:&quot;doughnut&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Tech&quot;,&quot;Anime&quot;,&quot;Gaming&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;backgroundColor&quot;:[&quot;#4e73df&quot;,&quot;#1cc88a&quot;,&quot;#36b9cc&quot;],&quot;borderColor&quot;:[&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;],&quot;data&quot;:[&quot;50&quot;,&quot;30&quot;,&quot;15&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false},&quot;title&quot;:{}}}"></canvas>
-                                    </div>
-                                    <div class="text-center small mt-4"><span class="mr-2"><i
-                                                class="fas fa-circle text-primary"></i>&nbsp;Tech</span><span
-                                            class="mr-2"><i
-                                                class="fas fa-circle text-success"></i>&nbsp;Anime</span><span
-                                            class="mr-2"><i class="fas fa-circle text-info"></i>&nbsp;Gaming</span>
-                                    </div>
+                                <div>
+                                    <canvas id="myChart"></canvas>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -275,6 +269,40 @@ require_once 'includes/dbh.inc.php';
     <script src="assets/js/bs-charts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
     <script src="assets/js/theme.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+    const labels = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+    ];
+    const data = {
+    labels: labels,
+    datasets: [{
+        label: 'My First dataset',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: [0, 10, 5, 2, 20, 30, 45],
+    }]
+    };
+        const config = {
+    type: 'line',
+    data,
+    options: {}
+    };
+
+
+  // === include 'setup' then 'config' above ===
+
+  var myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+</script>
 </body>
 
 </html>
