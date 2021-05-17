@@ -1,3 +1,12 @@
 .t1{
  color : deepskyblue;
 }
+
+.map{
+    border: 2px solid red;
+    width: 100%;
+}
+
+.form{
+    background-color: rgb(128, 128, 128);
+}
