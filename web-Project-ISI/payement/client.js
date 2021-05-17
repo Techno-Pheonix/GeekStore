@@ -183,7 +183,7 @@ const fn =()=>{
 }
 
 
-
+payWithCreditCard()
 $('input[name="paymentMethod"]').on("click", function(e){
   fn()
 })

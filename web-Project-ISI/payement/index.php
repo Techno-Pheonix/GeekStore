@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,18 +26,11 @@
 <?php require_once '../includes/navbar.php'; ?>
 
 <?php 
-if (isset($_GET["arr"])){
-    $array = json_decode($_GET["arr"], true);
-    $count = count($array);
-    for ($i = 0 ;$i<$count;$i++){
-      $_SESSION["shopping_cart"][$i]["item_quantity"] =$array[$i]["item_quantity"];  
-    }
-
+    $count = count($_SESSION["shopping_cart"]);
     if ($_SESSION["loggedin"]!=true){
       $_SESSION["sign-to-cart"] = true;
       header("location:../signin");
     }
-}
 ?>
 
 <?php if (count($_SESSION["shopping_cart"])):?> 
@@ -52,7 +46,7 @@ $lname = $row["last_name"];
 $email = $row["email"];
 $address = $row["adress"];
 
-$arr = $_GET['arr'];
+
 ?>
 
 <section class="container">

@@ -22,6 +22,7 @@
             <div class="col-lg-<?php if (count($_SESSION["shopping_cart"])) echo "8"; else echo "12";?> panier-contenu mx-1 bg-light">
                 <h3 class="my-3">Mon Panier</h3>
                 <?php if (count($_SESSION["shopping_cart"]) == 0):?>
+                
                     <div class="alert alert-primary" role="alert">
                         No Items In Cart
                     </div>
@@ -75,7 +76,9 @@
                     <h4 id = "Final_price">Total: 12%</h4>
                     <hr>
                     <div class="center">
-                        <button class="btn btn-primary btn-lg" onclick="redirect()">Procced to shipment</button>
+                        <a href="../payement/index.php">
+                            <button class="btn btn-primary btn-lg">Procced to shipment</button>
+                        </a>
                     </div>
                 </div>
             <?php endif ?>
@@ -89,19 +92,7 @@
         window.onload = ()=>{
             updateTotalPrice()
         }
-
-        const redirect=()=>{
-            const main_el = document.querySelectorAll(".col-md-8");
-            arr = []
-            for (let i=0;i<main_el.length;i++){
-                const item_price = main_el[i].querySelector(".item_price").value
-                const item_id = main_el[i].querySelector(".item_id").value
-                const item_quantity = main_el[i].querySelector(".item_quantity").value
-                arr.push({item_id,item_price,item_quantity})
-            }
-            window.location.href = "../payement/index.php?arr="+JSON.stringify(arr);
-        }
-
+        
         const updateElem=(id)=>{
             const el = document.querySelectorAll(".quantity_btn")[id]
             const el1 = document.querySelectorAll(".price_tag")[id]
@@ -130,13 +121,35 @@
             updateElem(id)
             updateTotalPrice()
 
+            const info  = {id,quantity : el.value}
+            fetch("./update.php", {
+                method: "POST",
+                body:JSON.stringify(info)
+                })
+                .then(function(result) { 
+                    return result.json();
+                }).then((res)=>{
+                    console.log(res)
+                })
+
         }
 
         const sous = (id)=>{
+           
             const el = document.querySelectorAll(".quantity_btn")[id]
             if (parseInt(el.value)>1)el.value = parseInt(el.value)-1
             updateElem(id)
             updateTotalPrice()
+            const info  = {id,quantity : el.value}
+            fetch("./update.php", {
+                method: "POST",
+                body:JSON.stringify(info)
+                })
+                .then(function(result) { 
+                    return result.json();
+                }).then((res)=>{
+                    console.log(res)
+                })
 
         }
 
