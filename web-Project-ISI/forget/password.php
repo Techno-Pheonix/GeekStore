@@ -97,7 +97,10 @@ $sql="select * from user where email = '$x'";
                                 else if ($_GET["error"] =="none") {
                                     require_once 'generate.php';
                                     $pass = randomPassword();
+                                    $hash = password_hash($pass, PASSWORD_DEFAULT);
                                     $mtotal = "Your New Password is : ".$pass;
+                                    $sql1 = "UPDATE user set password = '$hash' where email ='$x'";
+                                    $query = mysqli_query($conn,$sql1);
                                     $confirm = true;
                                 }
 
