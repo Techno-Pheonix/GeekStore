@@ -56,7 +56,6 @@
                                     </div>
                                 </div> 
                                 <button class="btn btn-danger remove_btn" id ="<?php echo $i;?>" class ="remove" onclick="remove(this.id)" name="remove_btn">Remove</button>
-                                
                             </div>
                         </div>
                         <hr>
