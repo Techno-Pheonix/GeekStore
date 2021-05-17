@@ -10,16 +10,21 @@ $id = $_GET['id'];
 $sql = "SELECT * from user where id_user = ".$id;
 $_SESSION['perm'] = " readonly=\"readonly\"";
 $_SESSION['url'] = "profile.php?id=".$id;
+$query = mysqli_query($conn,$sql);
+$row = mysqli_fetch_array($query);
+if($row['admin']==-1)
+$_SESSION['deleted'] = "(Deleted)";
+else $_SESSION['deleted'] ="";
 }
 else
 {
 $sql = "SELECT * from user where id_user =".$_SESSION['user_id'];
 $_SESSION['perm'] = "";
 $_SESSION['url'] = "profile.php";
-}
-
 $query = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($query);
+$_SESSION['deleted'] ="";
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -122,7 +127,7 @@ $row = mysqli_fetch_array($query);
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4">Profile</h3>
+                    <h3 class="text-dark mb-4">Profile<?php echo($_SESSION['deleted']);?></h3>
                     <a  href="<?php echo($_SESSION['url']."?") ?>confirm=true">
                         <button
                         class="btn btn-primary bg-gradient-deepbluesky bg-gradient-deepbluesky" type="button"
