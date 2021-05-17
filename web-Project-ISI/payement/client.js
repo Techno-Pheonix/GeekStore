@@ -112,6 +112,7 @@ const payWithCreditCard = ()=>{
               showError(result.error.message);
             } else {
               // The payment succeeded!
+              window.location.href = "./sucess.php"
               orderComplete(result.paymentIntent.id);
             }
           });
