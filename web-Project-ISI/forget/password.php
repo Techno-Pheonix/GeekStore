@@ -11,7 +11,7 @@
 </head>
 
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <?php require_once '../includes/navbar.php'; ?>
     <?php 
 
@@ -127,8 +127,9 @@ $sql="select * from user where email = '$x'";
 <?php endif ?>
 <script>
 function test(){
-    window.location.href = 'change.php?';
+    window.location.href = '../signin';
 }
+<?php require_once "../includes/footer.php";?> 
 
 </script>
  

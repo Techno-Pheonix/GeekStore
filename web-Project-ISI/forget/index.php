@@ -10,7 +10,7 @@
 </head>
 
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <?php require_once '../includes/navbar.php'; ?>
     <?php 
 
@@ -81,7 +81,9 @@
     document.getElementById('a').click();
 }
 </script>
-<?php endif ?>
+<?php endif;
+require_once "../includes/footer.php" 
+?>
  
 <script src="../admin/assets/js/theme.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
