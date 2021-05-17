@@ -42,8 +42,6 @@ const payWithCreditCard = ()=>{
         state,
         pay_method
       };
-      console.log(purchase)
-      
   
       // Disable the button until we have Stripe set up on the page
       document.querySelector("button").disabled = true;
@@ -167,12 +165,17 @@ const payOnShipping = ()=>{
 const fn =()=>{
   const shipping_from = document.getElementById("shipping-from")
   const credit_form = document.getElementById("credit-from")
-  shipping_from.classList.toggle("d-none")
-  credit_form.classList.toggle("d-none")
+  
+
 
   if ($("input[type='radio'][name='paymentMethod']:checked").val() === "Credit"){
+    
+    shipping_from.classList.add("d-none")
+    credit_form.classList.remove("d-none")
     payWithCreditCard()
   }else{
+    shipping_from.classList.remove("d-none")
+    credit_form.classList.add("d-none")
     payOnShipping()
   }
 }
