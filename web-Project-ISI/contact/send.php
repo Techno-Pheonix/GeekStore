@@ -1,6 +1,5 @@
 <?php 
 session_start();
-var_dump($_POST);
 if (isset($_POST["submit"])){
 
 $name = $_POST["name"];
