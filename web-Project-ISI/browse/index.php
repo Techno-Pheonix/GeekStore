@@ -123,13 +123,13 @@
                   $result = mysqli_query($conn, $sql_sub);
                   $row = mysqli_fetch_assoc($result);
                   //Get Items Count
-                  $sql1 = "SELECT count(*) as nb FROM product as p where  p.id_cat = ".$row["id_sub"]." ;";
+                  $sql1 = "SELECT count(*) as nb FROM product as p where  p.id_cat = ".$row["id_sub"]." and quantity > 0 ;";
                   $result1 = mysqli_query($conn, $sql1);
                   $row1 = mysqli_fetch_assoc($result1);
                   $num_of_res = $row1["nb"];
                   //the actual query
 
-                  $sql = "SELECT  * FROM product as p where  p.id_cat = ".$row["id_sub"]." and p.price>=".$min." and p.price<=".$max."  LIMIT ".$this_page." , ".$number_per_page." ;";
+                  $sql = "SELECT  * FROM product as p where  p.id_cat = ".$row["id_sub"]." and quantity > 0 and p.price>=".$min." and p.price<=".$max."  LIMIT ".$this_page." , ".$number_per_page." ;";
                 }else if (isset($_GET["catg"])){
                   //Get category ID
                   $x = $_GET["catg"];
@@ -138,18 +138,18 @@
                   $row = mysqli_fetch_assoc($result);
                   //Get Items Count
                   $sql1 = "SELECT DISTINCT count(*) as nb from product as p, category as c,sub_category as s 
-                  where p.id_cat = s.id_sub and s.id_cat = c.id_cat and c.id_cat =".$row["id_cat"].";";
+                  where p.id_cat = s.id_sub and quantity > 0 and s.id_cat = c.id_cat and c.id_cat =".$row["id_cat"].";";
                   $result1 = mysqli_query($conn, $sql1);
                   $row1 = mysqli_fetch_assoc($result1);
                   $num_of_res = $row1["nb"];
 
                   $sql = "SELECT DISTINCT p.*,c.slug as cat_slug from product as p, category as c,sub_category as s 
-                  where p.id_cat = s.id_sub and s.id_cat = c.id_cat and c.id_cat =".$row["id_cat"]." and p.price>=".$min." and p.price<=".$max." LIMIT ".$this_page." , ".$number_per_page." ;";
+                  where p.id_cat = s.id_sub and quantity > 0 and s.id_cat = c.id_cat and c.id_cat =".$row["id_cat"]." and p.price>=".$min." and p.price<=".$max." LIMIT ".$this_page." , ".$number_per_page." ;";
                 }else if (isset($_GET["search"])){
                   //Get Items Count
                   $sql1 = "SELECT DISTINCT count(*) as nb from product 
                   where slug LIKE '%".mysqli_real_escape_string($conn,$_GET["search"])."%'
-                  or title LIKE'%".mysqli_real_escape_string($conn,$_GET["search"])."%'
+                  or title LIKE'%".mysqli_real_escape_string($conn,$_GET["search"])."%'and quantity > 0
                   ;";
                   
                   $result1 = mysqli_query($conn, $sql1);
@@ -159,7 +159,7 @@
                   //Actual query
                   $sql ="SELECT DISTINCT * from product 
                   where slug LIKE '%".mysqli_real_escape_string($conn,$_GET["search"])."%'
-                  or title LIKE'%".mysqli_real_escape_string($conn,$_GET["search"])."%'
+                  or title LIKE'%".mysqli_real_escape_string($conn,$_GET["search"])."%' and quantity > 0
                   LIMIT ".$this_page." , ".$number_per_page." ;"; 
                 }
                 $result = mysqli_query($conn, $sql);

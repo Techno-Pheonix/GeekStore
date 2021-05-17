@@ -62,7 +62,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <?php 
-            $sql_cat = "SELECT sub.* FROM sub_category sub,category where category.id_cat = sub.id_cat and category.id_cat = ".$row['id_cat'].";";
+            $sql_cat = "SELECT sub.* FROM sub_category sub,category where category.id_cat = sub.id_cat  and quantity > 0 and category.id_cat = ".$row['id_cat'].";";
             $result_cat = mysqli_query($conn, $sql_cat);
             $resultcheck = mysqli_num_rows($result_cat);
             if ($resultcheck>0):?>
