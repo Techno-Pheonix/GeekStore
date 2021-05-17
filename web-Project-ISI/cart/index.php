@@ -41,7 +41,7 @@
                                 <img src="../pictures/<?php echo $row["picture"];?>" height="220px" width="100%" style="max-width: 300px;">
                             </div>
                             <div class="col-md-8">
-                                <h1 class="price_tag" id =<?php echo $i;?>><?php echo $item["item_price"]*$item["item_quantity"]?>$</h1>
+                                <h1 class="price_tag" id =<?php echo $i;?>><?php echo number_format($item["item_price"]*$item["item_quantity"],2)?>$</h1>
                                 <input type="text" class="d-none item_price" name="title" value="<?php echo $item["item_price"]?>">
                                 <input type="text" class="d-none item_id" name="title" value="<?php echo $item["item_id"]?>">
                                 <input type="text" class="d-none item_av_quantity" name="item_av_quantity" value="<?php echo $item["item_av_quantity"]?>">

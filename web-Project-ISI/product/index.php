@@ -24,8 +24,7 @@
         $exists=true;
       }
     }
-    
-
+  
     if (!$exists){
       $_SESSION["shopping_cart"][$count+1] = $item_array;
     }

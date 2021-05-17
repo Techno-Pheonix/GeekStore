@@ -167,7 +167,7 @@
                       <img class="card-img-top img-fluid" width=175px height =200px; src="../pictures/<?php echo $row["picture"]?>" alt="Card image cap">
                       <div class="card-body">
                         <h3 class="card-title mb-3 text-primary"><?php echo $row["title"] ?></h3>
-                        <h5 class="card-title"><?php echo $row["price"] ?>$</h5>
+                        <h5 class="card-title"><?php echo number_format($row["price"],2) ?>$</h5>
                         <p class="card-text text-secondary"><?php echo substr($row["summary"],0,40)."...";
                         for ($j = 0;$j<40-strlen(substr($row["summary"],0,40));$j++):?>
                           <span style="opacity:0">c</span>
