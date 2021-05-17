@@ -401,7 +401,7 @@ while ($row2 = mysqli_fetch_array($query2)) {
             </button>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © GEEK Store 2019</span></div>
+                    <div class="text-center my-auto copyright"><span>Copyright © GEEK Store 2021</span></div>
                 </div>
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
