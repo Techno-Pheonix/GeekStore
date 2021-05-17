@@ -57,7 +57,6 @@ $password = $row["password"];
 <div class="container-fluid">
                     <div class="title">
                     <h3 class="text-dark mb-4 text-center mt-4">Profile</h3>
-                    <a  href="<?php echo($_SESSION['url']."?") ?>confirm=true">
                     </div>
                     <div class="row mb-3">
                         <div class="col-lg-4">
