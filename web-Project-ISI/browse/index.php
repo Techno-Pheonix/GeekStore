@@ -1,4 +1,8 @@
   <?php
+  if (isset($_GET["search"])){
+    $search = "search=".$_GET["search"];
+  }
+  $max = 0; $min = 0;
   if (!isset($_GET["page"])){
     $page=1;
   }else{
@@ -74,19 +78,19 @@
                 <h4 class="mt-4">Price :</h4>
                 <div class="d-flex align-items-center justify-content-center mb-5">
                     <div class="middle">
-                      <form action="index.php?<?php echo ''.$catg; ?><?php echo ''.$sub_catg; ?>" method="POST">
+                      <form action="index.php?<?php echo ''.$catg; ?><?php echo ''.$sub_catg; ?><?php echo ''.$search; ?>" method="POST">
                         <div class="slider-container">
                           <div class="row">
                             <div class="col-6">
                               <div class="form-group">
                                 <label for="exampleInputEmail1">Min :</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" name="min" aria-describedby="emailHelp" placeholder="Min">
+                                <input type="text" class="form-control" id="exampleInputEmail1" name="min" value = "<?php if (isset($_POST["min"])) echo($_POST["min"]);?> " aria-describedby="emailHelp" placeholder="Min">
                               </div>
                             </div>
                             <div class="col-6">
                               <div class="form-group">
                                 <label for="exampleInputEmail1">Max :</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" name="max" aria-describedby="emailHelp" placeholder="Max">
+                                <input type="text" class="form-control" id="exampleInputEmail1" name="max" value = "<?php if (isset($_POST["max"])) echo($_POST["max"]);?> " aria-describedby="emailHelp" placeholder="Max">
                               </div>
                             </div>
                           </div>
@@ -111,7 +115,7 @@
                   $min = (int)$_POST["min"];
                 }
                 // Get max price
-                $max = 1000000;
+                $max = 10000000;
                 if (isset($_POST["max"])){
                   $max = (int)$_POST["max"];
                 }
@@ -123,7 +127,7 @@
                   $result = mysqli_query($conn, $sql_sub);
                   $row = mysqli_fetch_assoc($result);
                   //Get Items Count
-                  $sql1 = "SELECT count(*) as nb FROM product as p where  p.id_cat = ".$row["id_sub"]." and quantity > 0 ;";
+                  $sql1 = "SELECT count(*) as nb FROM product as p where  p.id_cat = ".$row["id_sub"]." and quantity > 0 and p.price>=".$min." and p.price<=".$max.";";
                   $result1 = mysqli_query($conn, $sql1);
                   $row1 = mysqli_fetch_assoc($result1);
                   $num_of_res = $row1["nb"];
@@ -138,7 +142,7 @@
                   $row = mysqli_fetch_assoc($result);
                   //Get Items Count
                   $sql1 = "SELECT DISTINCT count(*) as nb from product as p, category as c,sub_category as s 
-                  where p.id_cat = s.id_sub and quantity > 0 and s.id_cat = c.id_cat and c.id_cat =".$row["id_cat"].";";
+                  where p.id_cat = s.id_sub and quantity > 0 and s.id_cat = c.id_cat and c.id_cat =".$row["id_cat"]." and p.price>=".$min." and p.price<=".$max." ;";
                   $result1 = mysqli_query($conn, $sql1);
                   $row1 = mysqli_fetch_assoc($result1);
                   $num_of_res = $row1["nb"];
@@ -150,17 +154,17 @@
                   $sql1 = "SELECT DISTINCT count(*) as nb from product 
                   where slug LIKE '%".mysqli_real_escape_string($conn,$_GET["search"])."%'
                   or title LIKE'%".mysqli_real_escape_string($conn,$_GET["search"])."%'and quantity > 0
-                  ;";
+                  and price>=".$min." and price<=".$max.";";
                   
                   $result1 = mysqli_query($conn, $sql1);
                   $row1 = mysqli_fetch_assoc($result1);
                   $num_of_res = $row1["nb"];
-
+                  
                   //Actual query
                   $sql ="SELECT DISTINCT * from product 
                   where slug LIKE '%".mysqli_real_escape_string($conn,$_GET["search"])."%'
                   or title LIKE'%".mysqli_real_escape_string($conn,$_GET["search"])."%' and quantity > 0
-                  LIMIT ".$this_page." , ".$number_per_page." ;"; 
+                  and price>=".$min." and price<=".$max." LIMIT ".$this_page." , ".$number_per_page." ;"; 
                 }
                 $result = mysqli_query($conn, $sql);
                 $resultNums = mysqli_num_rows($result);

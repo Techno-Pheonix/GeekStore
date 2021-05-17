@@ -221,10 +221,15 @@ require_once 'includes/dbh.inc.php';
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="chart-area"><canvas
-                                            data-bs-chart="{&quot;type&quot;:&quot;line&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Aug&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Earnings&quot;,&quot;fill&quot;:true,&quot;data&quot;:[&quot;0&quot;,&quot;1000&quot;,&quot;500&quot;,&quot;1500&quot;,&quot;1000&quot;,&quot;2000&quot;,&quot;1500&quot;,&quot;2500&quot;],&quot;backgroundColor&quot;:&quot;rgba(78, 115, 223, 0.05)&quot;,&quot;borderColor&quot;:&quot;rgba(78, 115, 223, 1)&quot;}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false},&quot;title&quot;:{},&quot;scales&quot;:{&quot;xAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;],&quot;drawOnChartArea&quot;:false},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;padding&quot;:20}}],&quot;yAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;]},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;padding&quot;:20}}]}}}">
-                                            </canvas>
-                                    </div>
+                                    <canvas id="myChart"></canvas>
+                                    <input type="text" class="d-none" value="<?php 
+                                    $sql = "SELECT count(*) as nb ,datetime from sales as s where DATE_FORMAT(datetime, \"%Y-%m\") <= \"".date("Y-m")."\" GROUP BY MONTH(datetime) DESC LIMIT 6;" ;
+                                    $result = mysqli_query($conn, $sql);
+                                    while($row = mysqli_fetch_assoc($result)){
+                                        echo $row["nb"]." ";
+                                        echo $row["datetime"]." ";
+                                    };
+                                    ?>" id="graph_data" >
                                 </div>
                             </div>
                         </div>
@@ -247,15 +252,7 @@ require_once 'includes/dbh.inc.php';
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="chart-area"><canvas
-                                            data-bs-chart="{&quot;type&quot;:&quot;doughnut&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Tech&quot;,&quot;Anime&quot;,&quot;Gaming&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;backgroundColor&quot;:[&quot;#4e73df&quot;,&quot;#1cc88a&quot;,&quot;#36b9cc&quot;],&quot;borderColor&quot;:[&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;],&quot;data&quot;:[&quot;50&quot;,&quot;30&quot;,&quot;15&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false},&quot;title&quot;:{}}}"></canvas>
-                                    </div>
-                                    <div class="text-center small mt-4"><span class="mr-2"><i
-                                                class="fas fa-circle text-primary"></i>&nbsp;Tech</span><span
-                                            class="mr-2"><i
-                                                class="fas fa-circle text-success"></i>&nbsp;Anime</span><span
-                                            class="mr-2"><i class="fas fa-circle text-info"></i>&nbsp;Gaming</span>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -275,6 +272,46 @@ require_once 'includes/dbh.inc.php';
     <script src="assets/js/bs-charts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
     <script src="assets/js/theme.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+    const graph_data = document.querySelector("#graph_data");
+    const tab = graph_data.value.trim().split(' ')
+    const len = tab.length
+
+    const labels = [];
+    const data_set = [];
+    for (let i=0 ;i<len;i+=3){
+        labels.push(tab[i+1])
+        data_set.push(tab[i])
+    }
+    
+        
+
+    const data = {
+    labels: labels,
+    datasets: [{
+        label: 'Earnings review',
+        backgroundColor: '#4e73df',
+        borderColor: '#4e73df',
+        data: data_set,
+    }]
+    };
+    
+    const config = {
+        type: 'line',
+        data,
+        options: {}
+    };
+
+
+  // === include 'setup' then 'config' above ===
+
+  var myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+</script>
 </body>
 
 </html>
