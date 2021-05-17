@@ -28,8 +28,8 @@ $_SESSION['url'] = "index.php";
     <link rel="stylesheet" href="../admin/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    
-    <link rel="icon" href="pictures/fav.ico" />
+    <link rel="stylesheet" href="../home/style.css">
+    <link rel="icon" href="../pictures/fav.ico" />
     <title>Profile</title>
 </head>
 

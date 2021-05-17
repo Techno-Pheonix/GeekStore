@@ -161,7 +161,7 @@ const payWithCreditCard = ()=>{
 const payOnShipping = ()=>{
   const init_form = document.getElementById("payment-form")
   init_form.method = "POST"
-  init_form.action = "./payment_shipping.php"
+  init_form.action = "payment_shipping.php"
 }
 
 const fn =()=>{
