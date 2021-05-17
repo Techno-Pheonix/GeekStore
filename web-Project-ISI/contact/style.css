@@ -1,3 +1,8 @@
 .t1{
  color : deepskyblue;
 }
+
+.map{
+    border: 2px solid red;
+    width: 100%;
+}

@@ -44,17 +44,18 @@ session_start();
                     </div>
                 </div>
                 <div class="form-group">
-                        <button type="submit" class="btn btn-outline-primary">Send message</button>
+                        <button name="submit" type="submit" class="btn btn-outline-primary">Send message</button>
                         </div>
             </form>
 </div>
-
+<button id="a" type="button" class="btn btn-primary" style="background-color:transparent;border-color:transparent;box-shadow: 10px 10px 10px rgba(0, 0, 0, 0);" data-toggle="modal" data-target="#exampleModalLong">
+</button>
 <!-- Modal -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLongTitle">Error</h3>
+        <h3 class="modal-title" id="exampleModalLongTitle">Message state :</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -63,23 +64,15 @@ session_start();
       <?php
                             $mtotal="";
                             if (isset($_GET["error"])){
-                                if ($_GET["error"] == "emptyinput"){
+                                if ($_GET["error"] == "empty"){
                                     $mtotal = "There are empty fields !";
                                 }
 
-                                else if ($_GET["error"] == "incorrectpwd"){
-                                    $mtotal = "Incorrect password !";
-                                   
+                                else if ($_GET["error"] == "none"){
+                                    $mtotal = "Message sent successfully !";
                                 }
-
-                                else if ($_GET["error"] == "emaildont"){
-                                    $mtotal = "Email doesn't exist !";
-        
-                                }
-
-
                             }
-                            echo('<h4>'.$mtotal.'</h4>');
+                            echo($mtotal);      
                             ?>
 
       </div>
@@ -97,6 +90,11 @@ session_start();
 </script>
 <?php endif ?>
 
+<div class="map container">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25558.103660615325!2d10.168802239550777!3d36.800233399999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd346c1ae482a9%3A0x78827fe9ed6046cc!2sHorloge%20De%20L&#39;avenue%20Habib%20Bourguiba!5e0!3m2!1sfr!2stn!4v1621264256633!5m2!1sfr!2stn" width="100%" height="400px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</div>
+
+<?php require_once '../includes/footer.php'; ?>
 </body>
 <script src="../admin/assets/js/theme.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
