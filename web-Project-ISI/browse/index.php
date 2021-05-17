@@ -61,7 +61,16 @@
                     </ul>
                     <?php endwhile ?>      
                 </section>
-                <h4 class="mt-5">Price :</h4>
+                
+                <form action="./index.php" method="get" class="my-4">
+                  <label for="search"> Search By Name</label>
+                  <div class="d-flex">
+                    <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                    <button id="sbtn" class="btn btn-light my-2 my-sm-0" type="submit"><i class="fas fa-search bs"></i></button>
+                  </div>
+                </form>
+                
+                <h4 class="mt-4">Price :</h4>
                 <div class="d-flex align-items-center justify-content-center mb-5">
                     <div class="middle">
                       <form action="index.php?<?php echo ''.$catg; ?><?php echo ''.$sub_catg; ?>" method="POST">
