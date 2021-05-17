@@ -19,7 +19,7 @@ if ($_SESSION['isadmin']==true){
     <title>Admin Panel</title>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <div class="login-clean">
         <form action = "includes/login.inc.php" method="post">
             <h2 class="sr-only">Login Form</h2>
@@ -29,10 +29,11 @@ if ($_SESSION['isadmin']==true){
             <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
             <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
             <div class="form-group"><button class="btn btn-primary btn-block" type="submit" name="submit">Log In</button></div><a class="forgot" href="#">Forgot your email or password?</a></form>
-    </div>
-
-    <button id="a" type="button" class="btn btn-primary" style="background-color:transparent;border-color:transparent;box-shadow: 10px 10px 10px rgba(0, 0, 0, 0);" data-toggle="modal" data-target="#exampleModalLong">
+            <button id="a" type="button" class="btn btn-primary" style="background-color:transparent;border-color:transparent;box-shadow: 10px 10px 10px rgba(0, 0, 0, 0);" data-toggle="modal" data-target="#exampleModalLong">
 </button>
+          </div>
+
+    
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">

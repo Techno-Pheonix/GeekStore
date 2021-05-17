@@ -16,7 +16,7 @@ session_start();
 
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <div class="text-center mb-3">
         <img id="img1" class="pic" src="../pictures/logof.png" alt="Geeks Store Logo">   
     </div>

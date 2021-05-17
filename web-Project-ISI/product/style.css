@@ -79,6 +79,6 @@ body {
 
 @media screen and (max-width: 576px) {
   .container {
-    margin: 200px;
+    margin: 0px;
   }
 }

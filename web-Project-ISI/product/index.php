@@ -88,7 +88,7 @@
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
                   <div class="col-md-6 col-xl-4 col-sm-12 mb-2" >
                     <div class="card">
-                      <img class="card-img-top img-fluid" src="../pictures/<?php echo $row["picture"]?>" alt="Card image cap">
+                      <img class="card-img-top img-fluid" src="../pictures/<?php echo $row["picture"]?>" width=175px height=200px; alt="Card image cap">
                       <div class="card-body">
                         <h3 class="card-title text-primary"><?php echo $row["title"] ?></h3>
                         <h5 class="card-title"><?php echo $row["price"] ?>$</h5>
@@ -105,6 +105,42 @@
       </div>
     </div>
 
+    <button id="a" type="button" class="btn btn-primary" style="background-color:transparent;border-color:transparent;box-shadow: 10px 10px 10px rgba(0, 0, 0, 0);" data-toggle="modal" data-target="#exampleModalLong"></button>
+        <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="exampleModalLongTitle">Cart Item</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          <?php
+            $mtotal="";
+            if (isset($_GET["add"])){
+                if ($_GET["add"] == "success"){
+                    $mtotal = "Item Added To Cart";
+                }
+
+            }
+            echo('<h4>'.$mtotal.'</h4>');
+          ?>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <?php require_once "../includes/footer.php" ?>
+
     <script>
       const el = document.getElementById("quantity")
       const qty = document.querySelector("#av_quantity").value
@@ -118,7 +154,15 @@
         if (parseInt(el.value)>1)el.value = parseInt(el.value)-1
       }
     </script>
-    
+
+    <?php if (isset($_GET["add"])): ?>
+    <script>
+        window.onload = function(){
+        document.getElementById('a').click();
+    }
+    </script>
+    <?php endif ?>
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

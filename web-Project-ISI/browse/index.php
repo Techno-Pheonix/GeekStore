@@ -2,7 +2,6 @@
   if (isset($_GET["search"])){
     $search = "search=".$_GET["search"];
   }
-  $max = 0; $min = 0;
   if (!isset($_GET["page"])){
     $page=1;
   }else{
@@ -169,11 +168,11 @@
                   $result1 = mysqli_query($conn, $sql1);
                   $row1 = mysqli_fetch_assoc($result1);
                   $num_of_res = $row1["nb"];
-                  
+
                   //Actual query
                   $sql ="SELECT DISTINCT * from product 
-                  where slug LIKE '%".mysqli_real_escape_string($conn,$_GET["search"])."%'
-                  or title LIKE'%".mysqli_real_escape_string($conn,$_GET["search"])."%' and quantity > 0
+                  where (slug LIKE '%".mysqli_real_escape_string($conn,$_GET["search"])."%'
+                  or title LIKE'%".mysqli_real_escape_string($conn,$_GET["search"])."%') and quantity > 0
                   and price>=".$min." and price<=".$max." LIMIT ".$this_page." , ".$number_per_page." ;"; 
                 }
                 $result = mysqli_query($conn, $sql);
@@ -251,7 +250,7 @@
 
     </div>
     </div>
-
+ <?php require_once "../includes/footer.php" ?>
 
   </body>
 
