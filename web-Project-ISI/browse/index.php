@@ -34,6 +34,7 @@
             <?php endif; ?>
         </ol>
     </nav>
+
         <div class="row mt-2">
               <div class="col-md-4 col-xl-3 bg-light">
                 <section>
@@ -148,7 +149,7 @@
                   //Get Items Count
                   $sql1 = "SELECT DISTINCT count(*) as nb from product 
                   where slug LIKE '%".mysqli_real_escape_string($conn,$_GET["search"])."%'
-                  or title LIKE ' %".mysqli_real_escape_string($conn,$_GET["search"])."%'
+                  or title LIKE'%".mysqli_real_escape_string($conn,$_GET["search"])."%'
                   ;";
                   
                   $result1 = mysqli_query($conn, $sql1);
@@ -170,7 +171,7 @@
                   </div>
                 </div>
                 <?php endif;?>
-                <?php $number_of_pages = ceil($num_of_res/$number_per_page); ?>
+                <?php $number_of_pages = ceil($num_of_res/$number_per_page);?>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
                   <div class="col-md-6 col-xl-4 col-sm-12 mb-2" >
                     <div class="card h-100">
