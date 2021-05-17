@@ -177,6 +177,7 @@ const fn =()=>{
   }
 }
 
+
 $('input[name="paymentMethod"]').on("click", function(e){
   fn()
 })

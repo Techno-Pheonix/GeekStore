@@ -31,8 +31,6 @@
 </head>
 
 <body>
-
-
 <?php include "../includes/dbh.inc.php";
   if (!isset($_SESSION["shopping_cart"])){
     $_SESSION["shopping_cart"] = array();
@@ -170,17 +168,15 @@ $fname = $row["first_name"];
 $lname = $row["last_name"];
 $email = $row["email"];
 $address = $row["adress"];
-
-
 ?>
 
-<section class="container">
+<section class="container justify-content-center">
 
 <div class="title text-center mt-4">
         <h1>Shipment</h1>
     </div>
     <div class="row">
-    <div class="col-md-4 order-md-2 mb-4">
+    <div class="col-lg-4 col-md-12 order-md-2 mb-4">
       <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-muted">Your cart</span>
         <span class="badge badge-secondary badge-pill"><?php echo($count); ?></span>
@@ -190,8 +186,6 @@ $address = $row["adress"];
         <?php
         $total=0;
         $ftotal=0;
-          
-
         for ($i = 0 ;$i<$count;$i++){
             
             $title = $_SESSION["shopping_cart"][$i]["item_name"];
@@ -221,10 +215,10 @@ $address = $row["adress"];
 
       
     </div>
-    <div class="col-md-8 order-md-1">
+    <div class="col-lg-8 col-md-12 order-md-1 w-100"style="max-width:100% !important">
       <h4 class="mb-3">Billing address</h4>
-      <form class="needs-validation " id="payment-form" novalidate>
-        <div class="row">
+      <form class="needs-validation" id="payment-form" novalidate style="max-width:100%!important;">
+        <div class="row" >
           <div class="col-md-6 mb-3">
             <label for="firstName">First name</label>
             <input type="text" class="form-control" id="firstName" placeholder="" value="<?php echo(''.$fname); ?>" required>
