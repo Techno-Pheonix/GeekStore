@@ -20,7 +20,7 @@ session_start();
     <link rel="icon" href="../pictures/fav.ico" />
     <title>FAQ</title>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <header>
         <?php require_once '../includes/navbar.php'; ?>
     </header>
