@@ -42,7 +42,7 @@ function loginuser($conn, $email, $password){
     }
 
     if ($rowcount==0){
-        die("email doesnt exists !");
+        header("location:index.php?error=emaildont");
         exit();
     }
     

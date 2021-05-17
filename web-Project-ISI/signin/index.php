@@ -93,6 +93,13 @@ session_start();
                                     $mtotal = "Incorrect password !";
                                    
                                 }
+
+                                else if ($_GET["error"] == "emaildont"){
+                                    $mtotal = "Email doesn't exist !";
+        
+                                }
+
+
                             }
                             echo('<h4>'.$mtotal.'</h4>');
                             ?>
