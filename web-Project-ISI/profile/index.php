@@ -57,6 +57,7 @@ $password = $row["password"];
 <div class="container-fluid">
                     <div class="title">
                     <h3 class="text-dark mb-4 text-center mt-4">Profile</h3>
+                    <a  href="<?php echo($_SESSION['url']."?") ?>confirm=true">
                     </div>
                     <div class="row mb-3">
                         <div class="col-lg-4">
@@ -262,8 +263,15 @@ $password = $row["password"];
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+                        <a class="btn btn-secondary"  <?php if(!($_GET['confirm'] == true)) echo('data-dismiss="modal"'); ?> href="<?php if($_GET['confirm'] == true) echo "delete.php?id=".$id;
+                                            else echo('#');?>"><?php
+                            if($_GET['confirm'] == true) echo "Confirm";
+                            else echo('Close');
+                             ?>
+                             </a>
+                             <?php if($_GET['confirm'] == true){
+                                 echo "<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>";
+                             } ?>                        </div>
     </div>
   </div>
 </div>
