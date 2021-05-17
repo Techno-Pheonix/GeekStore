@@ -295,8 +295,8 @@ console.log(data_set)
     labels: labels,
     datasets: [{
         label: 'Earnings review',
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: '#4e73df',
+        borderColor: '#4e73df',
         data: data_set,
     }]
     };
