@@ -169,7 +169,7 @@ const fn =()=>{
 
 
   if ($("input[type='radio'][name='paymentMethod']:checked").val() === "Credit"){
-    
+  
     shipping_from.classList.add("d-none")
     credit_form.classList.remove("d-none")
     payWithCreditCard()
