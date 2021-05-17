@@ -12,8 +12,7 @@
   }
 
   else {
-    //lehné remplacih bech ye5ou mel database 
-    $_SESSION['purl'] = "../pictures/avatar1.jpeg";
+    $_SESSION['purl'] = "../avatars/".$_SESSION['avatar'];
     $p = $_SESSION['purl'];
   }
 ?>
@@ -78,7 +77,7 @@
               class=\"fas fa-user fa-sm fa-fw mr-2 text-gray-400\"></i>&nbsp;Signup</a>
               ";}
             else{
-              echo "<a class=\"dropdown-item\" role=\"presentation\" href=\"#\"><i
+              echo "<a class=\"dropdown-item\" role=\"presentation\" href=\"../profile\"><i
               class=\"fas fa-user fa-sm fa-fw mr-2 text-gray-400\" ></i>&nbsp;Profile</a>
               ";
               }

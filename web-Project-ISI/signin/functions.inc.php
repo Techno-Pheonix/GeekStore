@@ -54,6 +54,7 @@ function loginuser($conn, $email, $password){
             $_SESSION['user'] = $row['first_name']." ".$row['last_name'];
             $_SESSION['user_id'] = $row['id_user'];
             $_SESSION['loggedin'] = true;
+            $_SESSION['avatar']=$row['avatar'];
             if ($row['admin']==1){
                 $_SESSION['isadmin'] = true;
             }

@@ -149,7 +149,7 @@ $password = $row["password"];
                                                 echo "<div class=\"form-group\">";
                                                 echo "<label
                                                         for=\"email\"><strong>Password</strong></label><input
-                                                        class=\"form-control\" type=\"password\" value=\"".$row['password']. "\" placeholder=\"".$row['password'].
+                                                        class=\"form-control\" type=\"password\" placeholder=\"".$row['password'].
                                                         "\"name=\"password\">
                                                 </div>";
                                                 ?>
