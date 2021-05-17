@@ -25,14 +25,14 @@ else {
             <ul class="list-unstyled text-small">
               <li><a class="text-muted" href=<?php echo("$link"); ?>><?php echo($account); ?></a></li>
               <li><a class="text-muted" href="/faq">FAQ</a></li>
-              <li><a class="text-muted" href="#">Terms and conditions</a></li>
+              <li><a class="text-muted" href="../terms">Terms and conditions</a></li>
             </ul>
           </div>
           <div class="col-6 col-md">
             <h5>About Us</h5>
             <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">Contact</a></li>
-              <li><a class="text-muted" href="#">Location</a></li>
+              <li><a class="text-muted" href="../contact">Contact</a></li>
+              <li><a class="text-muted" href="../contact">Location</a></li>
               <li><a class="text-muted" href="#">Delivery</a></li>
             </ul>
           </div>

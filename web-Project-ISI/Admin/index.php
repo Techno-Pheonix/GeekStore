@@ -108,10 +108,7 @@ require_once 'includes/dbh.inc.php';
                 </nav>
                 <div class="container-fluid">
                     <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                        <h3 class="text-dark mb-0">Dashboard</h3><a
-                            class="btn btn-primary bg-gradient-deepbluesky btn-sm d-none d-sm-inline-block"
-                            role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate
-                            Report</a>
+                        <h3 class="text-dark mb-0">Dashboard</h3>
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-xl-3 mb-4">
@@ -252,6 +249,37 @@ require_once 'includes/dbh.inc.php';
                                     </div>
                                 </div>
                                 <div class="card-body">
+                                    <div class="chart-area">
+                                    <?php 
+                                    function doNewColor(){
+                                        $color = dechex(rand(0x000000, 0xFFFFFF));
+                                        return "#".$color;
+                                        }
+                                    $newColor = doNewColor();
+                                    $sql6 = "SELECT title, id_cat from category;";
+                                    $query = mysqli_query($conn,$sql6);
+                                    $row = mysqli_fetch_array($query);
+                                    $data1 = "&quot;".$row['title']."&quot;";
+                                    $sql7 = "SELECT count(s.id_s) as num from sub_category sc, sales s, product p where s.id_p = p.id_p and sc.id_sub = p.id_cat  and  sc.id_cat=".$row['id_cat'];
+                                    $query1 = mysqli_query($conn,$sql7);
+                                    $row1 = mysqli_fetch_array($query1);
+                                    $dataNum = "&quot;".$row1['num']."&quot;";
+                                    $colors = "&quot;".$newColor."&quot;";
+                                    while($row = mysqli_fetch_array($query)){
+                                        $sql7 = "SELECT count(s.id_s) as num from sub_category sc, sales s, product p where s.id_p = p.id_p and sc.id_sub = p.id_cat  and  sc.id_cat=".$row['id_cat'];
+                                        $query1 = mysqli_query($conn,$sql7);
+                                        $row1 = mysqli_fetch_array($query1);
+                                        $data1 = $data1. ",&quot;".$row['title']."&quot;";
+                                        $dataNum = $dataNum . ",&quot;".$row1['num']."&quot;";
+                                        $newColor = doNewColor();
+                                        $colors = $colors . ",&quot;" . $newColor . "&quot;";
+                                    };
+
+                                     ?>
+                                            <canvas
+                                            data-bs-chart="{&quot;type&quot;:&quot;doughnut&quot;,&quot;data&quot;:{&quot;labels&quot;:[<?php echo($data1); ?>],&quot;datasets&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;backgroundColor&quot;:[<?php echo($colors);?>],&quot;borderColor&quot;:[&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;],&quot;data&quot;:[<?php echo($dataNum); ?>]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false},&quot;title&quot;:{}}}">
+                                            </canvas>
+                                    </div>
                                     
                                 </div>
                             </div>
@@ -273,6 +301,8 @@ require_once 'includes/dbh.inc.php';
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
     <script src="assets/js/theme.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"></script>
+
 
     <script>
     const graph_data = document.querySelector("#graph_data");
