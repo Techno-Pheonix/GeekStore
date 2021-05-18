@@ -18,7 +18,8 @@ $_SESSION['url'] = "Product.php?slug=".$m;
 $sql = "SELECT * from product where slug = '$m'";
 $query = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($query);
-if($row['quantity']==-1) $deleted="(Deleted)";
+if($row['quantity']==-1){ $deleted="(Deleted)";
+$_SESSION['deleted'];}
 else $deleted="";
 $_SESSION['id_p'] = $row['id_p'];
 ?>
@@ -123,7 +124,7 @@ $_SESSION['id_p'] = $row['id_p'];
                         <button
                         class="btn btn-primary bg-gradient-deepbluesky bg-gradient-deepbluesky" type="button"
                         style="margin-bottom: 15px;">Create New</button></a>
-                        <a  href="<?php echo($_SESSION['url']); ?>&confirm=true">
+                        <a  href="<?php echo($_SESSION['url']); ?>&confirm=true" <?php if(isset($_SESSION['deleted'])) echo('hidden');  ?>>
                         <button
                         class="btn btn-primary bg-gradient-deepbluesky bg-gradient-deepbluesky" type="button"
                         style="margin-bottom: 15px;">Delete Product</button></a>
@@ -409,17 +410,15 @@ $_SESSION['id_p'] = $row['id_p'];
 
                         </div>
                         <div class="modal-footer">
-                            <a class="btn btn-secondary"  <?php if(!($_GET['confirm'] == true)) echo('data-dismiss="modal"'); ?> href="<?php if($_GET['confirm'] == true) echo "Delete_product.php?id=".$row['id_p'];
+                        <a class="btn btn-secondary"  <?php if(!isset(($_GET['confirm']))) echo('data-dismiss="modal"'); ?> href="<?php if(isset($_GET['confirm'])) echo "Delete_product.php?id=".$_SESSION['id_p'];
                                             else echo('#');?>"><?php
-                            if($_GET['confirm'] == true) echo "Confirm";
+                            if(isset($_GET['confirm'])) echo "Confirm";
                             else echo('Close');
                              ?>
                              </a>
-                             <?php if($_GET['confirm'] == true){
+                             <?php if (isset($_GET['confirm'])){ if($_GET['confirm'] == true){
                                  echo "<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>";
-                             } ?>
-                            
-                        </div>
+                             } }?>                        </div>
                     </div>
                 </div>
             </div>
