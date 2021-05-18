@@ -76,7 +76,7 @@ $password = $row["password"];
                         </form>
                         
                         <div class="delete mt-4 d-flex justify-content-center">
-                        <a  href="<?php if(isset($_GET['id'])||isset($_GET['res'])||isset($_GET['error']))echo($_SESSION['url']."&");
+                        <a  href="<?php if(isset($_GET['id'])||isset($_GET['res'])||isset($_GET['error']))echo($_SESSION['url']."?plz=work&");
                                     else echo($_SESSION['url'].'?') ?>confirm=true">
                         <button
                         class="btn btn-primary bg-gradient-deepbluesky bg-gradient-deepbluesky" type="button"

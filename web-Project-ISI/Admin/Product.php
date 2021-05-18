@@ -125,7 +125,8 @@ $_SESSION['id_p'] = $row['id_p'];
                         <button
                         class="btn btn-primary bg-gradient-deepbluesky bg-gradient-deepbluesky" type="button"
                         style="margin-bottom: 15px;">Create New</button></a>
-                        <a  href="<?php echo($_SESSION['url']); ?>&confirm=true" <?php if($_SESSION['deleted']=="deleted") echo('hidden');  ?>>
+                        <a  href="<?php if(isset($_GET['id'])||isset($_GET['res'])||isset($_GET['error']))echo($_SESSION['url']."?plz=work&");
+                                    else echo($_SESSION['url'].'?') ?>confirm=true" <?php if($_SESSION['deleted']=="deleted") echo('hidden');  ?>>
                         <button
                         class="btn btn-primary bg-gradient-deepbluesky bg-gradient-deepbluesky" type="button"
                         style="margin-bottom: 15px;">Delete Product</button></a>

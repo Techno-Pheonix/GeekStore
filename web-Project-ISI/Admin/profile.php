@@ -129,9 +129,10 @@ $id= $_SESSION['user_id'];
                 </nav>
                 <div class="container-fluid">
                     <h3 class="text-dark mb-4">Profile<?php echo($_SESSION['deleted']);?></h3>
-                    <a  href="<?php echo($_SESSION['url'].'?') ?>confirm=true">
+                    <a  href="<?php if(isset($_GET['id'])||isset($_GET['res'])||isset($_GET['error']))echo($_SESSION['url']."?plz=work&");
+                                    else echo($_SESSION['url'].'?') ?>confirm=true">
                         <button
-                        class="btn btn-primary bg-gradient-deepbluesky bg-gradient-deepbluesky" type="button"
+                        class="btn btn-primary bg-gradient-deepbluesky bg-gradient-deepbluesky" type="button" <?php if($_SESSION['deleted']=="(Deleted)") echo('hidden');  ?>
                         style="margin-bottom: 15px;">Delete User</button></a>
                     <div class="row mb-3">
                         <div class="col-lg-4">
