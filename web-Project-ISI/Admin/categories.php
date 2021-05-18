@@ -108,10 +108,10 @@ if ($_SESSION['isadmin'] == false){
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4">Sales</h3>
+                    <h3 class="text-dark mb-4">Categories</h3>
                     <div class="card shadow">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 font-weight-bold">Sales Info</p>
+                            <p class="text-primary m-0 font-weight-bold">Category Info</p>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive table mt-2" id="data_Table" role="grid"
