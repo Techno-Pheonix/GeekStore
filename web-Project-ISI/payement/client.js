@@ -106,6 +106,7 @@ const payWithCreditCard = ()=>{
           })
           .then(function(result) {
             if (result.error) {
+              window.location.href = "./failure.php";
               // Show error to your customer
               showError(result.error.message);
             } else {
@@ -172,7 +173,12 @@ const fn =()=>{
   
     shipping_from.classList.add("d-none")
     credit_form.classList.remove("d-none")
+    if (!zip || !country || !state) {
+      window.location.href="./failure.php";
+    }
+    else {
     payWithCreditCard()
+    }
   }else{
     shipping_from.classList.remove("d-none")
     credit_form.classList.add("d-none")
