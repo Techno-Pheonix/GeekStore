@@ -69,6 +69,7 @@ try {
   $output = [
     'clientSecret' => $paymentIntent->client_secret,
   ];
+  
   echo json_encode($output);
 
 } catch (Error $e) {

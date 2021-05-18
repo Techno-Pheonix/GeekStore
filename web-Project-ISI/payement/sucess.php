@@ -1,3 +1,7 @@
+<?php
+session_start();
+$_SESSION['shopping_cart']=[];
+?>
 <!doctype html>
 <html lang="en">
   <head>
