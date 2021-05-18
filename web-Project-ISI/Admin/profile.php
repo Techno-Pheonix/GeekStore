@@ -24,6 +24,7 @@ $_SESSION['url'] = "profile.php";
 $query = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($query);
 $_SESSION['deleted'] ="";
+$id="";
 }
 ?>
 <!DOCTYPE html>
