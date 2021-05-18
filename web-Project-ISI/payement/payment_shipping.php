@@ -43,8 +43,12 @@
         $sql = "INSERT into sales
         (`id_p`,`datetime`,`quantity`,`total_price`,`id_c`) 
         VALUES('$id_p','$datetime','$quantity','$total_price','$id_c')"; //? its a placeholder
-        mysqli_query($conn, $sql);
-    }
+        $query1 = mysqli_query($conn, $sql);
+        if(!$query1){
+        header("location:./failure.php");
+        exit();}
+        }
     header("location:./sucess.php");
+    
 
 ?>
