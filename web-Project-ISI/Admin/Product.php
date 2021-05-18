@@ -18,8 +18,9 @@ $_SESSION['url'] = "Product.php?slug=".$m;
 $sql = "SELECT * from product where slug = '$m'";
 $query = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($query);
-if($row['quantity']==-1){ $deleted="(Deleted)";
-$_SESSION['deleted'];}
+if($row['quantity']==-1){
+     $deleted="(Deleted)";
+    $_SESSION['deleted']="deleted";}
 else $deleted="";
 $_SESSION['id_p'] = $row['id_p'];
 ?>
@@ -124,7 +125,7 @@ $_SESSION['id_p'] = $row['id_p'];
                         <button
                         class="btn btn-primary bg-gradient-deepbluesky bg-gradient-deepbluesky" type="button"
                         style="margin-bottom: 15px;">Create New</button></a>
-                        <a  href="<?php echo($_SESSION['url']); ?>&confirm=true" <?php if(isset($_SESSION['deleted'])) echo('hidden');  ?>>
+                        <a  href="<?php echo($_SESSION['url']); ?>&confirm=true" <?php if($_SESSION['deleted']=="deleted") echo('hidden');  ?>>
                         <button
                         class="btn btn-primary bg-gradient-deepbluesky bg-gradient-deepbluesky" type="button"
                         style="margin-bottom: 15px;">Delete Product</button></a>
