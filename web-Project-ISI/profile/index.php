@@ -1,19 +1,3 @@
-<?php 
-require_once '../admin/includes/dbh.inc.php';
-if(isset($_GET['id'])){
-$id = $_GET['id'];
-$sql = "SELECT * from user where id_user = ".$id;
-$_SESSION['url'] = "index.php?id=".$id;
-}
-else
-{
-$sql = "SELECT * from user where id_user =".$_SESSION['user_id'];
-$_SESSION['perm'] = "";
-$_SESSION['url'] = "index.php";
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,6 +19,20 @@ $_SESSION['url'] = "index.php";
 <body class="d-flex flex-column min-vh-100">
 
 <?php require_once '../includes/navbar.php'; ?>
+<?php 
+require_once '../admin/includes/dbh.inc.php';
+if(isset($_GET['id'])){
+$id = $_GET['id'];
+$sql = "SELECT * from user where id_user = ".$id;
+$_SESSION['url'] = "index.php?id=".$id;
+}
+else
+{
+$sql = "SELECT * from user where id_user =".$_SESSION['user_id'];
+$_SESSION['perm'] = "";
+$_SESSION['url'] = "index.php";
+}
+?>
 
 <?php 
 $id = $_SESSION['user_id'];
@@ -208,10 +206,20 @@ $password = $row["password"];
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLongTitle">Error</h3>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+                            <?php
+                    if (isset($_GET["error"])){
+                        echo "<h3 class=\"modal-title\" id=\"exampleModalLongTitle\">Error</h3>";
+                    } 
+                    if (isset($_GET["res"])){
+                        echo "<h3 class=\"modal-title\" id=\"exampleModalLongTitle\">Update</h3>";
+                    } 
+                    if (isset($_GET["confirm"])){
+                        echo "<h3 class=\"modal-title\" id=\"exampleModalLongTitle\">Delete</h3>";
+                    } 
+                    ?>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
       </div>
       <div class="modal-body">
       <?php
