@@ -116,7 +116,7 @@ session_start();
     <img src="travolta.gif" class="img-fluid" width="300px" height="auto" alt="">
     </div>
 
-    <div class="f">
+    <div class="">
         <?php
         require_once '../includes/footer.php';
         ?>
