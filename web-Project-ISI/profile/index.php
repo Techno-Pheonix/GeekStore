@@ -1,20 +1,3 @@
-<?php 
-session_start();
-require_once '../admin/includes/dbh.inc.php';
-if(isset($_GET['id'])){
-$id = $_GET['id'];
-$sql = "SELECT * from user where id_user = ".$id;
-$_SESSION['url'] = "index.php?id=".$id;
-}
-else
-{
-$sql = "SELECT * from user where id_user =".$_SESSION['user_id'];
-$_SESSION['perm'] = "";
-$_SESSION['url'] = "index.php";
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,6 +19,20 @@ $_SESSION['url'] = "index.php";
 <body class="d-flex flex-column min-vh-100">
 
 <?php require_once '../includes/navbar.php'; ?>
+<?php 
+require_once '../admin/includes/dbh.inc.php';
+if(isset($_GET['id'])){
+$id = $_GET['id'];
+$sql = "SELECT * from user where id_user = ".$id;
+$_SESSION['url'] = "index.php?id=".$id;
+}
+else
+{
+$sql = "SELECT * from user where id_user =".$_SESSION['user_id'];
+$_SESSION['perm'] = "";
+$_SESSION['url'] = "index.php";
+}
+?>
 
 <?php 
 $id = $_SESSION['user_id'];
@@ -79,7 +76,8 @@ $password = $row["password"];
                         </form>
                         
                         <div class="delete mt-4 d-flex justify-content-center">
-                        <a  href="<?php echo($_SESSION['url']); ?>?confirm=true">
+                        <a  href="<?php if(isset($_GET['id'])||isset($_GET['res'])||isset($_GET['error']))echo($_SESSION['url']."?plz=work&");
+                                    else echo($_SESSION['url'].'?') ?>confirm=true">
                         <button
                         class="btn btn-primary bg-gradient-deepbluesky bg-gradient-deepbluesky" type="button"
                         style="margin-bottom: 15px;">Delete User</button></a>
@@ -208,10 +206,20 @@ $password = $row["password"];
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLongTitle">Error</h3>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+                            <?php
+                    if (isset($_GET["error"])){
+                        echo "<h3 class=\"modal-title\" id=\"exampleModalLongTitle\">Error</h3>";
+                    } 
+                    if (isset($_GET["res"])){
+                        echo "<h3 class=\"modal-title\" id=\"exampleModalLongTitle\">Update</h3>";
+                    } 
+                    if (isset($_GET["confirm"])){
+                        echo "<h3 class=\"modal-title\" id=\"exampleModalLongTitle\">Delete</h3>";
+                    } 
+                    ?>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
       </div>
       <div class="modal-body">
       <?php
@@ -262,13 +270,13 @@ $password = $row["password"];
 
       </div>
       <div class="modal-footer">
-                        <a class="btn btn-secondary"  <?php if(!($_GET['confirm'] == true)) echo('data-dismiss="modal"'); ?> href="<?php if($_GET['confirm'] == true) echo "delete.php?id=".$id;
+                        <a class="btn btn-secondary"  <?php if(!isset(($_GET['confirm']))) echo('data-dismiss="modal"'); ?> href="<?php if(isset($_GET['confirm'])) echo "Delete_product.php?id=".$_SESSION['id_p'];
                                             else echo('#');?>"><?php
-                            if($_GET['confirm'] == true) echo "Confirm";
+                            if(isset($_GET['confirm'])) echo "Confirm";
                             else echo('Close');
                              ?>
                              </a>
-                             <?php if($_GET['confirm'] == true){
+                             <?php if(isset($_GET['confirm'])){
                                  echo "<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>";
                              } ?>                        </div>
     </div>
