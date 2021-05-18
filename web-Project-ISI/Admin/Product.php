@@ -21,7 +21,8 @@ $row = mysqli_fetch_array($query);
 if($row['quantity']==-1){
      $deleted="(Deleted)";
     $_SESSION['deleted']="deleted";}
-else $deleted="";
+else {$deleted="";
+        $_SESSION['deleted']="";}
 $_SESSION['id_p'] = $row['id_p'];
 ?>
 
