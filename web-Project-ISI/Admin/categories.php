@@ -11,7 +11,7 @@ if ($_SESSION['isadmin'] == false){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Users - Geek Store</title>
+    <title>Products - Geek Store</title>
     <link rel="icon" href="../pictures/fav.ico" />
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap2.min.css">
     <link rel="stylesheet"
@@ -20,6 +20,7 @@ if ($_SESSION['isadmin'] == false){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/rowgroup/1.1.2/css/rowGroup.dataTables.min.css">
 </head>
 
 <body id="page-top">
@@ -37,14 +38,15 @@ if ($_SESSION['isadmin'] == false){
                                 class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="profile.php"><i
                                 class="fas fa-user"></i><span>Profile</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="Users.php"><i
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="Users.php"><i
                                 class="fas fa-users"></i><span>Users</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="Products.php"><i
                                 class="fas fa-table"></i><span>Products</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="purchases.php"><i
                                 class="fas fa-cash-register"></i><span>Sales</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="categories.php"><i
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="categories.php"><i
                                 class="fas fa-list-alt"></i><span>Categories</span></a></li>
+                                
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
                         id="sidebarToggle" type="button"></button></div>
@@ -86,12 +88,12 @@ if ($_SESSION['isadmin'] == false){
                                         class="btn btn-primary bg-gradient-deepbluesky dropdown-toggle"
                                         data-toggle="dropdown" aria-expanded="false" type="button"><span
                                             class="d-none d-lg-inline mr-2 text-white-600 small"><?php echo($_SESSION['user']); ?></span><img
-                                            class="border rounded-circle img-profile"  width="60px" height="60px"
+                                            class="border rounded-circle img-profile" width=60px height = 60px
                                             src="../avatars/<?php echo $_SESSION['avatar']; ?>"></button>
                                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
-                                        <a class="dropdown-item" role="presentation" href="#"><i
+                                        <a class="dropdown-item" role="presentation" href="./profile"><i
                                                 class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a><a
-                                            class="dropdown-item" role="presentation" href="#"><i
+                                            class="dropdown-item" role="presentation" href="profile.php"><i
                                                 class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a>
                                         <a class="dropdown-item" role="presentation" href="#"><i
                                                 class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity
@@ -106,10 +108,10 @@ if ($_SESSION['isadmin'] == false){
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4">Userbase</h3>
+                    <h3 class="text-dark mb-4">Sales</h3>
                     <div class="card shadow">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 font-weight-bold">User Info</p>
+                            <p class="text-primary m-0 font-weight-bold">Sales Info</p>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive table mt-2" id="data_Table" role="grid"
@@ -117,45 +119,46 @@ if ($_SESSION['isadmin'] == false){
                                 <table class="table dataTable my-0" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th>Full Name</th>
-                                            <th>Address</th>
-                                            <th>E-mail</th>
-                                            <th>Account creation date</th>
-                                            <th>Last Online</th>
+                                            <th>Sub Category</th>
+                                            <th>ID</th>
+                                            <th>Category</th>
+                                            <th>nb° products</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php 
+<?php 
 require_once 'includes/dbh.inc.php';
-$sql = "SELECT * from user";
-$query = mysqli_query($conn,$sql);
 
-?>
-                                        <?php
-while ($row = mysqli_fetch_array($query)) {
-    $deleted = "";
-    if($row['admin']==-1) $deleted = "*";
-    echo "<tr data-href=\"profile.php?id=". $row['id_user']."\">";
-    echo "<td><img class=\"rounded-circle mr-2\" width=\"30\" height=\"30\" src=\"../avatars/". $row['avatar'] ."\">" . $row['first_name'] ." ". $row['last_name'] . $deleted . "</td>";
-    echo "<td>" . $row['adress'] . "</td>";
-    echo "<td>" . $row['email'] . "</td>";
-    echo "<td>" . $row['registered_at'] . "</td>";
-    echo "<td>" . $row['lastlogin'] . "</td>";
+$sql6 = "SELECT distinct title ,id_sub as sub, id_cat,
+(select count(*) from sales s, sub_category sc, product p, category c
+where p.id_cat=c.id_cat and c.id_cat= sc.id_cat and p.id_p=s.id_p and id_sub = sub) as total from sub_category";
+$query = mysqli_query($conn,$sql6);
+while($row = mysqli_fetch_assoc($query)){
+    $sql7 = "SELECT title, id_cat from category where id_cat=".$row['id_cat'];
+    $query1 = mysqli_query($conn,$sql7);
+    $row1 = mysqli_fetch_array($query1);
+    echo "<tr data-href=\"#\">";
+    echo "<td>" . $row['title'] . "</td>";
+    echo "<td>" . $row['sub'] . "</td>";
+    echo "<td>" . $row1['title']." n°".$row1['id_cat']. "</td>";
+    echo "<td>" . $row['total'] . "</td>";
     echo "</tr>";
 }
+
+
 ?>
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Full Name</th>
-                                            <th>Address</th>
-                                            <th>E-mail</th>
-                                            <th>Account creation date</th>
-                                            <th>Last Online</th>
+                                            <th>Sub Category</th>
+                                            <th>ID</th>
+                                            <th>Category</th>
+                                            <th>nb° products</th>
+                                            
                                         </tr>
                                     </tfoot>
                                 </table>
-                                <p>(*): Deleted</p>
                             </div>
                         </div>
                     </div>
@@ -176,29 +179,15 @@ while ($row = mysqli_fetch_array($query)) {
     <script src="assets/js/theme.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/rowgroup/1.1.2/js/dataTables.rowGroup.min.js"></script>
     <script>
-function FilteredSearch() {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("catInput");
-  filter = input.value;
-  table = document.getElementById("dataTable");
-  tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[2];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
-let isCommandPressed = false;
+        function createnew() {
+            window.location.href = "AddProduct/index.php";
+        }
+    </script>
+    
+    <script>
+        let isCommandPressed = false;
         window.addEventListener("keydown", (event) => {
         if (event.which === 91) {
             isCommandPressed = true;
@@ -223,10 +212,26 @@ let isCommandPressed = false;
         });
         $(document).ready(function() {
             $('#dataTable').DataTable( {
-                "pagingType": "first_last_numbers"
+                "pagingType": "first_last_numbers",
+                order: [[2, 'asc']],
+                rowGroup: {
+                    startRender: null,
+                    endRender: function ( rows, group ) {
+                    
+                    return $('<tr/>')
+                    .append( '<td colspan="4">Category '+group+'</td>' )
+                    },
+                    dataSrc: 2
+                },
+                ordering: true,
+                "columnDefs" : [ {
+                "targets": [0,1,3], /* column index */
+                "orderable" : false, /* true or false */
+                }
+                ]
             } );
-        });
-</script>
+} );
+    </script>
 </body>
 
 </html>

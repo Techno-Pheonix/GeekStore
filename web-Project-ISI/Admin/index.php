@@ -45,6 +45,8 @@ require_once 'includes/dbh.inc.php';
                                 class="fas fa-table"></i><span>Products</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="purchases.php"><i
                                 class="fas fa-cash-register"></i><span>Sales</span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="categories.php"><i
+                                class="fas fa-list-alt"></i><span>Categories</span></a></li>
 
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
