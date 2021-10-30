@@ -88,7 +88,7 @@
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
                   <div class="col-md-6 col-xl-4 col-sm-12 mb-2" >
                     <div class="card">
-                      <img class="card-img-top img-fluid" src="../pictures/<?php echo $row["picture"]?>" width=175px height=200px; alt="Card image cap">
+                      <img class="card-img-top" src="../pictures/<?php echo $row["picture"]?>" width=175px height=200px alt="Card image cap">
                       <div class="card-body">
                         <h3 class="card-title text-primary"><?php echo $row["title"] ?></h3>
                         <h5 class="card-title"><?php echo $row["price"] ?>$</h5>

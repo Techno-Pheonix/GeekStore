@@ -82,6 +82,7 @@
     if (file_exists($target_file)) {
         $uploadOk = 0;
         $update = "UPDATE user set avatar='$target_file' where id_user=".$_SESSION['user_id'].";";
+        $_SESSION['avatar'] = $target_file;
         $sql2=mysqli_query($conn,$update);
         if(!$sql2)
         {

@@ -25,8 +25,8 @@
 
     <div class="container">
         <div class="d-flex justify-content-center w-100 my-5">
-            <div class="alert alert-success" role="alert">
-                <?php echo $_GET["msg"]; ?>
+            <div class="alert alert-danger" role="alert">
+                It seems that there is a problem !
             </div>
         </div>
     </div>

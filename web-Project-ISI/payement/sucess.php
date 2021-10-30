@@ -1,7 +1,4 @@
-<?php
-session_start();
-$_SESSION['shopping_cart']=[];
-?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -25,7 +22,9 @@ $_SESSION['shopping_cart']=[];
   </head>
   <body class="d-flex flex-column min-vh-100">
   <?php require_once "../includes/navbar.php"; ?>
-
+  <?php
+$_SESSION['shopping_cart']=[];
+?>
     <div class="container">
         <div class="d-flex justify-content-center w-100 my-5">
             <div class="alert alert-success" role="alert">
