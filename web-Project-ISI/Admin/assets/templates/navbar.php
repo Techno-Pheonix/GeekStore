@@ -28,7 +28,7 @@ if ($_SESSION['isadmin'] == false){
         <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="../../index.php">
           <div class="sidebar-brand-icon rotate-n-15"><img src="../../pictures/logof2.png" width="50px"
               class="pulse animated infinite"></div>
-          <div class="sidebar-brand-text mx-3"><span>Geek Store</span></div>
+          <div class="sidebar-brand-text mx-3"><span>Geek Store ...</span></div>
         </a>
         <hr class="sidebar-divider my-0">
         <ul class="nav navbar-nav text-light" id="accordionSidebar">
