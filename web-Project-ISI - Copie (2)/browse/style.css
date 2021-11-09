@@ -1,0 +1,59 @@
+* {
+  font-size: 1.02em;
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+
+nav * {
+  font-size: 1em;
+}
+
+.cat-item {
+  display: grid;
+  place-items: center;
+  padding: 0.1em;
+  margin: 0.1em;
+  border-radius: 5px;
+}
+
+.container > nav {
+  padding: 0 !important;
+}
+
+.card > img {
+  height: 12em;
+  width: 100%;
+}
+
+.center {
+  display: grid;
+  place-items: center;
+}
+
+.dropdown-ul li ul {
+  max-height: 0px;
+  transition: max‑height 1s;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.dropdown-ul:hover li ul {
+  max-height: 1000px;
+}
+
+ul li {
+  list-style: none;
+}
+
+ul {
+  padding: 0;
+}
+
+.bg-liste-cat {
+  background-color: #e8e8e8;
+}
+
+/*List first char upper case*/
+.ul li::first-letter {
+  text-transform: uppercase;
+}

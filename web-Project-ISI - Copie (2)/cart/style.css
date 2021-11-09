@@ -1,0 +1,57 @@
+body {
+  color: black;
+  background-color: white;
+  font-family: Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+/*prod style */
+
+.panier-contenu,
+.total-price {
+  box-shadow: 0 0 5px;
+}
+
+.prod img {
+  max-width: 500px;
+  margin: auto;
+  box-shadow: 0px 0px 2px;
+}
+
+.prod hr,
+.total-price hr {
+  border: 1px solid black;
+  opacity: 0.9;
+  border-radius: 5px;
+  padding: 0;
+}
+
+.total-price {
+  height: 100%;
+  padding: 10px;
+}
+
+.total-price > * {
+  padding: 5px;
+}
+
+.center {
+  display: grid;
+  place-items: center;
+}
+
+@media only screen and (max-device-width: 992px) {
+  .total-price {
+    margin: 30px;
+  }
+  .col-md-8 {
+    margin: 20px;
+  }
+
+  hr {
+    margin: 0 0 30px 0;
+  }
+}

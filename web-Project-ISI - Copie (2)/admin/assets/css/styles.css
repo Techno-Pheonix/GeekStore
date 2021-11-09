@@ -1,0 +1,53 @@
+@media (max-width: 500px) {
+  .login-clean {
+    padding: 218px 20px;
+  }
+}
+
+@media (max-width: 300px) {
+  .login-clean {
+    padding: 178px 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .login-clean {
+    padding: 140px 20px;
+  }
+}
+
+@media (max-width:1400px) {
+  .login-clean {
+    padding: 93.5px 20px;
+  }
+}
+.bg-gradient-blues {
+  background: #c6cfd4;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom,  #6DD5FA, #2980B9);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom,  #6DD5FA, #2980B9);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+
+.bg-gradient-deepbluesky {
+  background: #00B4DB;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #0083B0, #00B4DB);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #0083B0, #00B4DB);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.btn .bg-gradient-deepbluesky,.bg-gradient-blues{
+  border: transparent;
+}
+tr[data-href]{
+  transition: 0,1s;
+}
+tr[data-href]:hover {
+  background: #f2f3ff;
+  outline: none;
+  cursor: pointer;
+  transition: 0.1s;
+}
